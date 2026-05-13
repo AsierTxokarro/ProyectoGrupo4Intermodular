@@ -217,4 +217,83 @@ Public Class Gestion
         Return "Tarea insertada"
     End Function
 
+    Public Function EliminarTarea(tarea As Tarea) As String
+        If tarea Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sqlIncluyen As String = "Delete From INCLUYEN Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno"
+        Dim cmdDeleteIncluyen As New SqlCommand(sqlIncluyen, conexion)
+        Try
+            conexion.Open()
+            cmdDeleteIncluyen.Parameters.AddWithValue("@codigoTarea", tarea.CodigoTarea)
+            cmdDeleteIncluyen.Parameters.AddWithValue("@fechaJornada", tarea.Fecha)
+            cmdDeleteIncluyen.Parameters.AddWithValue("@dniAlumno", tarea.DNI)
+            Dim numFilas1 As String = cmdDeleteIncluyen.ExecuteNonQuery()
+            If numFilas1 = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Dim sqlTareas As String = "Delete From TAREASREALIZADAS Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno"
+            Dim cmdDeleteTareas As New SqlCommand(sqlTareas, conexion)
+            cmdDeleteTareas.Parameters.AddWithValue("@codigoTarea", tarea.CodigoTarea)
+            cmdDeleteTareas.Parameters.AddWithValue("@fechaJornada", tarea.Fecha)
+            cmdDeleteTareas.Parameters.AddWithValue("@dniAlumno", tarea.DNI)
+            Dim numFilas2 As Integer = cmdDeleteTareas.ExecuteNonQuery()
+            If numFilas2 = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Return "Se ha modificado la tarea correctamente"
+        Catch ex As Exception
+            Return ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ModificarRaTarea(tareaAModificar As TareasCompletas) As String
+
+    End Function
+
+    Public Function ModificarDescripcionTarea(tareaAModificar As TareasCompletas) As String
+
+    End Function
+
+    Public Function ModificarDuracionTarea(tareaAModificar As TareasCompletas) As String
+
+    End Function
+
+    Public Function ModificarFechaJornada(tareaAModificar As TareasCompletas) As String
+
+    End Function
+
+    Public Function ModificarModuloTarea(tareaAModificar As TareasCompletas) As String
+
+    End Function
+
+    Public Function MostrarTareas(dniAlumno As String) As List(Of TareasCompletas)
+        Dim listaTareasMostrar As New List(Of TareasCompletas)
+        If dniAlumno Is Nothing OrElse String.IsNullOrWhiteSpace(dniAlumno) Then
+            Return listaTareasMostrar
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Select INCLUYEN.CodigoTarea, TAREASREALIZADAS.Descripcion As DescripcionTarea, TAREASREALIZADAS.Duracion, MODULOS.NombreM As Modulo, RAS.Descripcion As DescripcionRA, TAREASREALIZADAS.FechaJornada From TAREASREALIZADAS Inner Join (INCLUYEN Inner Join (RAS Inner Join MODULOS On RAS.CodigoModulo = MODULOS.CodigoModulo And RAS.Ciclo = MODULOS.Ciclo And RAS.Alias = MODULOS.Alias) On INCLUYEN.CodigoModulo = RAS.CodigoModulo And INCLUYEN.Ciclo = RAS.Ciclo And INCLUYEN.Alias = RAS.Alias And INCLUYEN.RA = RAS.RA) On TAREASREALIZADAS.CodigoTarea = INCLUYEN.CodigoTarea And TAREASREALIZADAS.FechaJornada = INCLUYEN.FechaJornada And TAREASREALIZADAS.Dni = INCLUYEN.Dni Where TAREASREALIZADAS.Dni = @dniAlumno Group By TAREASREALIZADAS.Descripcion"
+        Dim cmdMostrar As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdMostrar.Parameters.AddWithValue("@dniAlumno", dniAlumno)
+            Dim drMostrarTareas As SqlDataReader = cmdMostrar.ExecuteReader()
+            If Not drMostrarTareas.HasRows Then
+                Return listaTareasMostrar
+            End If
+            While drMostrarTareas.Read()
+                listaTareasMostrar.Add(New TareasCompletas(drMostrarTareas("CodigoTarea"), drMostrarTareas("DescripcionRA"), drMostrarTareas("Modulo"), drMostrarTareas("FechaJornada"), drMostrarTareas("DescripcionTarea"), drMostrarTareas("Duracion")))
+            End While
+            Return listaTareasMostrar
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+            Return listaTareasMostrar
+        Finally
+            conexion.Close()
+        End Try
+    End Function
 End Class
