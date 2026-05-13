@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\ProyectoIntermodular\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\proyectointermodular\\aplicacion\\frmtutor2.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmtutor2.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\proyectointermodular\\aplicacion\\frmtutor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmtutor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\proyectointermodular\\aplicacion\\login.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\login.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\proyectointermodular\\aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\proyectointermodular\\aplicacion\\frmcrearcuentatutor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmcrearcuentatutor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\proyectointermodular\\aplicacion\\frmalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|c:\\proyectointermodular\\gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|solutionrelative:gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
@@ -27,10 +51,6 @@
       "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\ProyectoIntermodular\\aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\ProyectoIntermodular\\aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
@@ -51,6 +71,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "FrmTutor2.vb [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\FrmTutor2.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\FrmTutor2.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\FrmTutor2.vb [Dise\u00F1o]",
+              "RelativeToolTip": "Aplicacion\\FrmTutor2.vb [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-13T08:44:27.573Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmTutor.vb [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\FrmTutor.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\FrmTutor.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\FrmTutor.vb [Dise\u00F1o]",
+              "RelativeToolTip": "Aplicacion\\FrmTutor.vb [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-13T08:43:32.465Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.vb [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\Login.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\Login.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\Login.vb [Dise\u00F1o]",
+              "RelativeToolTip": "Aplicacion\\Login.vb [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-13T08:42:55.652Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmDatosAlumno.vb [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\FrmDatosAlumno.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\FrmDatosAlumno.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\FrmDatosAlumno.vb [Dise\u00F1o]",
+              "RelativeToolTip": "Aplicacion\\FrmDatosAlumno.vb [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-13T08:42:16.563Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmCrearCuentaTutor.vb [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\FrmCrearCuentaTutor.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\FrmCrearCuentaTutor.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\FrmCrearCuentaTutor.vb [Dise\u00F1o]",
+              "RelativeToolTip": "Aplicacion\\FrmCrearCuentaTutor.vb [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-13T08:40:11.638Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Gestion.vb",
               "DocumentMoniker": "C:\\ProyectoIntermodular\\Gestion\\Gestion.vb",
               "RelativeDocumentMoniker": "Gestion\\Gestion.vb",
@@ -63,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "Jornada.vb",
               "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Jornada.vb",
               "RelativeDocumentMoniker": "Entidades\\Jornada.vb",
@@ -75,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "Alumno.vb",
               "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Alumno.vb",
               "RelativeDocumentMoniker": "Entidades\\Alumno.vb",
@@ -87,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "Module1.vb",
               "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
               "RelativeDocumentMoniker": "Aplicacion\\Module1.vb",
@@ -99,18 +179,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Form1.vb [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\Form1.vb",
-              "RelativeDocumentMoniker": "Aplicacion\\Form1.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\Form1.vb [Dise\u00F1o]",
-              "RelativeToolTip": "Aplicacion\\Form1.vb [Dise\u00F1o]",
+              "DocumentIndex": 5,
+              "Title": "FrmAlumno.vb [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\FrmAlumno.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\FrmAlumno.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\FrmAlumno.vb [Dise\u00F1o]",
+              "RelativeToolTip": "Aplicacion\\FrmAlumno.vb [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:24:10.031Z"
+              "WhenOpened": "2026-05-06T17:24:10.031Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Tarea.vb",
               "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Tarea.vb",
               "RelativeDocumentMoniker": "Entidades\\Tarea.vb",
@@ -122,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "Modulo.vb",
               "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Modulo.vb",
               "RelativeDocumentMoniker": "Entidades\\Modulo.vb",
@@ -134,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "Curso.vb",
               "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Curso.vb",
               "RelativeDocumentMoniker": "Entidades\\Curso.vb",
@@ -146,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "MiServidor.vb",
               "DocumentMoniker": "C:\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
               "RelativeDocumentMoniker": "BuscarServer\\MiServidor.vb",
