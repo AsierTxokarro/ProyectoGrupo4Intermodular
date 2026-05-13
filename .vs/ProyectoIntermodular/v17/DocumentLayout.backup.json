@@ -1,50 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\",
+  "WorkspaceRootPath": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|c:\\users\\usuari\\documents\\clase\\aaa_repe\\programaci\u00F3n\\visual\\eva3\\trabajointermodular\\asier\\gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|solutionrelative:gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|solutionrelative:buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\entidades\\partesemanal.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\partesemanal.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\entidades\\fichaje.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\fichaje.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\entidades\\jornada.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\entidades\\jornada.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\jornada.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\entidades\\modulo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\entidades\\modulo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\modulo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|solutionrelative:buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,28 +46,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "Gestion.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Gestion\\Gestion.vb",
+              "RelativeDocumentMoniker": "Gestion\\Gestion.vb",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Gestion\\Gestion.vb",
+              "RelativeToolTip": "Gestion\\Gestion.vb",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAwwF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-06T17:23:35.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Module1.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Aplicacion\\Module1.vb",
               "RelativeDocumentMoniker": "Aplicacion\\Module1.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Aplicacion\\Module1.vb",
               "RelativeToolTip": "Aplicacion\\Module1.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-06T17:24:25.05Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Form1.vb [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Aplicacion\\Form1.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Aplicacion\\Form1.vb",
               "RelativeDocumentMoniker": "Aplicacion\\Form1.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Aplicacion\\Form1.vb [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Aplicacion\\Form1.vb [Dise\u00F1o]",
               "RelativeToolTip": "Aplicacion\\Form1.vb [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-06T17:24:10.031Z",
@@ -83,141 +92,77 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Gestion.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Gestion\\Gestion.vb",
-              "RelativeDocumentMoniker": "Gestion\\Gestion.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Gestion\\Gestion.vb",
-              "RelativeToolTip": "Gestion\\Gestion.vb",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAcwCwAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:23:35.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ParteSemanal.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\ParteSemanal.vb",
-              "RelativeDocumentMoniker": "Entidades\\ParteSemanal.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\ParteSemanal.vb",
-              "RelativeToolTip": "Entidades\\ParteSemanal.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:15:48.292Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Tarea.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Tarea.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Tarea.vb",
               "RelativeDocumentMoniker": "Entidades\\Tarea.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Tarea.vb",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Tarea.vb",
               "RelativeToolTip": "Entidades\\Tarea.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:15:19.949Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-06T17:15:19.949Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Fichaje.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Fichaje.vb",
-              "RelativeDocumentMoniker": "Entidades\\Fichaje.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Fichaje.vb",
-              "RelativeToolTip": "Entidades\\Fichaje.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:14:36.099Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "Jornada.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Jornada.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Jornada.vb",
               "RelativeDocumentMoniker": "Entidades\\Jornada.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Jornada.vb",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Jornada.vb",
               "RelativeToolTip": "Entidades\\Jornada.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-06T17:13:30.806Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "Modulo.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Modulo.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Modulo.vb",
               "RelativeDocumentMoniker": "Entidades\\Modulo.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Modulo.vb",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Modulo.vb",
               "RelativeToolTip": "Entidades\\Modulo.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:13:06.52Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-06T17:13:06.52Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "Curso.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Curso.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Curso.vb",
               "RelativeDocumentMoniker": "Entidades\\Curso.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Curso.vb",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Curso.vb",
               "RelativeToolTip": "Entidades\\Curso.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAMAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-06T17:11:30.734Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
+              "Title": "Alumno.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Alumno.vb",
+              "RelativeDocumentMoniker": "Entidades\\Alumno.vb",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\Entidades\\Alumno.vb",
+              "RelativeToolTip": "Entidades\\Alumno.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-06T17:00:04.378Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "MiServidor.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\BuscarServer\\MiServidor.vb",
               "RelativeDocumentMoniker": "BuscarServer\\MiServidor.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\Clase\\AAA_REPE\\Programaci\u00F3n\\Visual\\EVA3\\TrabajoIntermodular\\Asier\\BuscarServer\\MiServidor.vb",
               "RelativeToolTip": "BuscarServer\\MiServidor.vb",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T16:59:05.742Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "7e2ff46b-7b0d-46d1-bf98-edd16a9c6e2a",
-        "Display": 1,
-        "X": 268,
-        "Y": 153,
-        "Width": 1222,
-        "Height": 766,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Alumno.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Alumno.vb",
-              "RelativeDocumentMoniker": "Entidades\\Alumno.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Alumno.vb",
-              "RelativeToolTip": "Entidades\\Alumno.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:00:04.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-06T16:59:05.742Z"
             }
           ]
         }
