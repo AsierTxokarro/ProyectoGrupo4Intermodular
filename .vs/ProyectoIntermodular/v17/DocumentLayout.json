@@ -1,41 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\",
+  "WorkspaceRootPath": "C:\\ProyectoIntermodular\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|c:\\proyectointermodular\\gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|solutionrelative:gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|c:\\1\u00BAdam-rep-c\\proyectointermodular\\proyectointermodular\\entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\entidades\\modulo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\modulo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\modulo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\entidades\\jornada.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\jornada.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\jornada.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\ProyectoIntermodular\\aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\ProyectoIntermodular\\aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|C:\\ProyectoIntermodular\\buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|solutionrelative:buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     }
   ],
@@ -52,22 +52,46 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Gestion.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Gestion\\Gestion.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Gestion\\Gestion.vb",
               "RelativeDocumentMoniker": "Gestion\\Gestion.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Gestion\\Gestion.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Gestion\\Gestion.vb",
               "RelativeToolTip": "Gestion\\Gestion.vb",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAgwFQAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-06T17:23:35.471Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "Jornada.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Jornada.vb",
+              "RelativeDocumentMoniker": "Entidades\\Jornada.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Jornada.vb",
+              "RelativeToolTip": "Entidades\\Jornada.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-06T17:13:30.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Alumno.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Alumno.vb",
+              "RelativeDocumentMoniker": "Entidades\\Alumno.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Alumno.vb",
+              "RelativeToolTip": "Entidades\\Alumno.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAA+wAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-06T17:00:04.378Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Module1.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
               "RelativeDocumentMoniker": "Aplicacion\\Module1.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
               "RelativeToolTip": "Aplicacion\\Module1.vb",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
@@ -75,87 +99,58 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Form1.vb [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Aplicacion\\Form1.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\Form1.vb",
               "RelativeDocumentMoniker": "Aplicacion\\Form1.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Aplicacion\\Form1.vb [Dise\u00F1o]",
+              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\Form1.vb [Dise\u00F1o]",
               "RelativeToolTip": "Aplicacion\\Form1.vb [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-06T17:24:10.031Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Tarea.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Tarea.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Tarea.vb",
               "RelativeDocumentMoniker": "Entidades\\Tarea.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Tarea.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Tarea.vb",
               "RelativeToolTip": "Entidades\\Tarea.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:15:19.949Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-06T17:15:19.949Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Modulo.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Modulo.vb",
+              "RelativeDocumentMoniker": "Entidades\\Modulo.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Modulo.vb",
+              "RelativeToolTip": "Entidades\\Modulo.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-06T17:13:06.52Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Jornada.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Jornada.vb",
-              "RelativeDocumentMoniker": "Entidades\\Jornada.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Jornada.vb",
-              "RelativeToolTip": "Entidades\\Jornada.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:13:30.806Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Modulo.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Modulo.vb",
-              "RelativeDocumentMoniker": "Entidades\\Modulo.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Modulo.vb",
-              "RelativeToolTip": "Entidades\\Modulo.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:13:06.52Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "Curso.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Curso.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Curso.vb",
               "RelativeDocumentMoniker": "Entidades\\Curso.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Curso.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Curso.vb",
               "RelativeToolTip": "Entidades\\Curso.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAMAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:11:30.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Alumno.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Alumno.vb",
-              "RelativeDocumentMoniker": "Entidades\\Alumno.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\Entidades\\Alumno.vb",
-              "RelativeToolTip": "Entidades\\Alumno.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:00:04.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-06T17:11:30.734Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "MiServidor.vb",
-              "DocumentMoniker": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
+              "DocumentMoniker": "C:\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
               "RelativeDocumentMoniker": "BuscarServer\\MiServidor.vb",
-              "ToolTip": "C:\\1\u00BADAM-REP-C\\ProyectoIntermodular\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
+              "ToolTip": "C:\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
               "RelativeToolTip": "BuscarServer\\MiServidor.vb",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
