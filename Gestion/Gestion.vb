@@ -12,13 +12,13 @@ Public Class Gestion
 
     Public Function AñadirAlumno(dni As String, horasTotales As Integer, nombre As String, apellido1 As String, apellido2 As String, ciclo As Integer, aliasCurso As String, realizaPracticas As Boolean, motivoNoPracticas As String) As String
 
-        Dim mensaje As String = ""
+        Dim mensajeError As String = ""
 
-        If ComprobarNoAlumnoRepetido(dni, mensaje) Then
-            If Not String.IsNullOrWhiteSpace(mensaje) Then
-                Return mensaje
+        If Not Existe(dni, mensajeError) Then
+            If Not String.IsNullOrWhiteSpace(mensajeError) Then
+                Return mensajeError
             Else
-                Return "Ya hay un alumno con ese DNI"
+                Return $"Ya hay un alumno con ese DNI {dni}"
             End If
         End If
 
@@ -39,6 +39,8 @@ Public Class Gestion
         crear.Parameters.AddWithValue("@alias", aliasCurso)
         crear.Parameters.AddWithValue("@realizaPracticas", realizaPracticas)
 
+        crear.ExecuteNonQuery()
+
         If String.IsNullOrWhiteSpace(motivoNoPracticas) Then
             crear.Parameters.AddWithValue("@motivo", DBNull.Value)
         Else
@@ -47,7 +49,7 @@ Public Class Gestion
 
         Return "Insertado"
     End Function
-    Public Function ComprobarNoAlumnoRepetido(dni As String, ByRef mensaje As String) As Boolean
+    Public Function Existe(dni As String, ByRef mensaje As String) As Boolean
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim dniAPasar As String = dni
         Dim lineaComando As String = "SELECT DNI FROM ALUMNOS WHERE DNI = @dni"
@@ -63,15 +65,17 @@ Public Class Gestion
             Return personasConEseDNI.HasRows
         Catch ex As Exception
             mensaje = "Error del comprobar alumno repetido: " & ex.Message
+            Return True
         Finally
             conexion.Close()
         End Try
 
-        Return True
+        Return False
 
     End Function
 
     Public Function MostrarHorasDeAlumnosPorCicloYAliasDelCurso(ciclo As Integer, curso As String) As List(Of Alumno)
+        Dim listaAlumnos As New List(Of Alumno)
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim cicloAPasar As Integer = ciclo
         Dim cursoAPasar As String = curso
@@ -79,23 +83,32 @@ Public Class Gestion
         Dim cmdHorasPorCicloYAlias As New SqlCommand(sql, conexion)
         cmdHorasPorCicloYAlias.Parameters.AddWithValue("@CICLO", ciclo)
         cmdHorasPorCicloYAlias.Parameters.AddWithValue("@ALIAS", curso)
+        Try
+            conexion.Open()
+            Dim drHorasPorCicloYAlias As SqlDataReader = cmdHorasPorCicloYAlias.ExecuteReader
+            While drHorasPorCicloYAlias.Read()
+                Dim alumno As New Alumno
+                alumno.Nombre = drHorasPorCicloYAlias("CICLO").ToString
+                alumno.HorasTotales = Convert.ToInt32(drHorasPorCicloYAlias("HORASTOTALES"))
+                listaAlumnos.Add(alumno)
+            End While
+            drHorasPorCicloYAlias.Close()
+        Catch ex As Exception
+            Return New List(Of Alumno)
+        End Try
+        Return listaAlumnos
     End Function
 
 
-    Public Function AñadirJornada(fecha As Date, dni As String, duracion As Integer) As String
-        Dim mensaje As String = ""
-        If ComprobarJornadaRepetida(fecha, dni, mensaje) = True Then
-            If String.IsNullOrWhiteSpace(mensaje) = False Then
-                Return mensaje
-            Else
-                Return "Ya hay una jornada en ese dia con ese DNI"
-            End If
+    Public Function AñadirJornada(fecha As Date, dni As String, duracion As Decimal) As String
+        If ComprobarJornadaRepetida(fecha, dni) = True Then
+            Return "Ya hay una jornada en ese dia con ese DNI"
         End If
 
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim fechaAPasar As Date = fecha
         Dim dniAPasar As String = dni
-        Dim duracionAPasar As Integer = duracion
+        Dim duracionAPasar As Decimal = duracion
         Dim lineaComando As String = "INSERT INTO JORNADAS(FECHA, DNI, DURACION) VALUES (@fecha, @dni, @duracion)"
         Dim crear As New SqlCommand(lineaComando, conexion)
 
@@ -114,8 +127,56 @@ Public Class Gestion
 
         Return "Insertado"
     End Function
+    Public Function EliminarJornada(fecha As Date, dni As String) As String
+        If Not ComprobarJornadaRepetida(fecha, dni) = True Then
+            Return "No hay una jornada en ese dia con ese DNI"
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim fechaAPasar As Date = fecha
+        Dim dniAPasar As String = dni
+        Dim lineaComando As String = "DELETE JORNADAS.* FROM JORNADAS WHERE DNI = @dni AND FECHA = @fecha"
+        Dim eliminar As New SqlCommand(lineaComando, conexion)
 
-    Public Function ComprobarJornadaRepetida(fecha As Date, dni As String, ByRef mensaje As String) As Boolean
+        eliminar.Parameters.AddWithValue("@dni", dniAPasar)
+        eliminar.Parameters.AddWithValue("@fecha", fechaAPasar)
+
+        Try
+            conexion.Open()
+            eliminar.ExecuteNonQuery()
+        Catch ex As Exception
+            Return "Error al intentar borrar una jornada: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+
+        Return "Jornada eliminado"
+    End Function
+    Public Function ModificarJornada(fecha As Date, dni As String, duracion As Decimal) As String
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim fechaAPasar As Date = fecha
+        Dim dniAPasar As String = dni
+        Dim duracionAPasar As String = duracion
+        Dim lineaComando As String = "UPDATE JORNADAS SET DURACION = @duracion WHERE DNI = @dni AND FECHA = @fecha"
+        Dim actualizar As New SqlCommand(lineaComando, conexion)
+
+        actualizar.Parameters.AddWithValue("@dni", dniAPasar)
+        actualizar.Parameters.AddWithValue("@fecha", fechaAPasar)
+        actualizar.Parameters.AddWithValue("@duracion", duracionAPasar)
+
+        Try
+            conexion.Open()
+            actualizar.ExecuteNonQuery()
+        Catch ex As Exception
+            Return "Error al intentar cambiar una jornada: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+
+        Return "Cambio completado"
+    End Function
+
+
+    Public Function ComprobarJornadaRepetida(fecha As Date, dni As String) As Boolean
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim fechaAPasar As Date = fecha
         Dim dniAPasar As String = dni
@@ -131,7 +192,7 @@ Public Class Gestion
             tareasConEseDNIYFecha = comprobar.ExecuteReader()
             Return tareasConEseDNIYFecha.HasRows
         Catch ex As Exception
-            mensaje = "Error del comprobar jornada repetida: " & ex.Message
+            '"Error del comprobar jornada repetida: " & ex.Message
         Finally
             conexion.Close()
         End Try
