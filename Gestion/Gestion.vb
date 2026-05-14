@@ -452,7 +452,7 @@ Public Class Gestion
         End Try
     End Function
 
-    Public Function MostrarTareas(dniAlumno As String) As List(Of TareasCompletas)
+    Public Function MostrarTareasAlumno(dniAlumno As String) As List(Of TareasCompletas)
         Dim listaTareasMostrar As New List(Of TareasCompletas)
         If dniAlumno Is Nothing OrElse String.IsNullOrWhiteSpace(dniAlumno) Then
             Return Nothing
@@ -463,6 +463,33 @@ Public Class Gestion
         Try
             conexion.Open()
             cmdMostrar.Parameters.AddWithValue("@dniAlumno", dniAlumno)
+            Dim drMostrarTareas As SqlDataReader = cmdMostrar.ExecuteReader()
+            If Not drMostrarTareas.HasRows Then
+                Return Nothing
+            End If
+            While drMostrarTareas.Read()
+                listaTareasMostrar.Add(New TareasCompletas(drMostrarTareas("Dni"), drMostrarTareas("CodigoTarea"), drMostrarTareas("RA"), drMostrarTareas("DescripcionRA"), drMostrarTareas("CodigoModulo"), drMostrarTareas("Modulo"), drMostrarTareas("FechaJornada"), drMostrarTareas("DescripcionTarea"), drMostrarTareas("Duracion")))
+            End While
+            Return listaTareasMostrar
+        Catch ex As Exception
+            Return Nothing
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function MostrarTareasAlumnoDeUnaFecha(dniAlumno As String, fechaJornada As Date) As List(Of TareasCompletas)
+        Dim listaTareasMostrar As New List(Of TareasCompletas)
+        If dniAlumno Is Nothing OrElse String.IsNullOrWhiteSpace(dniAlumno) Then
+            Return Nothing
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Select TAREASREALIZADAS.Dni, TAREASREALIZADAS.CodigoTarea, TAREASREALIZADAS.Descripcion As DescripcionTarea, TAREASREALIZADAS.Duracion, INCLUYEN.CodigoModulo, MODULOS.NombreM As Modulo, RAS.Ra, RAS.Descripcion As DescripcionRA, TAREASREALIZADAS.FechaJornada From TAREASREALIZADAS Inner Join (INCLUYEN Inner Join (RAS Inner Join MODULOS On RAS.CodigoModulo = MODULOS.CodigoModulo And RAS.Ciclo = MODULOS.Ciclo And RAS.Alias = MODULOS.Alias) On INCLUYEN.CodigoModulo = RAS.CodigoModulo And INCLUYEN.Ciclo = RAS.Ciclo And INCLUYEN.Alias = RAS.Alias And INCLUYEN.RA = RAS.RA) On TAREASREALIZADAS.CodigoTarea = INCLUYEN.CodigoTarea And TAREASREALIZADAS.FechaJornada = INCLUYEN.FechaJornada And TAREASREALIZADAS.Dni = INCLUYEN.Dni Where TAREASREALIZADAS.Dni = @dniAlumno And TAREASREALIZADAS.FechaJornada = @fechaJornada Group By TAREASREALIZADAS.CodigoTarea"
+        Dim cmdMostrar As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdMostrar.Parameters.AddWithValue("@dniAlumno", dniAlumno)
+            cmdMostrar.Parameters.AddWithValue("@fechaJornada", fechaJornada)
             Dim drMostrarTareas As SqlDataReader = cmdMostrar.ExecuteReader()
             If Not drMostrarTareas.HasRows Then
                 Return Nothing
