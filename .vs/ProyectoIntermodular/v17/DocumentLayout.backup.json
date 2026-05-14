@@ -1,41 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\ProyectoIntermodular\\",
+  "WorkspaceRootPath": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|c:\\proyectointermodular\\gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\users\\school\\desktop\\program\\proyecto real de git hecho con clone\\proyectogrupo4intermodular\\aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|solutionrelative:gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\tarea.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\modulo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\modulo.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\jornada.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\jornada.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\curso.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|C:\\ProyectoIntermodular\\entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DEDDF9B8-4589-4002-A762-443790997821}|Entidades\\Entidades.vbproj|solutionrelative:entidades\\alumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\ProyectoIntermodular\\aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\ProyectoIntermodular\\aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\module1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|C:\\ProyectoIntermodular\\buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|solutionrelative:buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     }
   ],
@@ -46,115 +26,78 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Gestion.vb",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Gestion\\Gestion.vb",
-              "RelativeDocumentMoniker": "Gestion\\Gestion.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Gestion\\Gestion.vb",
-              "RelativeToolTip": "Gestion\\Gestion.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:23:35.471Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Jornada.vb",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Jornada.vb",
-              "RelativeDocumentMoniker": "Entidades\\Jornada.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Jornada.vb",
-              "RelativeToolTip": "Entidades\\Jornada.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAAhAAAAAAAAAA==",
+              "Title": "MiServidor.vb",
+              "DocumentMoniker": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\BuscarServer\\MiServidor.vb",
+              "RelativeDocumentMoniker": "BuscarServer\\MiServidor.vb",
+              "ToolTip": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\BuscarServer\\MiServidor.vb",
+              "RelativeToolTip": "BuscarServer\\MiServidor.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:13:30.806Z"
+              "WhenOpened": "2026-05-14T10:15:58.378Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Alumno.vb",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Alumno.vb",
-              "RelativeDocumentMoniker": "Entidades\\Alumno.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Alumno.vb",
-              "RelativeToolTip": "Entidades\\Alumno.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAA+wAgAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "FrmDatosAlumno.vb",
+              "DocumentMoniker": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmDatosAlumno.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\FrmDatosAlumno.vb",
+              "ToolTip": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmDatosAlumno.vb*",
+              "RelativeToolTip": "Aplicacion\\FrmDatosAlumno.vb*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:00:04.378Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Module1.vb",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
-              "RelativeDocumentMoniker": "Aplicacion\\Module1.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\Module1.vb",
-              "RelativeToolTip": "Aplicacion\\Module1.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:24:25.05Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Form1.vb [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Aplicacion\\Form1.vb",
-              "RelativeDocumentMoniker": "Aplicacion\\Form1.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Aplicacion\\Form1.vb [Dise\u00F1o]",
-              "RelativeToolTip": "Aplicacion\\Form1.vb [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:24:10.031Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Tarea.vb",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Tarea.vb",
-              "RelativeDocumentMoniker": "Entidades\\Tarea.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Tarea.vb",
-              "RelativeToolTip": "Entidades\\Tarea.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:15:19.949Z"
+              "WhenOpened": "2026-05-13T09:02:29.032Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Modulo.vb",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Modulo.vb",
-              "RelativeDocumentMoniker": "Entidades\\Modulo.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Modulo.vb",
-              "RelativeToolTip": "Entidades\\Modulo.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAqAAAAAAAAAA==",
+              "Title": "FrmDatosAlumno.vb [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmDatosAlumno.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\FrmDatosAlumno.vb",
+              "ToolTip": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmDatosAlumno.vb [Dise\u00F1o]*",
+              "RelativeToolTip": "Aplicacion\\FrmDatosAlumno.vb [Dise\u00F1o]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:13:06.52Z"
+              "WhenOpened": "2026-05-13T09:01:26.33Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Curso.vb",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\Entidades\\Curso.vb",
-              "RelativeDocumentMoniker": "Entidades\\Curso.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\Entidades\\Curso.vb",
-              "RelativeToolTip": "Entidades\\Curso.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAMAAAApAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Gestion.vb",
+              "DocumentMoniker": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Gestion\\Gestion.vb",
+              "RelativeDocumentMoniker": "Gestion\\Gestion.vb",
+              "ToolTip": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Gestion\\Gestion.vb",
+              "RelativeToolTip": "Gestion\\Gestion.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T17:11:30.734Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MiServidor.vb",
-              "DocumentMoniker": "C:\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
-              "RelativeDocumentMoniker": "BuscarServer\\MiServidor.vb",
-              "ToolTip": "C:\\ProyectoIntermodular\\BuscarServer\\MiServidor.vb",
-              "RelativeToolTip": "BuscarServer\\MiServidor.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-05-06T16:59:05.742Z"
+              "WhenOpened": "2026-05-13T08:57:47.64Z",
+              "EditorCaption": ""
             }
           ]
         }

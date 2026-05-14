@@ -104,5 +104,11 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BuscarServer\BuscarServer.vbproj">
+      <Project>{182db7c4-8e06-4dde-aa2f-6a3d72f7148d}</Project>
+      <Name>BuscarServer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

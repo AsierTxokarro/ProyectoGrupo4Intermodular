@@ -30,8 +30,6 @@ Partial Class FrmDatosAlumno
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Ciclos = New System.Windows.Forms.ListBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtFechaNac = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtDNI = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -42,6 +40,7 @@ Partial Class FrmDatosAlumno
         Me.txtCorreoElec = New System.Windows.Forms.TextBox()
         Me.lblBuscarAlumno = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
+        Me.BtnAnadir = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -50,7 +49,7 @@ Partial Class FrmDatosAlumno
         Me.btnSalir.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.btnSalir.Location = New System.Drawing.Point(24, 342)
         Me.btnSalir.Name = "btnSalir"
-        Me.btnSalir.Size = New System.Drawing.Size(163, 23)
+        Me.btnSalir.Size = New System.Drawing.Size(163, 32)
         Me.btnSalir.TabIndex = 34
         Me.btnSalir.Text = "Salir"
         Me.btnSalir.UseVisualStyleBackColor = False
@@ -64,8 +63,6 @@ Partial Class FrmDatosAlumno
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Ciclos)
         Me.GroupBox1.Controls.Add(Me.Label8)
-        Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.txtFechaNac)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.txtDNI)
         Me.GroupBox1.Controls.Add(Me.Label3)
@@ -85,7 +82,7 @@ Partial Class FrmDatosAlumno
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(16, 201)
+        Me.Label4.Location = New System.Drawing.Point(349, 182)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(99, 16)
         Me.Label4.TabIndex = 46
@@ -94,7 +91,7 @@ Partial Class FrmDatosAlumno
         '
         'txtHorasTotales
         '
-        Me.txtHorasTotales.Location = New System.Drawing.Point(121, 198)
+        Me.txtHorasTotales.Location = New System.Drawing.Point(475, 182)
         Me.txtHorasTotales.Name = "txtHorasTotales"
         Me.txtHorasTotales.Size = New System.Drawing.Size(94, 22)
         Me.txtHorasTotales.TabIndex = 45
@@ -103,7 +100,7 @@ Partial Class FrmDatosAlumno
         '
         Me.Cursos.FormattingEnabled = True
         Me.Cursos.ItemHeight = 16
-        Me.Cursos.Location = New System.Drawing.Point(440, 159)
+        Me.Cursos.Location = New System.Drawing.Point(94, 182)
         Me.Cursos.Name = "Cursos"
         Me.Cursos.Size = New System.Drawing.Size(139, 20)
         Me.Cursos.TabIndex = 44
@@ -111,7 +108,7 @@ Partial Class FrmDatosAlumno
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(384, 163)
+        Me.Label9.Location = New System.Drawing.Point(20, 182)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(55, 16)
         Me.Label9.TabIndex = 43
@@ -122,7 +119,7 @@ Partial Class FrmDatosAlumno
         '
         Me.Ciclos.FormattingEnabled = True
         Me.Ciclos.ItemHeight = 16
-        Me.Ciclos.Location = New System.Drawing.Point(440, 118)
+        Me.Ciclos.Location = New System.Drawing.Point(73, 139)
         Me.Ciclos.Name = "Ciclos"
         Me.Ciclos.Size = New System.Drawing.Size(139, 20)
         Me.Ciclos.TabIndex = 42
@@ -130,29 +127,12 @@ Partial Class FrmDatosAlumno
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(384, 122)
+        Me.Label8.Location = New System.Drawing.Point(17, 139)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(50, 16)
         Me.Label8.TabIndex = 41
         Me.Label8.Text = "Ciclos :"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(362, 81)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(138, 16)
-        Me.Label7.TabIndex = 40
-        Me.Label7.Text = "Fecha de nacimiento :"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txtFechaNac
-        '
-        Me.txtFechaNac.Location = New System.Drawing.Point(515, 78)
-        Me.txtFechaNac.Name = "txtFechaNac"
-        Me.txtFechaNac.Size = New System.Drawing.Size(206, 22)
-        Me.txtFechaNac.TabIndex = 39
         '
         'Label6
         '
@@ -174,7 +154,7 @@ Partial Class FrmDatosAlumno
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 78)
+        Me.Label3.Location = New System.Drawing.Point(13, 89)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(108, 16)
         Me.Label3.TabIndex = 36
@@ -183,7 +163,7 @@ Partial Class FrmDatosAlumno
         '
         'txtApellidoUno
         '
-        Me.txtApellidoUno.Location = New System.Drawing.Point(132, 79)
+        Me.txtApellidoUno.Location = New System.Drawing.Point(127, 86)
         Me.txtApellidoUno.Name = "txtApellidoUno"
         Me.txtApellidoUno.Size = New System.Drawing.Size(219, 22)
         Me.txtApellidoUno.TabIndex = 35
@@ -191,7 +171,7 @@ Partial Class FrmDatosAlumno
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 118)
+        Me.Label2.Location = New System.Drawing.Point(361, 89)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(121, 16)
         Me.Label2.TabIndex = 34
@@ -200,7 +180,7 @@ Partial Class FrmDatosAlumno
         '
         'txtApellidoDos
         '
-        Me.txtApellidoDos.Location = New System.Drawing.Point(146, 119)
+        Me.txtApellidoDos.Location = New System.Drawing.Point(488, 89)
         Me.txtApellidoDos.Name = "txtApellidoDos"
         Me.txtApellidoDos.Size = New System.Drawing.Size(219, 22)
         Me.txtApellidoDos.TabIndex = 33
@@ -208,7 +188,7 @@ Partial Class FrmDatosAlumno
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 159)
+        Me.Label1.Location = New System.Drawing.Point(349, 143)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(120, 16)
         Me.Label1.TabIndex = 32
@@ -217,7 +197,7 @@ Partial Class FrmDatosAlumno
         '
         'txtCorreoElec
         '
-        Me.txtCorreoElec.Location = New System.Drawing.Point(146, 159)
+        Me.txtCorreoElec.Location = New System.Drawing.Point(475, 143)
         Me.txtCorreoElec.Name = "txtCorreoElec"
         Me.txtCorreoElec.Size = New System.Drawing.Size(205, 22)
         Me.txtCorreoElec.TabIndex = 31
@@ -239,11 +219,22 @@ Partial Class FrmDatosAlumno
         Me.txtNombre.Size = New System.Drawing.Size(219, 22)
         Me.txtNombre.TabIndex = 29
         '
+        'BtnAnadir
+        '
+        Me.BtnAnadir.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.BtnAnadir.Location = New System.Drawing.Point(614, 342)
+        Me.BtnAnadir.Name = "BtnAnadir"
+        Me.BtnAnadir.Size = New System.Drawing.Size(163, 32)
+        Me.BtnAnadir.TabIndex = 35
+        Me.BtnAnadir.Text = "Añadir"
+        Me.BtnAnadir.UseVisualStyleBackColor = False
+        '
         'FrmDatosAlumno
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.BtnAnadir)
         Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "FrmDatosAlumno"
@@ -262,8 +253,6 @@ Partial Class FrmDatosAlumno
     Friend WithEvents Label9 As Label
     Friend WithEvents Ciclos As ListBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents txtFechaNac As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents txtDNI As TextBox
     Friend WithEvents Label3 As Label
@@ -274,4 +263,5 @@ Partial Class FrmDatosAlumno
     Friend WithEvents txtCorreoElec As TextBox
     Friend WithEvents lblBuscarAlumno As Label
     Friend WithEvents txtNombre As TextBox
+    Friend WithEvents BtnAnadir As Button
 End Class
