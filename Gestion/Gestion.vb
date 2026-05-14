@@ -278,4 +278,230 @@ Public Class Gestion
         Return "Tarea insertada"
     End Function
 
+    Public Function EliminarTarea(tarea As Tarea) As String
+        If tarea Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sqlIncluyen As String = "Delete From INCLUYEN Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno"
+        Dim cmdDeleteIncluyen As New SqlCommand(sqlIncluyen, conexion)
+        Try
+            conexion.Open()
+            cmdDeleteIncluyen.Parameters.AddWithValue("@codigoTarea", tarea.CodigoTarea)
+            cmdDeleteIncluyen.Parameters.AddWithValue("@fechaJornada", tarea.Fecha)
+            cmdDeleteIncluyen.Parameters.AddWithValue("@dniAlumno", tarea.DNI)
+            Dim numFilas1 As String = cmdDeleteIncluyen.ExecuteNonQuery()
+            If numFilas1 = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Dim sqlTareas As String = "Delete From TAREASREALIZADAS Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno"
+            Dim cmdDeleteTareas As New SqlCommand(sqlTareas, conexion)
+            cmdDeleteTareas.Parameters.AddWithValue("@codigoTarea", tarea.CodigoTarea)
+            cmdDeleteTareas.Parameters.AddWithValue("@fechaJornada", tarea.Fecha)
+            cmdDeleteTareas.Parameters.AddWithValue("@dniAlumno", tarea.DNI)
+            Dim numFilas2 As Integer = cmdDeleteTareas.ExecuteNonQuery()
+            If numFilas2 = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Return "Se ha modificado la tarea correctamente"
+        Catch ex As Exception
+            Return "Error en la base de datos: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ModificarRaTarea(tareaAModificar As TareasCompletas, rANuevo As Integer) As String
+        If tareaAModificar Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Update INCLUYEN Set RA = @rANuevo Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno And RA = @rA And CodigoModulo = @codigoModulo"
+        Dim cmdUpdateIncluyen As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@rA", tareaAModificar.RA)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@rANuevo", rANuevo)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoModulo", tareaAModificar.CodigoModulo)
+            Dim numFilas As String = cmdUpdateIncluyen.ExecuteNonQuery()
+            If numFilas = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Return "Se ha modificado el RA correctamente"
+        Catch ex As Exception
+            Return "Error en la base de datos: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ModificarDescripcionTarea(tareaAModificar As TareasCompletas, descripcionNueva As String) As String
+        If tareaAModificar Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Update TAREASREALIZADAS Set Descripcion = @descripcion Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno"
+        Dim cmdUpdateTareas As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdUpdateTareas.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+            cmdUpdateTareas.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+            cmdUpdateTareas.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+            cmdUpdateTareas.Parameters.AddWithValue("@descripcion", descripcionNueva)
+            Dim numFilas As String = cmdUpdateTareas.ExecuteNonQuery()
+            If numFilas = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Return "Se ha modificado la descripcion correctamente"
+        Catch ex As Exception
+            Return "Error en la base de datos: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ModificarDuracionTarea(tareaAModificar As TareasCompletas, duracionNueva As Decimal) As String
+        If tareaAModificar Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Update TAREASREALIZADAS Set Duracion = @duracion Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno"
+        Dim cmdUpdateTareas As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdUpdateTareas.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+            cmdUpdateTareas.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+            cmdUpdateTareas.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+            cmdUpdateTareas.Parameters.AddWithValue("@duracion", duracionNueva)
+            Dim numFilas As String = cmdUpdateTareas.ExecuteNonQuery()
+            If numFilas = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Return "Se ha modificado la duración correctamente"
+        Catch ex As Exception
+            Return "Error en la base de datos: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ModificarFechaJornada(tareaAModificar As TareasCompletas, fechaNueva As Date) As String
+        If tareaAModificar Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        If Not ComprobarJornadaRepetida(tareaAModificar.FechaJornada, tareaAModificar.DniAlumno) Then
+            Return "Error: debes cambiar la fecha a una jornada existente"
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sqlIncluyen As String = "Update INCLUYEN Set FechaJornada = @fechaNueva Where CodigoTarea = @codigoTarea And DNI = @dniAlumno And FechaJornada = @fechaJornada"
+        Dim cmdUpdateIncluyen As New SqlCommand(sqlIncluyen, conexion)
+        Try
+            conexion.Open()
+            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@fechaNueva", fechaNueva)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+            Dim numFilas1 As String = cmdUpdateIncluyen.ExecuteNonQuery()
+            If numFilas1 = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Dim sqlTareas As String = "Update TAREASREALIZADAS Set FechaJornada = @fechaNueva Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno"
+            Dim cmdUpdateTareas As New SqlCommand(sqlTareas, conexion)
+            cmdUpdateTareas.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+            cmdUpdateTareas.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@fechaNueva", fechaNueva)
+            cmdUpdateTareas.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+            Dim numFilas As String = cmdUpdateTareas.ExecuteNonQuery()
+            If numFilas = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Return "Se ha modificado la fecha correctamente"
+        Catch ex As Exception
+            Return "Error en la base de datos relacionado con la modificación de la fecha: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ModificarModuloYRAsTarea(tareaAModificar As TareasCompletas, nuevoModulo As Integer) As String
+        If tareaAModificar Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Update INCLUYEN Set CodigoModulo = @nuevoModulo Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno And CodigoModulo = @codigoModulo"
+        Dim cmdUpdateIncluyen As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoModulo", tareaAModificar.CodigoModulo)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@nuevoModulo", nuevoModulo)
+            Dim numFilas As String = cmdUpdateIncluyen.ExecuteNonQuery()
+            If numFilas = 0 Then
+                Return "Error desconocido en la base de datos o la tarea no existe"
+            End If
+            Return "Se ha modificado el módulo correctamente"
+        Catch ex As Exception
+            Return "Error en la base de datos relacionado con la modificación del módulo: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function MostrarTareasAlumno(dniAlumno As String) As List(Of TareasCompletas)
+        Dim listaTareasMostrar As New List(Of TareasCompletas)
+        If dniAlumno Is Nothing OrElse String.IsNullOrWhiteSpace(dniAlumno) Then
+            Return Nothing
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Select TAREASREALIZADAS.Dni, TAREASREALIZADAS.CodigoTarea, TAREASREALIZADAS.Descripcion As DescripcionTarea, TAREASREALIZADAS.Duracion, INCLUYEN.CodigoModulo, MODULOS.NombreM As Modulo, RAS.Ra, RAS.Descripcion As DescripcionRA, TAREASREALIZADAS.FechaJornada From TAREASREALIZADAS Inner Join (INCLUYEN Inner Join (RAS Inner Join MODULOS On RAS.CodigoModulo = MODULOS.CodigoModulo And RAS.Ciclo = MODULOS.Ciclo And RAS.Alias = MODULOS.Alias) On INCLUYEN.CodigoModulo = RAS.CodigoModulo And INCLUYEN.Ciclo = RAS.Ciclo And INCLUYEN.Alias = RAS.Alias And INCLUYEN.RA = RAS.RA) On TAREASREALIZADAS.CodigoTarea = INCLUYEN.CodigoTarea And TAREASREALIZADAS.FechaJornada = INCLUYEN.FechaJornada And TAREASREALIZADAS.Dni = INCLUYEN.Dni Where TAREASREALIZADAS.Dni = @dniAlumno Group By TAREASREALIZADAS.CodigoTarea"
+        Dim cmdMostrar As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdMostrar.Parameters.AddWithValue("@dniAlumno", dniAlumno)
+            Dim drMostrarTareas As SqlDataReader = cmdMostrar.ExecuteReader()
+            If Not drMostrarTareas.HasRows Then
+                Return Nothing
+            End If
+            While drMostrarTareas.Read()
+                listaTareasMostrar.Add(New TareasCompletas(drMostrarTareas("Dni"), drMostrarTareas("CodigoTarea"), drMostrarTareas("RA"), drMostrarTareas("DescripcionRA"), drMostrarTareas("CodigoModulo"), drMostrarTareas("Modulo"), drMostrarTareas("FechaJornada"), drMostrarTareas("DescripcionTarea"), drMostrarTareas("Duracion")))
+            End While
+            Return listaTareasMostrar
+        Catch ex As Exception
+            Return Nothing
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function MostrarTareasAlumnoDeUnaFecha(dniAlumno As String, fechaJornada As Date) As List(Of TareasCompletas)
+        Dim listaTareasMostrar As New List(Of TareasCompletas)
+        If dniAlumno Is Nothing OrElse String.IsNullOrWhiteSpace(dniAlumno) Then
+            Return Nothing
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Select TAREASREALIZADAS.Dni, TAREASREALIZADAS.CodigoTarea, TAREASREALIZADAS.Descripcion As DescripcionTarea, TAREASREALIZADAS.Duracion, INCLUYEN.CodigoModulo, MODULOS.NombreM As Modulo, RAS.Ra, RAS.Descripcion As DescripcionRA, TAREASREALIZADAS.FechaJornada From TAREASREALIZADAS Inner Join (INCLUYEN Inner Join (RAS Inner Join MODULOS On RAS.CodigoModulo = MODULOS.CodigoModulo And RAS.Ciclo = MODULOS.Ciclo And RAS.Alias = MODULOS.Alias) On INCLUYEN.CodigoModulo = RAS.CodigoModulo And INCLUYEN.Ciclo = RAS.Ciclo And INCLUYEN.Alias = RAS.Alias And INCLUYEN.RA = RAS.RA) On TAREASREALIZADAS.CodigoTarea = INCLUYEN.CodigoTarea And TAREASREALIZADAS.FechaJornada = INCLUYEN.FechaJornada And TAREASREALIZADAS.Dni = INCLUYEN.Dni Where TAREASREALIZADAS.Dni = @dniAlumno And TAREASREALIZADAS.FechaJornada = @fechaJornada Group By TAREASREALIZADAS.CodigoTarea"
+        Dim cmdMostrar As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdMostrar.Parameters.AddWithValue("@dniAlumno", dniAlumno)
+            cmdMostrar.Parameters.AddWithValue("@fechaJornada", fechaJornada)
+            Dim drMostrarTareas As SqlDataReader = cmdMostrar.ExecuteReader()
+            If Not drMostrarTareas.HasRows Then
+                Return Nothing
+            End If
+            While drMostrarTareas.Read()
+                listaTareasMostrar.Add(New TareasCompletas(drMostrarTareas("Dni"), drMostrarTareas("CodigoTarea"), drMostrarTareas("RA"), drMostrarTareas("DescripcionRA"), drMostrarTareas("CodigoModulo"), drMostrarTareas("Modulo"), drMostrarTareas("FechaJornada"), drMostrarTareas("DescripcionTarea"), drMostrarTareas("Duracion")))
+            End While
+            Return listaTareasMostrar
+        Catch ex As Exception
+            Return Nothing
+        Finally
+            conexion.Close()
+        End Try
+    End Function
 End Class
