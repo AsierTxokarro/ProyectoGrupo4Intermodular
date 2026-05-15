@@ -27,7 +27,7 @@ Partial Class FrmTutor
         Me.lblBuscarAlumno = New System.Windows.Forms.Label()
         Me.txtBuscarAlumno = New System.Windows.Forms.TextBox()
         Me.btnSeleccionarAlumno = New System.Windows.Forms.Button()
-        Me.Alumnos = New System.Windows.Forms.ListBox()
+        Me.lstAlumnos = New System.Windows.Forms.ListBox()
         Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
         Me.SuspendLayout()
         '
@@ -75,14 +75,14 @@ Partial Class FrmTutor
         Me.btnSeleccionarAlumno.Text = "Seleccionar Alumno"
         Me.btnSeleccionarAlumno.UseVisualStyleBackColor = True
         '
-        'Alumnos
+        'lstAlumnos
         '
-        Me.Alumnos.FormattingEnabled = True
-        Me.Alumnos.ItemHeight = 16
-        Me.Alumnos.Location = New System.Drawing.Point(96, 65)
-        Me.Alumnos.Name = "Alumnos"
-        Me.Alumnos.Size = New System.Drawing.Size(366, 324)
-        Me.Alumnos.TabIndex = 55
+        Me.lstAlumnos.FormattingEnabled = True
+        Me.lstAlumnos.ItemHeight = 16
+        Me.lstAlumnos.Location = New System.Drawing.Point(96, 65)
+        Me.lstAlumnos.Name = "lstAlumnos"
+        Me.lstAlumnos.Size = New System.Drawing.Size(366, 324)
+        Me.lstAlumnos.TabIndex = 55
         '
         'MonthCalendar1
         '
@@ -100,7 +100,7 @@ Partial Class FrmTutor
         Me.Controls.Add(Me.lblBuscarAlumno)
         Me.Controls.Add(Me.txtBuscarAlumno)
         Me.Controls.Add(Me.btnSeleccionarAlumno)
-        Me.Controls.Add(Me.Alumnos)
+        Me.Controls.Add(Me.lstAlumnos)
         Me.Controls.Add(Me.MonthCalendar1)
         Me.Name = "FrmTutor"
         Me.Text = "FrmTutor"
@@ -114,6 +114,6 @@ Partial Class FrmTutor
     Friend WithEvents lblBuscarAlumno As Label
     Friend WithEvents txtBuscarAlumno As TextBox
     Friend WithEvents btnSeleccionarAlumno As Button
-    Friend WithEvents Alumnos As ListBox
+    Friend WithEvents lstAlumnos As ListBox
     Friend WithEvents MonthCalendar1 As MonthCalendar
 End Class
