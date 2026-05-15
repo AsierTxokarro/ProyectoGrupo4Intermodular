@@ -504,4 +504,36 @@ Public Class Gestion
             conexion.Close()
         End Try
     End Function
+
+    Public Function DevolverAlumnosPorTutor(dnis As List(Of String)) As List(Of Alumno)
+        Dim lista As New List(Of Alumno)
+
+        For Each dni In dnis
+            Dim conexion As New SqlConnection(cadenaConexion)
+            Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS WHERE DNI = @dni"
+            Dim cmd As New SqlCommand(sql, conexion)
+            cmd.Parameters.AddWithValue("@dni", dni)
+            Try
+                conexion.Open()
+                Dim dr As SqlDataReader = cmd.ExecuteReader()
+                If dr.Read() Then
+                    Dim a As New Alumno
+                    a.DNI = dr("DNI").ToString()
+                    a.Nombre = dr("NOMBRE").ToString()
+                    a.Apellido1 = dr("APELLIDO 1").ToString()
+                    a.Apellido2 = dr("APELLIDO 2").ToString()
+                    a.HorasTotales = Convert.ToInt32(dr("HORASTOTALES"))
+                    a.Ciclo = Convert.ToInt32(dr("CICLO"))
+                    a.AliasCurso = dr("ALIAS").ToString()
+                    lista.Add(a)
+                End If
+            Catch ex As Exception
+                ' ignorar ese DNI si falla
+            Finally
+                conexion.Close()
+            End Try
+        Next
+
+        Return lista
+    End Function
 End Class

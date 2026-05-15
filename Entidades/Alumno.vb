@@ -7,4 +7,5 @@
     Public Property Ciclo As Integer
     Public Property AliasCurso As String
 
+
 End Class
