@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Security.AccessControl
 Imports BuscarServer
 Imports Entidades
 
@@ -286,33 +287,6 @@ Public Class Gestion
         End Try
     End Function
 
-    Public Function ModificarRaTarea(tareaAModificar As TareasCompletas, rANuevo As Integer) As String
-        If tareaAModificar Is Nothing Then
-            Return "Error: la tarea no puede estar vacía"
-        End If
-        Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "Update INCLUYEN Set RA = @rANuevo Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno And RA = @rA And CodigoModulo = @codigoModulo"
-        Dim cmdUpdateIncluyen As New SqlCommand(sql, conexion)
-        Try
-            conexion.Open()
-            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@rA", tareaAModificar.RA)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@rANuevo", rANuevo)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoModulo", tareaAModificar.CodigoModulo)
-            Dim numFilas As String = cmdUpdateIncluyen.ExecuteNonQuery()
-            If numFilas = 0 Then
-                Return "Error desconocido en la base de datos o la tarea no existe"
-            End If
-            Return "Se ha modificado el RA correctamente"
-        Catch ex As Exception
-            Return "Error en la base de datos: " & ex.Message
-        Finally
-            conexion.Close()
-        End Try
-    End Function
-
     Public Function ModificarDescripcionTarea(tareaAModificar As TareasCompletas, descripcionNueva As String) As String
         If tareaAModificar Is Nothing Then
             Return "Error: la tarea no puede estar vacía"
@@ -401,12 +375,23 @@ Public Class Gestion
         End Try
     End Function
 
-    Public Function ModificarModuloYRAsTarea(tareaAModificar As TareasCompletas, nuevoModulo As Integer) As String
+    Public Function ModificarModuloYRAsTarea(tareaAModificar As TareasCompletas, nuevoModulo As String, descripcionRANuevo As String, ciclo As Integer, aliasCiclo As String) As String
         If tareaAModificar Is Nothing Then
             Return "Error: la tarea no puede estar vacía"
         End If
+        If String.IsNullOrWhiteSpace(nuevoModulo) OrElse String.IsNullOrWhiteSpace(nuevoModulo) OrElse String.IsNullOrWhiteSpace(nuevoModulo) OrElse ciclo < 1 AndAlso ciclo > 2 Then
+            Return "Error: el nuevo valor del modulo y/o del RA a modificar tienen un formato invalido o están vacíos"
+        End If
+        Dim codigoNuevoModulo As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nuevoModulo)
+        If codigoNuevoModulo = -1 Then
+            Return "Error: no se pudo conectar con la base de datos"
+        End If
+        Dim nuevoRA As Integer = ObtenerRAPorSuAliasYNombreModulo(nuevoModulo, descripcionRANuevo, ciclo, aliasCiclo)
+        If nuevoRA = -1 Then
+            Return "Error: no se pudo conectar con la base de datos"
+        End If
         Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "Update INCLUYEN Set CodigoModulo = @nuevoModulo Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno And CodigoModulo = @codigoModulo"
+        Dim sql As String = "Update INCLUYEN Set CodigoModulo = @codigoNuevoModulo, RA = @nuevoRA  Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno And CodigoModulo = @codigoModulo"
         Dim cmdUpdateIncluyen As New SqlCommand(sql, conexion)
         Try
             conexion.Open()
@@ -414,14 +399,56 @@ Public Class Gestion
             cmdUpdateIncluyen.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
             cmdUpdateIncluyen.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
             cmdUpdateIncluyen.Parameters.AddWithValue("@codigoModulo", tareaAModificar.CodigoModulo)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@nuevoModulo", nuevoModulo)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@nuevoRA", nuevoRA)
+            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoNuevoModulo", codigoNuevoModulo)
             Dim numFilas As String = cmdUpdateIncluyen.ExecuteNonQuery()
             If numFilas = 0 Then
                 Return "Error desconocido en la base de datos o la tarea no existe"
             End If
-            Return "Se ha modificado el módulo correctamente"
         Catch ex As Exception
-            Return "Error en la base de datos relacionado con la modificación del módulo: " & ex.Message
+            Return "Error en la base de datos relacionado con la modificación del módulo o del RA o con la conexion con esta: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ObtenerCodigoModuloPorSuNombreYCiclo(ciclo As Integer, aliasCiclo As String, nombreModulo As String) As Integer
+        If ciclo < 1 AndAlso ciclo > 2 OrElse String.IsNullOrWhiteSpace(aliasCiclo) OrElse String.IsNullOrWhiteSpace(nombreModulo) Then
+            Return 0
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Select codigoModulo From MODULOS Where Ciclo = @ciclo And Alias = @aliasCiclo And NombreM = @nombreModulo"
+        Dim cmdObtenerCodigoModulo As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdObtenerCodigoModulo.Parameters.AddWithValue("@ciclo", ciclo)
+            cmdObtenerCodigoModulo.Parameters.AddWithValue("@aliasCiclo", aliasCiclo)
+            cmdObtenerCodigoModulo.Parameters.AddWithValue("@nombreModulo", nombreModulo)
+            Return Convert.ToInt32(cmdObtenerCodigoModulo.ExecuteScalar)
+        Catch ex As Exception
+            Return -1
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ObtenerRAPorSuAliasYNombreModulo(nombreModulo As String, descripcionRA As String, ciclo As Integer, aliasCiclo As String) As Integer
+        If ciclo < 1 AndAlso ciclo > 2 OrElse String.IsNullOrWhiteSpace(aliasCiclo) OrElse String.IsNullOrWhiteSpace(nombreModulo) OrElse String.IsNullOrWhiteSpace(descripcionRA) Then
+            Return 0
+        End If
+        Dim codigoModulo As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nombreModulo)
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "Select RA From RAS Where Ciclo = @ciclo And Alias = @aliasCiclo And CodigoModulo = @codigoModulo And Descripcion = @descripcionRA"
+        Dim cmdObtenerRA As New SqlCommand(sql, conexion)
+        Try
+            conexion.Open()
+            cmdObtenerRA.Parameters.AddWithValue("@ciclo", ciclo)
+            cmdObtenerRA.Parameters.AddWithValue("@aliasCiclo", aliasCiclo)
+            cmdObtenerRA.Parameters.AddWithValue("@codigoModulo", codigoModulo)
+            cmdObtenerRA.Parameters.AddWithValue("@descripcionRA", descripcionRA)
+            Return Convert.ToInt32(cmdObtenerRA.ExecuteScalar)
+        Catch ex As Exception
+            Return -1
         Finally
             conexion.Close()
         End Try
@@ -509,6 +536,9 @@ Public Class Gestion
 
         Return lista
     End Function
+<<<<<<< HEAD
+End Class
+=======
     Public Function DevolverAlumnosFiltrados(Optional curso As String = "", Optional ciclo As Integer = 0) As List(Of Alumno)
         Dim lista As New List(Of Alumno)()
         Dim conexion As New SqlConnection(cadenaConexion)
@@ -620,3 +650,4 @@ Public Class Gestion
 
 
 End Class
+>>>>>>> 39a0abf3732346bf666d231854174f565092ba67
