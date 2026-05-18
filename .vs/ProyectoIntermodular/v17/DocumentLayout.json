@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\users\\school\\desktop\\program\\proyecto real de git hecho con clone\\proyectogrupo4intermodular\\aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{65B711AE-1DE0-4E5E-AE30-065E686E90B2}|Gestion\\Gestion.vbproj|solutionrelative:gestion\\gestion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|c:\\users\\school\\desktop\\program\\proyecto real de git hecho con clone\\proyectogrupo4intermodular\\aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmdatosalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{182DB7C4-8E06-4DDE-AA2F-6A3D72F7148D}|BuscarServer\\BuscarServer.vbproj|solutionrelative:buscarserver\\miservidor.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\aplicacion\\frmalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{92E39CE9-83FF-4223-B62B-D75835FF87D2}|Aplicacion\\Aplicacion.vbproj|solutionrelative:aplicacion\\frmalumno.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,6 +54,17 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmAlumno.vb [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmAlumno.vb",
+              "RelativeDocumentMoniker": "Aplicacion\\FrmAlumno.vb",
+              "ToolTip": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmAlumno.vb [Dise\u00F1o]",
+              "RelativeToolTip": "Aplicacion\\FrmAlumno.vb [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-05-14T11:56:21.746Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "MiServidor.vb",
               "DocumentMoniker": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\BuscarServer\\MiServidor.vb",
@@ -63,20 +78,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "FrmDatosAlumno.vb",
               "DocumentMoniker": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmDatosAlumno.vb",
               "RelativeDocumentMoniker": "Aplicacion\\FrmDatosAlumno.vb",
               "ToolTip": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmDatosAlumno.vb",
               "RelativeToolTip": "Aplicacion\\FrmDatosAlumno.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAhwBkAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-13T09:02:29.032Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "FrmDatosAlumno.vb [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Aplicacion\\FrmDatosAlumno.vb",
               "RelativeDocumentMoniker": "Aplicacion\\FrmDatosAlumno.vb",
@@ -94,7 +109,7 @@
               "RelativeDocumentMoniker": "Gestion\\Gestion.vb",
               "ToolTip": "C:\\Users\\School\\Desktop\\PROGRAM\\Proyecto real de git hecho con clone\\ProyectoGrupo4Intermodular\\Gestion\\Gestion.vb",
               "RelativeToolTip": "Gestion\\Gestion.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAqwDMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-05-13T08:57:47.64Z",
               "EditorCaption": ""

@@ -39,6 +39,8 @@ Public Class Gestion
         crear.Parameters.AddWithValue("@alias", aliasCurso)
         crear.Parameters.AddWithValue("@realizaPracticas", realizaPracticas)
 
+        conexion.Open()
+
         crear.ExecuteNonQuery()
 
         If String.IsNullOrWhiteSpace(motivoNoPracticas) Then
@@ -46,6 +48,8 @@ Public Class Gestion
         Else
             crear.Parameters.AddWithValue("@motivo", motivoNoPracticas)
         End If
+
+        conexion.Close()
 
         Return "Insertado"
     End Function
