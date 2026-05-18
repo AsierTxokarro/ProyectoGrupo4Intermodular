@@ -49,7 +49,8 @@ Public Class Gestion
 
         Return "Insertado"
     End Function
-    Public Function Existe(dni As String, ByRef mensaje As String) As Boolean
+    Public Function Existe(dni As String) As Boolean
+        Dim mensaje As String
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim dniAPasar As String = dni
         Dim lineaComando As String = "SELECT DNI FROM ALUMNOS WHERE DNI = @dni"
@@ -69,9 +70,6 @@ Public Class Gestion
         Finally
             conexion.Close()
         End Try
-
-        Return False
-
     End Function
 
     Public Function MostrarHorasDeAlumnosPorCicloYAliasDelCurso(ciclo As Integer, curso As String) As List(Of Alumno)
