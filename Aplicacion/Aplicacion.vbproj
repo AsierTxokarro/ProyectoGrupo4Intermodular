@@ -92,16 +92,16 @@
     <Compile Include="FrmDatosAlumno.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTutor.Designer.vb">
-      <DependentUpon>FrmTutor.vb</DependentUpon>
+    <Compile Include="FrmListarAlumnos.Designer.vb">
+      <DependentUpon>FrmListarAlumnos.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmTutor.vb">
+    <Compile Include="FrmListarAlumnos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTutor2.Designer.vb">
-      <DependentUpon>FrmTutor2.vb</DependentUpon>
+    <Compile Include="frmVerAlumno.Designer.vb">
+      <DependentUpon>frmVerAlumno.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmTutor2.vb">
+    <Compile Include="frmVerAlumno.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.vb">
@@ -137,11 +137,11 @@
     <EmbeddedResource Include="FrmDatosAlumno.resx">
       <DependentUpon>FrmDatosAlumno.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTutor.resx">
-      <DependentUpon>FrmTutor.vb</DependentUpon>
+    <EmbeddedResource Include="FrmListarAlumnos.resx">
+      <DependentUpon>FrmListarAlumnos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTutor2.resx">
-      <DependentUpon>FrmTutor2.vb</DependentUpon>
+    <EmbeddedResource Include="frmVerAlumno.resx">
+      <DependentUpon>frmVerAlumno.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
