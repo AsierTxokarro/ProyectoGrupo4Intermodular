@@ -15,4 +15,11 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Aplicacion\Aplicacion.vbproj" />
+    <ProjectReference Include="..\BuscarServer\BuscarServer.vbproj" />
+    <ProjectReference Include="..\Entidades\Entidades.vbproj" />
+    <ProjectReference Include="..\Gestion\Gestion.vbproj" />
+  </ItemGroup>
+
 </Project>
