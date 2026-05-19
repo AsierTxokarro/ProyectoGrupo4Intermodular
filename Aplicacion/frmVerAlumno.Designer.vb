@@ -113,6 +113,7 @@ Partial Class frmVerAlumno
         'MonthCalendar1
         '
         Me.MonthCalendar1.Location = New System.Drawing.Point(161, 379)
+        Me.MonthCalendar1.MaxSelectionCount = 1
         Me.MonthCalendar1.Name = "MonthCalendar1"
         Me.MonthCalendar1.TabIndex = 62
         '
