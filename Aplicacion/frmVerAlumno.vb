@@ -12,9 +12,16 @@ Public Class frmVerAlumno
     End Sub
 
     Private Sub btnFichajesRealizados_Click(sender As Object, e As EventArgs) Handles btnFichajesRealizados.Click
-        Dim tareas As New List(Of TareasCompletas)
+        Dim tareas As List(Of TareasCompletas)
         Dim dni As String = alumnoSeleccionado.DNI
         tareas = gestionfrm.MostrarTareasAlumno(dni)
+        If tareas IsNot Nothing AndAlso tareas.Count > 0 Then
+            lstTareas.DataSource = Nothing
+            lstTareas.DisplayMember = "DescripcionTarea"
+            lstTareas.DataSource = tareas
+        Else
+            MessageBox.Show("Este alumno no ha realizado ninguna tarea")
+        End If
     End Sub
 
     Private Sub btnCerrarSesion_Click(sender As Object, e As EventArgs) Handles btnCerrarSesion.Click
