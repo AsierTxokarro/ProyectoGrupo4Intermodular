@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmTutor
+Partial Class FrmListarAlumnos
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -133,7 +133,7 @@ Partial Class FrmTutor
         Me.Button1.Text = "Buscar"
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'FrmTutor
+        'FrmListarAlumnos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -149,7 +149,7 @@ Partial Class FrmTutor
         Me.Controls.Add(Me.txtBuscarAlumno)
         Me.Controls.Add(Me.btnSeleccionarAlumno)
         Me.Controls.Add(Me.lstAlumnos)
-        Me.Name = "FrmTutor"
+        Me.Name = "FrmListarAlumnos"
         Me.Text = "Lista de alumnos"
         Me.ResumeLayout(False)
         Me.PerformLayout()
