@@ -1,9 +1,12 @@
 ﻿Imports Entidades
 
 Public Class frmVerAlumno
-    Dim alumnoSeleccionado As Alumno = FrmListarAlumnos.lstAlumnos.SelectedItem
+    Dim alumnoSeleccionado As Alumno
     Private Sub frmVerAlumno_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        alumnoSeleccionado = FrmListarAlumnos.lstAlumnos.SelectedItem
+        lblNombreAlumno.Text = ""
+        lstTareas.DataSource = Nothing
+        lstTareas.Items.Clear()
         lblNombreAlumno.Text = alumnoSeleccionado.Nombre
     End Sub
 
@@ -32,8 +35,25 @@ Public Class frmVerAlumno
         Dim mensaje = gestionfrm.EliminarAlumno(alumnoSeleccionado.DNI)
         If mensaje = "" Then
             MessageBox.Show("Alumno eliminado con exito")
-            Return
+            Me.Close()
+        Else
+            MessageBox.Show($"No se ha podido eliminar a {alumnoSeleccionado.Nombre}, verifica que no tenga ninguna jornada o tarea asociada ")
         End If
 
+    End Sub
+
+    Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateChanged
+        Dim tareasPorfecha As List(Of TareasCompletas)
+        Dim dni As String = alumnoSeleccionado.DNI
+        Dim fecha As Date = MonthCalendar1.SelectionStart
+        tareasPorfecha = gestionfrm.MostrarTareasAlumnoDeUnaFecha(dni, fecha)
+
+        If tareasPorfecha IsNot Nothing AndAlso tareasPorfecha.Count > 0 Then
+            lstTareas.DataSource = Nothing
+            lstTareas.DisplayMember = "DescripcionTarea"
+            lstTareas.DataSource = tareasPorfecha
+        Else
+            MessageBox.Show("Este alumno no ha realizado ninguna tarea en esta fecha")
+        End If
     End Sub
 End Class
