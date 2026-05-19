@@ -3,7 +3,7 @@ Imports System.Security.AccessControl
 Imports BuscarServer
 Imports Entidades
 
-Public Class Gestion
+Public Class GestionFunciones
     Private cadenaConexion As String
     Public Sub New(ByRef errorConexion As String)
         Dim servidor As String = MiServidor.Servidor(errorConexion)
@@ -196,24 +196,24 @@ Public Class Gestion
 
     End Function
     Public Function EliminarAlumno(dni As String) As String
-        Dim conexion As New SqlConnection(cadenaConexion)
-        Dim dniAPasar As String = dni
-        Dim lineaComando As String = "DELETE ALUMNOS.* FROM ALUMNOS WHERE DNI = @dni"
-        Dim eliminar As New SqlCommand(lineaComando, conexion)
-
-        eliminar.Parameters.AddWithValue("@dni", dniAPasar)
+        Dim lineaComando As String = "DELETE FROM ALUMNOS WHERE DNI = @dni"
 
         Try
-            conexion.Open()
-            eliminar.ExecuteNonQuery()
+            Using conexion As New SqlConnection(cadenaConexion)
+                Using eliminar As New SqlCommand(lineaComando, conexion)
+                    eliminar.Parameters.AddWithValue("@dni", dni)
+
+                    conexion.Open()
+                    eliminar.ExecuteNonQuery()
+                End Using
+            End Using
         Catch ex As Exception
             Return "Error al intentar borrar un alumno: " & ex.Message
-        Finally
-            conexion.Close()
         End Try
 
-        Return "Alumno eliminado"
+        Return "" ' Retorna vacío si todo salió bien
     End Function
+
 
 
     ''Ahora esto es sobre añadir la tarea
@@ -509,7 +509,6 @@ Public Class Gestion
 
     Public Function DevolverAlumnos() As List(Of Alumno)
         Dim lista As New List(Of Alumno)
-
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS"
         Dim cmd As New SqlCommand(sql, conexion)
@@ -517,7 +516,9 @@ Public Class Gestion
         Try
             conexion.Open()
             Dim dr As SqlDataReader = cmd.ExecuteReader()
-            If dr.Read() Then
+
+
+            While dr.Read()
                 Dim a As New Alumno
                 a.DNI = dr("DNI").ToString()
                 a.Nombre = dr("NOMBRE").ToString()
@@ -527,7 +528,8 @@ Public Class Gestion
                 a.Ciclo = Convert.ToInt32(dr("CICLO"))
                 a.AliasCurso = dr("ALIAS").ToString()
                 lista.Add(a)
-            End If
+            End While
+            dr.Close()
         Catch ex As Exception
 
         Finally
@@ -536,29 +538,22 @@ Public Class Gestion
 
         Return lista
     End Function
-<<<<<<< HEAD
-End Class
-=======
-    Public Function DevolverAlumnosFiltrados(Optional curso As String = "", Optional ciclo As Integer = 0) As List(Of Alumno)
+    Public Function DevolverAlumnosFiltrados(curso As String, ciclo As Integer) As List(Of Alumno)
         Dim lista As New List(Of Alumno)()
         Dim conexion As New SqlConnection(cadenaConexion)
-        Dim cicloAPasar As Integer = ciclo
-        Dim cursoAPasar As String = curso
 
-        Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS WHERE CICLO = @CICLO AND ALIAS = @ALIAS"
+
+        Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS WHERE ALIAS = @ALIAS AND CICLO = @CICLO"
 
         Dim cmd As New SqlCommand(sql, conexion)
-        cmd.Parameters.AddWithValue("@CICLO", cicloAPasar)
-        cmd.Parameters.AddWithValue("@ALIAS", cursoAPasar)
 
 
-        If Not String.IsNullOrEmpty(curso) Then cmd.Parameters.AddWithValue("@CURSO", curso)
-        If ciclo > 0 Then cmd.Parameters.AddWithValue("@CICLO", ciclo)
+        cmd.Parameters.AddWithValue("@ALIAS", curso)
+        cmd.Parameters.AddWithValue("@CICLO", ciclo)
 
         Try
             conexion.Open()
             Dim dr As SqlDataReader = cmd.ExecuteReader()
-
 
             While dr.Read()
                 Dim a As New Alumno()
@@ -575,12 +570,14 @@ End Class
             dr.Close()
         Catch ex As Exception
 
+            Throw ex
         Finally
             conexion.Close()
         End Try
 
         Return lista
     End Function
+
 
     Public Function MostrarHorasDeAlumnosPorCicloYAliasDelCurso(ciclo As Integer, curso As String) As List(Of Alumno)
         Dim listaAlumnos As New List(Of Alumno)
@@ -611,19 +608,23 @@ End Class
     Public Function DevolverCursos() As List(Of Curso)
         Dim listaCursos As New List(Of Curso)
         Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "SELECT ALIAS FROM CURSOS"
+        Dim sql As String = "SELECT DISTINCT ALIAS FROM CURSOS"
         Dim cmdCursos As New SqlCommand(sql, conexion)
+
         Try
             conexion.Open()
-            Dim drCursos As SqlDataReader = cmdCursos.ExecuteReader
+            Dim drCursos As SqlDataReader = cmdCursos.ExecuteReader()
             While drCursos.Read()
                 Dim curso As New Curso
-                curso.AliasCurso = drCursos("ALIAS")
+
+                curso.AliasCurso = drCursos("ALIAS").ToString()
                 listaCursos.Add(curso)
             End While
             drCursos.Close()
         Catch ex As Exception
             Return New List(Of Curso)
+        Finally
+            conexion.Close()
         End Try
         Return listaCursos
     End Function
@@ -631,23 +632,27 @@ End Class
     Public Function DevolverCiclosPorCurso(curso As String) As List(Of Curso)
         Dim listaCiclos As New List(Of Curso)()
         Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "SELECT CICLO FROM CURSOS"
+
+        Dim sql As String = "SELECT CICLO FROM CURSOS WHERE ALIAS = @ALIAS"
         Dim cmdCiclos As New SqlCommand(sql, conexion)
+        cmdCiclos.Parameters.AddWithValue("@ALIAS", curso)
+
         Try
             conexion.Open()
-            Dim drCursos As SqlDataReader = cmdCiclos.ExecuteReader
+            Dim drCursos As SqlDataReader = cmdCiclos.ExecuteReader()
             While drCursos.Read()
                 Dim cicloCurso As New Curso
-                cicloCurso.Ciclo = drCursos("CICLO").ToString()
+                cicloCurso.Ciclo = Convert.ToInt32(drCursos("CICLO"))
                 listaCiclos.Add(cicloCurso)
             End While
             drCursos.Close()
         Catch ex As Exception
             Return New List(Of Curso)()
+        Finally
+            conexion.Close()
         End Try
         Return listaCiclos
     End Function
 
 
 End Class
->>>>>>> 39a0abf3732346bf666d231854174f565092ba67
