@@ -373,6 +373,7 @@ Public Class GestionFunciones
         Finally
             conexion.Close()
         End Try
+
     End Function
 
     Public Function ModificarModuloYRAsTarea(tareaAModificar As TareasCompletas, nuevoModulo As String, descripcionRANuevo As String, ciclo As Integer, aliasCiclo As String) As String
