@@ -75,6 +75,31 @@ Public Class GestionFunciones
 
     End Function
 
+    Public Function MostrarHorasDeAlumnosPorCicloYAliasDelCurso(ciclo As Integer, curso As String) As List(Of Alumno)
+        Dim listaAlumnos As New List(Of Alumno)
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim cicloAPasar As Integer = ciclo
+        Dim cursoAPasar As String = curso
+        Dim sql As String = "SELECT NOMBRE, HORASTOTALES FROM ALUMNOS WHERE CICLO = @CICLO AND ALIAS = @ALIAS"
+        Dim cmdHorasPorCicloYAlias As New SqlCommand(sql, conexion)
+        cmdHorasPorCicloYAlias.Parameters.AddWithValue("@CICLO", ciclo)
+        cmdHorasPorCicloYAlias.Parameters.AddWithValue("@ALIAS", curso)
+        Try
+            conexion.Open()
+            Dim drHorasPorCicloYAlias As SqlDataReader = cmdHorasPorCicloYAlias.ExecuteReader
+            While drHorasPorCicloYAlias.Read()
+                Dim alumno As New Alumno
+                alumno.Nombre = drHorasPorCicloYAlias("CICLO").ToString
+                alumno.HorasTotales = Convert.ToInt32(drHorasPorCicloYAlias("HORASTOTALES"))
+                listaAlumnos.Add(alumno)
+            End While
+            drHorasPorCicloYAlias.Close()
+        Catch ex As Exception
+            Return New List(Of Alumno)
+        End Try
+        Return listaAlumnos
+    End Function
+
 
     Public Function AñadirJornada(fecha As Date, dni As String, duracion As Decimal) As String
         If ComprobarJornadaRepetida(fecha, dni) = True Then
@@ -94,14 +119,16 @@ Public Class GestionFunciones
 
         Try
             conexion.Open()
-            crear.ExecuteNonQuery()
+            Dim numFilas As Integer = crear.ExecuteNonQuery()
+            If numFilas = 0 Then
+                Return "Error: no se ha podido añadir la jornada"
+            End If
+            Return "Insertado"
         Catch ex As Exception
             Return "Error del añadir jornada: " & ex.Message
         Finally
             conexion.Close()
         End Try
-
-        Return "Insertado"
     End Function
     Public Function EliminarJornada(fecha As Date, dni As String) As String
         If Not ComprobarJornadaRepetida(fecha, dni) = True Then
@@ -151,7 +178,6 @@ Public Class GestionFunciones
         Return "Cambio completado"
     End Function
 
-
     Public Function ComprobarJornadaRepetida(fecha As Date, dni As String) As Boolean
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim fechaAPasar As Date = fecha
@@ -195,6 +221,7 @@ Public Class GestionFunciones
         End Try
 
     End Function
+
     Public Function EliminarAlumno(dni As String) As String
         Dim lineaComando As String = "DELETE FROM ALUMNOS WHERE DNI = @dni"
 
@@ -214,45 +241,44 @@ Public Class GestionFunciones
         Return "" ' Retorna vacío si todo salió bien
     End Function
 
+<<<<<<< Updated upstream:Gestion/GestionFunciones.vb
 
 
     ''Ahora esto es sobre añadir la tarea
+=======
+>>>>>>> Stashed changes:Gestion/Gestion.vb
     Public Function AñadirTarea(codigo As Integer, fecha As Date, dni As String, descripcion As String, duracion As Decimal) As String
-        ''Chequear que no se pase de horas
         If (duracion > 8) Then
             Return "¡No puedes realizar mas de 8 horas!"
         End If
 
         Dim conexion As New SqlConnection(cadenaConexion)
-        Dim codigoAPasar = codigo
-        Dim fechaAPasar = fecha
-        Dim dniAPasar = dni
-        Dim descripcionAPasar = descripcion
-        Dim duracionAPasar = duracion
 
 
-        Dim lineaComando As String = "INSERT INTO TAREASREALIZADAS(CODIGOTAREA, FECHAJORNADA, DNI, DESCRIPCION, DURACION) VALUES (@codTarea, @fecha, @dni, @descripcion, @duracion)"
-        Dim crear As New SqlCommand(lineaComando, conexion)
+        Dim sqlInsertTareasRealizadas As String = "INSERT INTO TAREASREALIZADAS(CODIGOTAREA, FECHAJORNADA, DNI, DESCRIPCION, DURACION) VALUES (@codTarea, @fecha, @dni, @descripcion, @duracion)"
+        Dim cmdTareasRealizadas As New SqlCommand(sqlInsertTareasRealizadas, conexion)
 
-        crear.Parameters.AddWithValue("@codTarea", codigoAPasar)
-        crear.Parameters.AddWithValue("@fecha", fechaAPasar)
-        crear.Parameters.AddWithValue("@dni", dniAPasar)
-        crear.Parameters.AddWithValue("@descripcion", descripcionAPasar)
-        crear.Parameters.AddWithValue("@duracion", duracionAPasar)
-
-
+        cmdTareasRealizadas.Parameters.AddWithValue("@codTarea", codigo)
+        cmdTareasRealizadas.Parameters.AddWithValue("@fecha", fecha)
+        cmdTareasRealizadas.Parameters.AddWithValue("@dni", dni)
+        cmdTareasRealizadas.Parameters.AddWithValue("@descripcion", descripcion)
+        cmdTareasRealizadas.Parameters.AddWithValue("@duracion", duracion)
 
         Try
             conexion.Open()
-            crear.ExecuteNonQuery()
+            Dim numFilas1 As Integer = cmdTareasRealizadas.ExecuteNonQuery()
+            If numFilas1 = 0 Then
+                Return "Error: no se ha podido insertar la tarea"
+            End If
+            Return "Tarea insertada correctamente"
         Catch ex As Exception
             Return "Error del añadir tarea: " & ex.Message
         Finally
             conexion.Close()
         End Try
-
-        Return "Tarea insertada"
     End Function
+
+    Public Function AñadirRAsYModulosALaTarea()
 
     Public Function EliminarTarea(tarea As Tarea) As String
         If tarea Is Nothing Then
@@ -375,36 +401,49 @@ Public Class GestionFunciones
         End Try
     End Function
 
-    Public Function ModificarModuloYRAsTarea(tareaAModificar As TareasCompletas, nuevoModulo As String, descripcionRANuevo As String, ciclo As Integer, aliasCiclo As String) As String
+    Public Function ModificarModulosYRAsTarea(tareaAModificar As TareasCompletas, modulosAModificar As List(Of String), nuevosModulos As List(Of String), rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
         If tareaAModificar Is Nothing Then
             Return "Error: la tarea no puede estar vacía"
         End If
-        If String.IsNullOrWhiteSpace(nuevoModulo) OrElse String.IsNullOrWhiteSpace(nuevoModulo) OrElse String.IsNullOrWhiteSpace(nuevoModulo) OrElse ciclo < 1 AndAlso ciclo > 2 Then
-            Return "Error: el nuevo valor del modulo y/o del RA a modificar tienen un formato invalido o están vacíos"
-        End If
-        Dim codigoNuevoModulo As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nuevoModulo)
-        If codigoNuevoModulo = -1 Then
-            Return "Error: no se pudo conectar con la base de datos"
-        End If
-        Dim nuevoRA As Integer = ObtenerRAPorSuAliasYNombreModulo(nuevoModulo, descripcionRANuevo, ciclo, aliasCiclo)
-        If nuevoRA = -1 Then
-            Return "Error: no se pudo conectar con la base de datos"
-        End If
+        For Each modulo As String In nuevosModulos
+            If String.IsNullOrWhiteSpace(modulo) OrElse String.IsNullOrWhiteSpace(modulo) OrElse String.IsNullOrWhiteSpace(modulo) OrElse ciclo < 1 AndAlso ciclo > 2 Then
+                Return "Error: el nuevo valor del modulo y/o del RA a modificar tienen un formato invalido o están vacíos"
+            End If
+        Next
+        Dim codigosNuevosModulos As New List(Of Integer)
+        For contador = 0 To nuevosModulos.Count - 1
+            codigosNuevosModulos.Add(ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nuevosModulos(contador)))
+            If codigosNuevosModulos(contador) = -1 Then
+                Return "Error: no se pudo conectar con la base de datos"
+            End If
+        Next
+        Dim codigosModulosAModificar As New List(Of Integer)
+        For contador = 0 To nuevosModulos.Count - 1
+            codigosModulosAModificar.Add(ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, modulosAModificar(contador)))
+            If codigosModulosAModificar(contador) = -1 Then
+                Return "Error: no se pudo conectar con la base de datos"
+            End If
+        Next
         Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "Update INCLUYEN Set CodigoModulo = @codigoNuevoModulo, RA = @nuevoRA  Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno And CodigoModulo = @codigoModulo"
+        Dim sql As String = "Update INCLUYEN Set CodigoModulo = @codigoNuevoModulo, RA = @nuevoRA  Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno And CodigoModulo = @codigoModulo And RA = @rA"
         Dim cmdUpdateIncluyen As New SqlCommand(sql, conexion)
         Try
             conexion.Open()
-            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoModulo", tareaAModificar.CodigoModulo)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@nuevoRA", nuevoRA)
-            cmdUpdateIncluyen.Parameters.AddWithValue("@codigoNuevoModulo", codigoNuevoModulo)
-            Dim numFilas As String = cmdUpdateIncluyen.ExecuteNonQuery()
-            If numFilas = 0 Then
-                Return "Error desconocido en la base de datos o la tarea no existe"
-            End If
+            For contadorModuloModificar As Integer = 0 To modulosAModificar.Count - 1
+                For Each rANuevo As Integer In rAsNuevos
+                    cmdUpdateIncluyen.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+                    cmdUpdateIncluyen.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+                    cmdUpdateIncluyen.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+                    cmdUpdateIncluyen.Parameters.AddWithValue("@codigoModulo", codigosModulosAModificar(contadorModuloModificar))
+                    cmdUpdateIncluyen.Parameters.AddWithValue("@nuevoRA", rANuevo)
+                    cmdUpdateIncluyen.Parameters.AddWithValue("@codigoNuevoModulo", codigosNuevosModulos(contadorModuloModificar))
+                    Dim numFilas As String = cmdUpdateIncluyen.ExecuteNonQuery()
+                    If numFilas = 0 Then
+                        Return "Error desconocido en la base de datos o la tarea no existe"
+                    End If
+                Next
+            Next
+            Return "Se han modificado los módulos y/o los RAs correctamente"
         Catch ex As Exception
             Return "Error en la base de datos relacionado con la modificación del módulo o del RA o con la conexion con esta: " & ex.Message
         Finally
@@ -425,28 +464,6 @@ Public Class GestionFunciones
             cmdObtenerCodigoModulo.Parameters.AddWithValue("@aliasCiclo", aliasCiclo)
             cmdObtenerCodigoModulo.Parameters.AddWithValue("@nombreModulo", nombreModulo)
             Return Convert.ToInt32(cmdObtenerCodigoModulo.ExecuteScalar)
-        Catch ex As Exception
-            Return -1
-        Finally
-            conexion.Close()
-        End Try
-    End Function
-
-    Public Function ObtenerRAPorSuAliasYNombreModulo(nombreModulo As String, descripcionRA As String, ciclo As Integer, aliasCiclo As String) As Integer
-        If ciclo < 1 AndAlso ciclo > 2 OrElse String.IsNullOrWhiteSpace(aliasCiclo) OrElse String.IsNullOrWhiteSpace(nombreModulo) OrElse String.IsNullOrWhiteSpace(descripcionRA) Then
-            Return 0
-        End If
-        Dim codigoModulo As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nombreModulo)
-        Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "Select RA From RAS Where Ciclo = @ciclo And Alias = @aliasCiclo And CodigoModulo = @codigoModulo And Descripcion = @descripcionRA"
-        Dim cmdObtenerRA As New SqlCommand(sql, conexion)
-        Try
-            conexion.Open()
-            cmdObtenerRA.Parameters.AddWithValue("@ciclo", ciclo)
-            cmdObtenerRA.Parameters.AddWithValue("@aliasCiclo", aliasCiclo)
-            cmdObtenerRA.Parameters.AddWithValue("@codigoModulo", codigoModulo)
-            cmdObtenerRA.Parameters.AddWithValue("@descripcionRA", descripcionRA)
-            Return Convert.ToInt32(cmdObtenerRA.ExecuteScalar)
         Catch ex As Exception
             Return -1
         Finally
@@ -531,8 +548,9 @@ Public Class GestionFunciones
         End Try
     End Function
 
-    Public Function DevolverAlumnos() As List(Of Alumno)
+    Public Function DevolverAlumnosPorTutor(dnis As List(Of String)) As List(Of Alumno)
         Dim lista As New List(Of Alumno)
+<<<<<<< Updated upstream:Gestion/GestionFunciones.vb
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS"
         Dim cmd As New SqlCommand(sql, conexion)
@@ -680,3 +698,35 @@ Public Class GestionFunciones
 
 
 End Class
+=======
+
+        For Each dni In dnis
+            Dim conexion As New SqlConnection(cadenaConexion)
+            Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS WHERE DNI = @dni"
+            Dim cmd As New SqlCommand(sql, conexion)
+            cmd.Parameters.AddWithValue("@dni", dni)
+            Try
+                conexion.Open()
+                Dim dr As SqlDataReader = cmd.ExecuteReader()
+                If dr.Read() Then
+                    Dim a As New Alumno
+                    a.DNI = dr("DNI").ToString()
+                    a.Nombre = dr("NOMBRE").ToString()
+                    a.Apellido1 = dr("APELLIDO 1").ToString()
+                    a.Apellido2 = dr("APELLIDO 2").ToString()
+                    a.HorasTotales = Convert.ToInt32(dr("HORASTOTALES"))
+                    a.Ciclo = Convert.ToInt32(dr("CICLO"))
+                    a.AliasCurso = dr("ALIAS").ToString()
+                    lista.Add(a)
+                End If
+            Catch ex As Exception
+                ' ignorar ese DNI si falla
+            Finally
+                conexion.Close()
+            End Try
+        Next
+
+        Return lista
+    End Function
+End Class
+>>>>>>> Stashed changes:Gestion/Gestion.vb
