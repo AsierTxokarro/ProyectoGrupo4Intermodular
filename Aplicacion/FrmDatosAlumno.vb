@@ -2,7 +2,7 @@
 Public Class FrmDatosAlumno
     Private Sub BtnAnadir_Click(sender As Object, e As EventArgs) Handles BtnAnadir.Click
         Dim horasTotales As Integer
-        Dim usadoParaGestion As Gestion.Gestion ''Cambiar el nombre del proyecto/biblioteca con Gestion ya que no puede distinguir solo si se refiere a gestion (El proyecto) o gestion (La clase)
+        Dim usadoParaGestion As Gestion.Gestion
         usadoParaGestion = New Gestion.Gestion("")
         If String.IsNullOrWhiteSpace(txtNombre.Text) Then
             MessageBox.Show("El nombre no debe estar en blanco.")
