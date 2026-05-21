@@ -10,11 +10,11 @@ Public Class Gestion
         cadenaConexion = $"Data Source={servidor};Initial Catalog={NombreDeBaseDeDatos};Integrated Security=True"
     End Sub
 
-    Public Function AñadirAlumno(dni As String, horasTotales As Integer, nombre As String, apellido1 As String, apellido2 As String, ciclo As Integer, aliasCurso As String, realizaPracticas As Boolean, motivoNoPracticas As String) As String
+    Public Function AñadirAlumno(dni As String, horasTotales As Integer, nombre As String, apellido1 As String, apellido2 As String, ciclo As Integer, aliasCurso As String) As String
 
         Dim mensajeError As String = ""
 
-        If Not Existe(dni, mensajeError) Then
+        If Existe(dni, mensajeError) Then
             If Not String.IsNullOrWhiteSpace(mensajeError) Then
                 Return mensajeError
             Else
@@ -25,8 +25,8 @@ Public Class Gestion
         Dim conexion As New SqlConnection(cadenaConexion)
 
         Dim lineaComando As String =
-        "INSERT INTO ALUMNOS (DNI, HORASTOTALES, NOMBRE, [APELLIDO 1], [APELLIDO 2], CICLO, ALIAS, REALIZA_PRACTICAS, MOTIVO_NO_PRACTICAS) 
-         VALUES (@dni, @horasTotales, @nombre, @apellido1, @apellido2, @ciclo, @alias, @realizaPracticas, @motivo)"
+        "INSERT INTO ALUMNOS (DNI, HORASTOTALES, NOMBRE, [APELLIDO 1], [APELLIDO 2], CICLO, ALIAS) 
+         VALUES (@dni, @horasTotales, @nombre, @apellido1, @apellido2, @ciclo, @alias)"
 
         Dim crear As New SqlCommand(lineaComando, conexion)
 
@@ -37,20 +37,15 @@ Public Class Gestion
         crear.Parameters.AddWithValue("@apellido2", apellido2)
         crear.Parameters.AddWithValue("@ciclo", ciclo)
         crear.Parameters.AddWithValue("@alias", aliasCurso)
-        crear.Parameters.AddWithValue("@realizaPracticas", realizaPracticas)
 
-        conexion.Open()
-
-        crear.ExecuteNonQuery()
-
-        If String.IsNullOrWhiteSpace(motivoNoPracticas) Then
-            crear.Parameters.AddWithValue("@motivo", DBNull.Value)
-        Else
-            crear.Parameters.AddWithValue("@motivo", motivoNoPracticas)
-        End If
-
-        conexion.Close()
-
+        Try
+            conexion.Open()
+            crear.ExecuteNonQuery()
+        Catch ex As Exception
+            Return "Error del insertar un alumno: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
         Return "Insertado"
     End Function
     Public Function Existe(dni As String, ByRef mensaje As String) As Boolean
