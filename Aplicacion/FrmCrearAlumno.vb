@@ -1,8 +1,4 @@
 ﻿Public Class FrmCrearAlumno
-<<<<<<< HEAD
-    Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
-        Me.Close()
-=======
 
     Private Sub btnAnadir_Click(sender As Object, e As EventArgs) Handles btnAnadir.Click
         Dim horasTotales As Integer
@@ -40,6 +36,5 @@
     End Sub
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         Close()
->>>>>>> 2eb5a01fd7685ea2386c957d72e83bee42f05cd0
     End Sub
 End Class
