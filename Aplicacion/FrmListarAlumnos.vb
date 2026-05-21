@@ -69,6 +69,10 @@ Public Class FrmListarAlumnos
             MessageBox.Show("Debes seleccionar un alumno antes")
             Return
         End If
-        frmVerAlumno.ShowDialog()
+        FrmAlumno.ShowDialog()
+    End Sub
+
+    Private Sub txtBuscarAlumno_TextChanged(sender As Object, e As EventArgs) Handles txtBuscarAlumno.TextChanged
+
     End Sub
 End Class

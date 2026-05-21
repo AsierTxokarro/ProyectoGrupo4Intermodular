@@ -428,6 +428,7 @@ Public Class GestionFunciones
         Finally
             conexion.Close()
         End Try
+
     End Function
 
     Public Function ModificarModuloYRAsTarea(tareaAModificar As TareasCompletas, moduloAModificar As String, nuevoModulo As String, rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
@@ -686,6 +687,35 @@ Public Class GestionFunciones
             conexion.Close()
         End Try
         Return listaCiclos
+    End Function
+
+    Public Function DevolverAlumnos() As List(Of Alumno)
+        Dim lista As New List(Of Alumno)
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS"
+        Dim cmd As New SqlCommand(sql, conexion)
+
+        Try
+            conexion.Open()
+            Dim dr As SqlDataReader = cmd.ExecuteReader()
+            While dr.Read()
+                Dim a As New Alumno
+                a.DNI = dr("DNI").ToString()
+                a.Nombre = dr("NOMBRE").ToString()
+                a.Apellido1 = dr("APELLIDO 1").ToString()
+                a.Apellido2 = dr("APELLIDO 2").ToString()
+                a.HorasTotales = Convert.ToInt32(dr("HORASTOTALES"))
+                a.Ciclo = Convert.ToInt32(dr("CICLO"))
+                a.AliasCurso = dr("ALIAS").ToString()
+                lista.Add(a)
+            End While
+            dr.Close()
+        Catch ex As Exception
+            Return New List(Of Alumno)()
+        Finally
+            conexion.Close()
+        End Try
+        Return lista
     End Function
 
 End Class
