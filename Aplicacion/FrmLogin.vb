@@ -1,5 +1,5 @@
-﻿Public Class Login
+﻿Public Class FrmLogin
     Private Sub btnIniciarSesion_Click(sender As Object, e As EventArgs) Handles btnIniciarSesion.Click
-        FrmListarAlumnos.ShowDialog()
+        FrmMenu.Show()
     End Sub
 End Class

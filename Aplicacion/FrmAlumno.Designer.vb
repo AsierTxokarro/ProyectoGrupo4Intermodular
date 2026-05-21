@@ -23,10 +23,7 @@ Partial Class FrmAlumno
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.btnNumeroAlertas = New System.Windows.Forms.Button()
-        Me.btnVerAlarmas = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.btnFicharEntrada = New System.Windows.Forms.Button()
         Me.btnVerMisDatos = New System.Windows.Forms.Button()
         Me.btnPartesSemanales = New System.Windows.Forms.Button()
         Me.btnFichajesRealizados = New System.Windows.Forms.Button()
@@ -54,10 +51,7 @@ Partial Class FrmAlumno
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.btnNumeroAlertas)
-        Me.GroupBox2.Controls.Add(Me.btnVerAlarmas)
         Me.GroupBox2.Controls.Add(Me.Button1)
-        Me.GroupBox2.Controls.Add(Me.btnFicharEntrada)
         Me.GroupBox2.Controls.Add(Me.btnVerMisDatos)
         Me.GroupBox2.Controls.Add(Me.btnPartesSemanales)
         Me.GroupBox2.Controls.Add(Me.btnFichajesRealizados)
@@ -68,24 +62,6 @@ Partial Class FrmAlumno
         Me.GroupBox2.TabIndex = 57
         Me.GroupBox2.TabStop = False
         '
-        'btnNumeroAlertas
-        '
-        Me.btnNumeroAlertas.ForeColor = System.Drawing.Color.Red
-        Me.btnNumeroAlertas.Location = New System.Drawing.Point(509, 15)
-        Me.btnNumeroAlertas.Name = "btnNumeroAlertas"
-        Me.btnNumeroAlertas.Size = New System.Drawing.Size(53, 40)
-        Me.btnNumeroAlertas.TabIndex = 60
-        Me.btnNumeroAlertas.UseVisualStyleBackColor = True
-        '
-        'btnVerAlarmas
-        '
-        Me.btnVerAlarmas.Location = New System.Drawing.Point(356, 15)
-        Me.btnVerAlarmas.Name = "btnVerAlarmas"
-        Me.btnVerAlarmas.Size = New System.Drawing.Size(157, 40)
-        Me.btnVerAlarmas.TabIndex = 59
-        Me.btnVerAlarmas.Text = "Ver Alertas"
-        Me.btnVerAlarmas.UseVisualStyleBackColor = True
-        '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.InactiveCaption
@@ -95,16 +71,6 @@ Partial Class FrmAlumno
         Me.Button1.TabIndex = 58
         Me.Button1.Text = "Cerrar Sesion"
         Me.Button1.UseVisualStyleBackColor = False
-        '
-        'btnFicharEntrada
-        '
-        Me.btnFicharEntrada.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.btnFicharEntrada.Location = New System.Drawing.Point(12, 63)
-        Me.btnFicharEntrada.Name = "btnFicharEntrada"
-        Me.btnFicharEntrada.Size = New System.Drawing.Size(328, 49)
-        Me.btnFicharEntrada.TabIndex = 57
-        Me.btnFicharEntrada.Text = "Fichar Entrada"
-        Me.btnFicharEntrada.UseVisualStyleBackColor = False
         '
         'btnVerMisDatos
         '
@@ -316,10 +282,7 @@ Partial Class FrmAlumno
     End Sub
 
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents btnNumeroAlertas As Button
-    Friend WithEvents btnVerAlarmas As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents btnFicharEntrada As Button
     Friend WithEvents btnVerMisDatos As Button
     Friend WithEvents btnPartesSemanales As Button
     Friend WithEvents btnFichajesRealizados As Button

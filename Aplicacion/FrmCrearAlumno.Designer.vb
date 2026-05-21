@@ -239,14 +239,14 @@ Partial Class FrmCrearAlumno
         Me.txtNombre.Size = New System.Drawing.Size(219, 22)
         Me.txtNombre.TabIndex = 29
         '
-        'FrmDatosAlumno
+        'FrmCrearAlumno
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Name = "FrmDatosAlumno"
+        Me.Name = "FrmCrearAlumno"
         Me.Text = "FrmDatosAlumno"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
