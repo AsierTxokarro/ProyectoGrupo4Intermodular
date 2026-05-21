@@ -11,11 +11,11 @@ Public Class GestionFunciones
         cadenaConexion = $"Data Source={servidor};Initial Catalog={NombreDeBaseDeDatos};Integrated Security=True"
     End Sub
 
-    Public Function AñadirAlumno(dni As String, horasTotales As Integer, nombre As String, apellido1 As String, apellido2 As String, ciclo As Integer, aliasCurso As String, realizaPracticas As Boolean, motivoNoPracticas As String) As String
+    Public Function AñadirAlumno(dni As String, horasTotales As Integer, nombre As String, apellido1 As String, apellido2 As String, ciclo As Integer, aliasCurso As String) As String
 
         Dim mensajeError As String = ""
 
-        If Not Existe(dni, mensajeError) Then
+        If Existe(dni, mensajeError) Then
             If Not String.IsNullOrWhiteSpace(mensajeError) Then
                 Return mensajeError
             Else
@@ -26,8 +26,8 @@ Public Class GestionFunciones
         Dim conexion As New SqlConnection(cadenaConexion)
 
         Dim lineaComando As String =
-        "INSERT INTO ALUMNOS (DNI, HORASTOTALES, NOMBRE, [APELLIDO 1], [APELLIDO 2], CICLO, ALIAS, REALIZA_PRACTICAS, MOTIVO_NO_PRACTICAS) 
-         VALUES (@dni, @horasTotales, @nombre, @apellido1, @apellido2, @ciclo, @alias, @realizaPracticas, @motivo)"
+        "INSERT INTO ALUMNOS (DNI, HORASTOTALES, NOMBRE, [APELLIDO 1], [APELLIDO 2], CICLO, ALIAS) 
+         VALUES (@dni, @horasTotales, @nombre, @apellido1, @apellido2, @ciclo, @alias)"
 
         Dim crear As New SqlCommand(lineaComando, conexion)
 
@@ -38,16 +38,16 @@ Public Class GestionFunciones
         crear.Parameters.AddWithValue("@apellido2", apellido2)
         crear.Parameters.AddWithValue("@ciclo", ciclo)
         crear.Parameters.AddWithValue("@alias", aliasCurso)
-        crear.Parameters.AddWithValue("@realizaPracticas", realizaPracticas)
 
-        crear.ExecuteNonQuery()
-
-        If String.IsNullOrWhiteSpace(motivoNoPracticas) Then
-            crear.Parameters.AddWithValue("@motivo", DBNull.Value)
-        Else
-            crear.Parameters.AddWithValue("@motivo", motivoNoPracticas)
-        End If
-
+        Try
+            conexion.Open()
+            crear.ExecuteNonQuery()
+        Catch ex As Exception
+            Return "Algo salio mal al intentar insertar el alumno a la base de datos."
+            ''Return "Error del insertar un alumno: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
         Return "Insertado"
     End Function
     Public Function Existe(dni As String, ByRef mensaje As String) As Boolean
@@ -96,7 +96,8 @@ Public Class GestionFunciones
             conexion.Open()
             crear.ExecuteNonQuery()
         Catch ex As Exception
-            Return "Error del añadir jornada: " & ex.Message
+            Return "Algo salio mal al intentar insertar una jornada la base de datos,"
+            ''Return "Error del añadir jornada: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -143,7 +144,8 @@ Public Class GestionFunciones
             conexion.Open()
             actualizar.ExecuteNonQuery()
         Catch ex As Exception
-            Return "Error al intentar cambiar una jornada: " & ex.Message
+            Return "Algo salio mal al intentar cambiar una jornada de la base de datos."
+            ''Return "Error al intentar cambiar una jornada: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -189,7 +191,8 @@ Public Class GestionFunciones
             Dim resultado As Integer = buscarAlumno.ExecuteScalar()
             Return resultado.ToString
         Catch ex As Exception
-            Return "Error al mirar las horas de un alumno: " & ex.Message
+            Return "Algo salio mal al intentar mostrar las horas de un alumno."
+            ''Return "Error al mirar las horas de un alumno: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -208,10 +211,11 @@ Public Class GestionFunciones
                 End Using
             End Using
         Catch ex As Exception
-            Return "Error al intentar borrar un alumno: " & ex.Message
+            Return "Algo salio mal al intentar borrar un alumno de la base de datos"
+            ''Return "Error al intentar borrar un alumno: " & ex.Message
         End Try
 
-        Return "" ' Retorna vacío si todo salió bien
+        Return ""
     End Function
 
 
@@ -246,7 +250,8 @@ Public Class GestionFunciones
             conexion.Open()
             crear.ExecuteNonQuery()
         Catch ex As Exception
-            Return "Error del añadir tarea: " & ex.Message
+            Return "Algo salio mal al intentar añadir una tarea."
+            ''Return "Error del añadir tarea: " & ex.Message
         Finally
             conexion.Close()
         End Try
