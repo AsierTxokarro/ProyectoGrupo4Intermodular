@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Login
+Partial Class FrmLogin
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -23,8 +23,6 @@ Partial Class Login
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.btnCrearCuentaTutor = New System.Windows.Forms.Button()
-        Me.btnCrearCuentaAlumn = New System.Windows.Forms.Button()
         Me.txtContraseña = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtCorreoElectronico = New System.Windows.Forms.TextBox()
@@ -36,8 +34,6 @@ Partial Class Login
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.GroupBox1.Controls.Add(Me.btnCrearCuentaTutor)
-        Me.GroupBox1.Controls.Add(Me.btnCrearCuentaAlumn)
         Me.GroupBox1.Controls.Add(Me.txtContraseña)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.txtCorreoElectronico)
@@ -49,28 +45,6 @@ Partial Class Login
         Me.GroupBox1.Size = New System.Drawing.Size(470, 224)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
-        '
-        'btnCrearCuentaTutor
-        '
-        Me.btnCrearCuentaTutor.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnCrearCuentaTutor.Location = New System.Drawing.Point(29, 186)
-        Me.btnCrearCuentaTutor.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.btnCrearCuentaTutor.Name = "btnCrearCuentaTutor"
-        Me.btnCrearCuentaTutor.Size = New System.Drawing.Size(415, 26)
-        Me.btnCrearCuentaTutor.TabIndex = 7
-        Me.btnCrearCuentaTutor.Text = "Crear cuenta nueva como Tutor"
-        Me.btnCrearCuentaTutor.UseVisualStyleBackColor = False
-        '
-        'btnCrearCuentaAlumn
-        '
-        Me.btnCrearCuentaAlumn.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnCrearCuentaAlumn.Location = New System.Drawing.Point(29, 154)
-        Me.btnCrearCuentaAlumn.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.btnCrearCuentaAlumn.Name = "btnCrearCuentaAlumn"
-        Me.btnCrearCuentaAlumn.Size = New System.Drawing.Size(415, 26)
-        Me.btnCrearCuentaAlumn.TabIndex = 6
-        Me.btnCrearCuentaAlumn.Text = "Crear cuenta nueva como Alumn@"
-        Me.btnCrearCuentaAlumn.UseVisualStyleBackColor = False
         '
         'txtContraseña
         '
@@ -107,10 +81,10 @@ Partial Class Login
         'btnIniciarSesion
         '
         Me.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnIniciarSesion.Location = New System.Drawing.Point(30, 122)
+        Me.btnIniciarSesion.Location = New System.Drawing.Point(30, 140)
         Me.btnIniciarSesion.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnIniciarSesion.Name = "btnIniciarSesion"
-        Me.btnIniciarSesion.Size = New System.Drawing.Size(415, 26)
+        Me.btnIniciarSesion.Size = New System.Drawing.Size(415, 49)
         Me.btnIniciarSesion.TabIndex = 1
         Me.btnIniciarSesion.Text = "Iniciar Sesión"
         Me.btnIniciarSesion.UseVisualStyleBackColor = False
@@ -142,8 +116,6 @@ Partial Class Login
     End Sub
 
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents btnCrearCuentaTutor As Button
-    Friend WithEvents btnCrearCuentaAlumn As Button
     Friend WithEvents txtContraseña As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txtCorreoElectronico As TextBox

@@ -1,5 +1,26 @@
-.vs/
-bin/
-obj/
+# Visual Studio / .NET
+**/bin/
+**/obj/
 *.user
-*.suo.vs/
+*.suo
+*.suo.vs
+*.pdb
+*.cache
+*.dll
+*.exe
+
+# Carpetas específicas
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+
+# Archivos de usuario y configuración
+*.user
+*.rsuser
+*.sln.user
+
+# Visual Studio temporales
+.vs/
+.vscode/
+*.log
