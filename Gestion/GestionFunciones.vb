@@ -71,9 +71,6 @@ Public Class GestionFunciones
         Finally
             conexion.Close()
         End Try
-
-        Return False
-
     End Function
 
     Public Function MostrarHorasDeAlumnosPorCicloYAliasDelCurso(ciclo As Integer, curso As String) As List(Of Alumno)
@@ -571,7 +568,7 @@ Public Class GestionFunciones
         End Try
     End Function
 
-    Public Function DevolverAlumnosPorTutor(dnis As List(Of String)) As List(Of Alumno)
+    Public Function DevolverAlumnos() As List(Of Alumno)
         Dim lista As New List(Of Alumno)
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS"
