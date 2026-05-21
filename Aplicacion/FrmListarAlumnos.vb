@@ -73,6 +73,10 @@ Public Class FrmListarAlumnos
     End Sub
 
     Private Sub txtBuscarAlumno_TextChanged(sender As Object, e As EventArgs) Handles txtBuscarAlumno.TextChanged
-
+        Dim texto As String = txtBuscarAlumno.Text
+        Dim listaAlumnos As List(Of Alumno) = gestionfrm.AlumnosOrdenadosPorNombre(texto)
+        lstAlumnos.DataSource = Nothing
+        lstAlumnos.DisplayMember = "Nombre"
+        lstAlumnos.DataSource = listaAlumnos
     End Sub
 End Class

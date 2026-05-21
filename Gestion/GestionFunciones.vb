@@ -201,6 +201,25 @@ Public Class GestionFunciones
         Return True
     End Function
 
+    Public Function NumeroJornadasRealizadas(DniAlumno As String) As Integer
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim dni As String = DniAlumno
+        Dim lineaComando As String = "SELECT COUNT(*) FROM JORNADAS WHERE DNI = @DNI"
+        Dim comprobar As New SqlCommand(lineaComando, conexion)
+
+        comprobar.Parameters.AddWithValue("@DNI", dni)
+        Try
+            conexion.Open()
+
+            Return Convert.ToInt32(comprobar.ExecuteScalar)
+
+        Catch ex As Exception
+            Return -1
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
     Public Function MostrarHorasDeAlumno(nombreAlumno As String) As String
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim alumnoAPasar As String = nombreAlumno
@@ -686,6 +705,33 @@ Public Class GestionFunciones
             conexion.Close()
         End Try
         Return lista
+    End Function
+
+    Public Function AlumnosOrdenadosPorNombre(trozoNombre As String)
+        Dim listaAlumnos As New List(Of Alumno)
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS WHERE NOMBRE like @TROZONOMBRE + '%' ORDER BY NOMBRE"
+        Dim cmdAlumnos As New SqlCommand(sql, conexion)
+        cmdAlumnos.Parameters.AddWithValue("TROZONOMBRE", trozoNombre)
+        Try
+            conexion.Open()
+            Dim drAlumnos As SqlDataReader = cmdAlumnos.ExecuteReader
+            While drAlumnos.Read()
+                Dim a As New Alumno
+                a.DNI = drAlumnos("DNI").ToString()
+                a.Nombre = drAlumnos("NOMBRE").ToString()
+                a.Apellido1 = drAlumnos("APELLIDO 1").ToString()
+                a.Apellido2 = drAlumnos("APELLIDO 2").ToString()
+                a.HorasTotales = Convert.ToInt32(drAlumnos("HORASTOTALES"))
+                a.Ciclo = Convert.ToInt32(drAlumnos("CICLO"))
+                a.AliasCurso = drAlumnos("ALIAS").ToString()
+                listaAlumnos.Add(a)
+            End While
+            drAlumnos.Close()
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return listaAlumnos
     End Function
 
 End Class
