@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Security.AccessControl
+Imports System.Text.RegularExpressions
 Imports BuscarServer
 Imports Entidades
 
@@ -732,6 +733,25 @@ Public Class GestionFunciones
             Return Nothing
         End Try
         Return listaAlumnos
+    End Function
+
+    Public Shared Function ValidarFormatoDNI(dni As String) As Boolean
+        If String.IsNullOrWhiteSpace(dni) Then
+            Return False
+        End If
+        If dni.Length <> 9 Then
+            Return False
+        End If
+        For i As Integer = 0 To 7
+            If Not Char.IsDigit(dni(i)) Then
+                Return False
+            End If
+        Next
+        If Not Char.IsUpper(dni(8)) Then
+            Return False
+        End If
+
+        Return True
     End Function
 
 End Class
