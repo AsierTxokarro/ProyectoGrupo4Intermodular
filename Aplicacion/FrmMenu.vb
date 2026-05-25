@@ -1,6 +1,6 @@
 ﻿Public Class FrmMenu
     Private Sub btnAlumno_Click(sender As Object, e As EventArgs) Handles btnAlumno.Click
-        FrmAlumno.Show()
+        FrmListarAlumnos.Show()
     End Sub
 
     Private Sub BtnCerrarSesion_Click(sender As Object, e As EventArgs) Handles BtnCerrarSesion.Click
