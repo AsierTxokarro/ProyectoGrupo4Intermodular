@@ -25,7 +25,7 @@ Partial Class FrmLogin
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtContraseña = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtCorreoElectronico = New System.Windows.Forms.TextBox()
+        Me.txtDNI = New System.Windows.Forms.TextBox()
         Me.btnIniciarSesion = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
@@ -36,7 +36,7 @@ Partial Class FrmLogin
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.GroupBox1.Controls.Add(Me.txtContraseña)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.txtCorreoElectronico)
+        Me.GroupBox1.Controls.Add(Me.txtDNI)
         Me.GroupBox1.Controls.Add(Me.btnIniciarSesion)
         Me.GroupBox1.Location = New System.Drawing.Point(167, 133)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -68,15 +68,15 @@ Partial Class FrmLogin
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Iniciar sesión en Fichajes para Empresa"
         '
-        'txtCorreoElectronico
+        'txtDNI
         '
-        Me.txtCorreoElectronico.ForeColor = System.Drawing.SystemColors.ScrollBar
-        Me.txtCorreoElectronico.Location = New System.Drawing.Point(30, 58)
-        Me.txtCorreoElectronico.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.txtCorreoElectronico.Name = "txtCorreoElectronico"
-        Me.txtCorreoElectronico.Size = New System.Drawing.Size(414, 22)
-        Me.txtCorreoElectronico.TabIndex = 2
-        Me.txtCorreoElectronico.Text = "Correo Electrónico"
+        Me.txtDNI.ForeColor = System.Drawing.SystemColors.ScrollBar
+        Me.txtDNI.Location = New System.Drawing.Point(30, 58)
+        Me.txtDNI.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.txtDNI.Name = "txtDNI"
+        Me.txtDNI.Size = New System.Drawing.Size(414, 22)
+        Me.txtDNI.TabIndex = 2
+        Me.txtDNI.Text = "DNI"
         '
         'btnIniciarSesion
         '
@@ -100,14 +100,14 @@ Partial Class FrmLogin
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Log In"
         '
-        'Login
+        'FrmLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label1)
-        Me.Name = "Login"
+        Me.Name = "FrmLogin"
         Me.Text = "Login"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -118,7 +118,7 @@ Partial Class FrmLogin
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents txtContraseña As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents txtCorreoElectronico As TextBox
+    Friend WithEvents txtDNI As TextBox
     Friend WithEvents btnIniciarSesion As Button
     Friend WithEvents Label1 As Label
 End Class
