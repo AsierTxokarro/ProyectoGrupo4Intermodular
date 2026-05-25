@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Security.AccessControl
+Imports System.Text.RegularExpressions
 Imports BuscarServer
 Imports Entidades
 
@@ -44,6 +45,7 @@ Public Class GestionFunciones
             crear.ExecuteNonQuery()
         Catch ex As Exception
             Return "Algo salio mal al intentar insertar el alumno a la base de datos."
+            ''Return "Error del insertar un alumno: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -70,9 +72,6 @@ Public Class GestionFunciones
         Finally
             conexion.Close()
         End Try
-
-        Return False
-
     End Function
 
     Public Function MostrarHorasDeAlumnosPorCicloYAliasDelCurso(ciclo As Integer, curso As String) As List(Of Alumno)
@@ -125,6 +124,7 @@ Public Class GestionFunciones
             Return "Insertado"
         Catch ex As Exception
             Return "Algo salio mal al intentar insertar una jornada la base de datos,"
+            ''Return "Error del añadir jornada: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -170,6 +170,7 @@ Public Class GestionFunciones
             actualizar.ExecuteNonQuery()
         Catch ex As Exception
             Return "Algo salio mal al intentar cambiar una jornada de la base de datos."
+            ''Return "Error al intentar cambiar una jornada: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -193,11 +194,31 @@ Public Class GestionFunciones
             tareasConEseDNIYFecha = comprobar.ExecuteReader()
             Return tareasConEseDNIYFecha.HasRows
         Catch ex As Exception
+            '"Error del comprobar jornada repetida: " & ex.Message
         Finally
             conexion.Close()
         End Try
 
         Return True
+    End Function
+
+    Public Function NumeroJornadasRealizadas(DniAlumno As String) As Integer
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim dni As String = DniAlumno
+        Dim lineaComando As String = "SELECT COUNT(*) FROM JORNADAS WHERE DNI = @DNI"
+        Dim comprobar As New SqlCommand(lineaComando, conexion)
+
+        comprobar.Parameters.AddWithValue("@DNI", dni)
+        Try
+            conexion.Open()
+
+            Return Convert.ToInt32(comprobar.ExecuteScalar)
+
+        Catch ex As Exception
+            Return -1
+        Finally
+            conexion.Close()
+        End Try
     End Function
 
     Public Function MostrarHorasDeAlumno(nombreAlumno As String) As String
@@ -214,6 +235,7 @@ Public Class GestionFunciones
             Return resultado.ToString
         Catch ex As Exception
             Return "Algo salio mal al intentar mostrar las horas de un alumno."
+            ''Return "Error al mirar las horas de un alumno: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -234,6 +256,7 @@ Public Class GestionFunciones
             End Using
         Catch ex As Exception
             Return "Algo salio mal al intentar borrar un alumno de la base de datos"
+            ''Return "Error al intentar borrar un alumno: " & ex.Message
         End Try
 
         Return ""
@@ -265,7 +288,8 @@ Public Class GestionFunciones
             Return "Tarea insertada correctamente"
         Catch ex As Exception
             Return "Algo salio mal al intentar añadir una tarea."
-            Return "Error en la base de datos: " & ex.Message
+            ''Return "Error del añadir tarea: " & ex.Message
+
         Finally
             conexion.Close()
         End Try
@@ -424,6 +448,7 @@ Public Class GestionFunciones
         Finally
             conexion.Close()
         End Try
+
     End Function
 
     Public Function ModificarModuloYRAsTarea(tareaAModificar As TareasCompletas, moduloAModificar As String, nuevoModulo As String, rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
@@ -564,37 +589,7 @@ Public Class GestionFunciones
         End Try
     End Function
 
-    Public Function DevolverAlumnosPorTutor(dnis As List(Of String)) As List(Of Alumno)
-        Dim lista As New List(Of Alumno)
-        Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS"
-        Dim cmd As New SqlCommand(sql, conexion)
 
-        Try
-            conexion.Open()
-            Dim dr As SqlDataReader = cmd.ExecuteReader()
-
-
-            While dr.Read()
-                Dim a As New Alumno
-                a.DNI = dr("DNI").ToString()
-                a.Nombre = dr("NOMBRE").ToString()
-                a.Apellido1 = dr("APELLIDO 1").ToString()
-                a.Apellido2 = dr("APELLIDO 2").ToString()
-                a.HorasTotales = Convert.ToInt32(dr("HORASTOTALES"))
-                a.Ciclo = Convert.ToInt32(dr("CICLO"))
-                a.AliasCurso = dr("ALIAS").ToString()
-                lista.Add(a)
-            End While
-            dr.Close()
-        Catch ex As Exception
-
-        Finally
-            conexion.Close()
-        End Try
-
-        Return lista
-    End Function
     Public Function DevolverAlumnosFiltrados(curso As String, ciclo As Integer) As List(Of Alumno)
         Dim lista As New List(Of Alumno)()
         Dim conexion As New SqlConnection(cadenaConexion)
@@ -682,6 +677,81 @@ Public Class GestionFunciones
             conexion.Close()
         End Try
         Return listaCiclos
+    End Function
+
+    Public Function DevolverAlumnos() As List(Of Alumno)
+        Dim lista As New List(Of Alumno)
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS"
+        Dim cmd As New SqlCommand(sql, conexion)
+
+        Try
+            conexion.Open()
+            Dim dr As SqlDataReader = cmd.ExecuteReader()
+            While dr.Read()
+                Dim a As New Alumno
+                a.DNI = dr("DNI").ToString()
+                a.Nombre = dr("NOMBRE").ToString()
+                a.Apellido1 = dr("APELLIDO 1").ToString()
+                a.Apellido2 = dr("APELLIDO 2").ToString()
+                a.HorasTotales = Convert.ToInt32(dr("HORASTOTALES"))
+                a.Ciclo = Convert.ToInt32(dr("CICLO"))
+                a.AliasCurso = dr("ALIAS").ToString()
+                lista.Add(a)
+            End While
+            dr.Close()
+        Catch ex As Exception
+            Return New List(Of Alumno)()
+        Finally
+            conexion.Close()
+        End Try
+        Return lista
+    End Function
+
+    Public Function AlumnosOrdenadosPorNombre(trozoNombre As String)
+        Dim listaAlumnos As New List(Of Alumno)
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS WHERE NOMBRE like @TROZONOMBRE + '%' ORDER BY NOMBRE"
+        Dim cmdAlumnos As New SqlCommand(sql, conexion)
+        cmdAlumnos.Parameters.AddWithValue("TROZONOMBRE", trozoNombre)
+        Try
+            conexion.Open()
+            Dim drAlumnos As SqlDataReader = cmdAlumnos.ExecuteReader
+            While drAlumnos.Read()
+                Dim a As New Alumno
+                a.DNI = drAlumnos("DNI").ToString()
+                a.Nombre = drAlumnos("NOMBRE").ToString()
+                a.Apellido1 = drAlumnos("APELLIDO 1").ToString()
+                a.Apellido2 = drAlumnos("APELLIDO 2").ToString()
+                a.HorasTotales = Convert.ToInt32(drAlumnos("HORASTOTALES"))
+                a.Ciclo = Convert.ToInt32(drAlumnos("CICLO"))
+                a.AliasCurso = drAlumnos("ALIAS").ToString()
+                listaAlumnos.Add(a)
+            End While
+            drAlumnos.Close()
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return listaAlumnos
+    End Function
+
+    Public Shared Function ValidarFormatoDNI(dni As String) As Boolean
+        If String.IsNullOrWhiteSpace(dni) Then
+            Return False
+        End If
+        If dni.Length <> 9 Then
+            Return False
+        End If
+        For i As Integer = 0 To 7
+            If Not Char.IsDigit(dni(i)) Then
+                Return False
+            End If
+        Next
+        If Not Char.IsUpper(dni(8)) Then
+            Return False
+        End If
+
+        Return True
     End Function
 
 End Class
