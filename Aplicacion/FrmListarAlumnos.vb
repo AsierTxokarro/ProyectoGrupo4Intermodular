@@ -1,40 +1,38 @@
 ﻿Imports Entidades
-Imports Gestion.GestionFunciones
 
 Public Class FrmListarAlumnos
 
-    Private Sub FrmTutor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public Sub CargarAlumnos()
         Dim alumn As List(Of Alumno) = gestionfrm.DevolverAlumnos()
-        Dim curso As List(Of Curso) = gestionfrm.DevolverCursos()
 
-
+        lstAlumnos.DataSource = Nothing
         If alumn IsNot Nothing AndAlso alumn.Count > 0 Then
-            lstAlumnos.DataSource = Nothing
             lstAlumnos.DisplayMember = "Nombre"
             lstAlumnos.DataSource = alumn
         Else
             MessageBox.Show("No tenemos ningún alumno registrado en la base de datos.")
         End If
+    End Sub
 
+    Private Sub FrmListarAlumnos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        CargarAlumnos()
+
+        Dim curso As List(Of Curso) = gestionfrm.DevolverCursos()
 
         If curso IsNot Nothing AndAlso curso.Count > 0 Then
             cmbCurso.DataSource = Nothing
             cmbCurso.DisplayMember = "AliasCurso"
-
             cmbCurso.ValueMember = "AliasCurso"
             cmbCurso.DataSource = curso
         End If
     End Sub
 
-
     Private Sub cmbCurso_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCurso.SelectedIndexChanged
-
         If cmbCurso.SelectedValue IsNot Nothing AndAlso TypeOf cmbCurso.SelectedValue Is String Then
             Dim cursoTexto As String = cmbCurso.SelectedValue.ToString()
 
-
             Dim listaCiclos As List(Of Curso) = gestionfrm.DevolverCiclosPorCurso(cursoTexto)
-
 
             cmbCiclo.DataSource = Nothing
             cmbCiclo.DisplayMember = "Ciclo"
@@ -43,16 +41,12 @@ Public Class FrmListarAlumnos
         End If
     End Sub
 
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If cmbCurso.SelectedValue IsNot Nothing AndAlso cmbCiclo.SelectedValue IsNot Nothing Then
             Dim cursoSeleccionado As String = cmbCurso.SelectedValue.ToString()
-
             Dim cicloSeleccionado As Integer = Convert.ToInt32(cmbCiclo.SelectedValue)
 
-
             Dim listaAlumnosFiltrado As List(Of Alumno) = gestionfrm.DevolverAlumnosFiltrados(cursoSeleccionado, cicloSeleccionado)
-
 
             lstAlumnos.DataSource = Nothing
             lstAlumnos.DisplayMember = "Nombre"
@@ -69,6 +63,7 @@ Public Class FrmListarAlumnos
             MessageBox.Show("Debes seleccionar un alumno antes")
             Return
         End If
+
         FrmAlumno.ShowDialog()
     End Sub
 
@@ -80,3 +75,4 @@ Public Class FrmListarAlumnos
         lstAlumnos.DataSource = listaAlumnos
     End Sub
 End Class
+

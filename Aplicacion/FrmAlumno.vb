@@ -33,5 +33,9 @@ Public Class FrmAlumno
     Private Sub btnPartesSemanales_Click(sender As Object, e As EventArgs) Handles btnPartesSemanales.Click
         txtHorasTrabajadas.Text = gestionfrm.MostrarHorasDeAlumno(alumnoSeleccionado.DNI)
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        frmVerAlumno.Show()
+    End Sub
 End Class
 
