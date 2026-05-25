@@ -708,7 +708,7 @@ Public Class GestionFunciones
         Return lista
     End Function
 
-    Public Function AlumnosOrdenadosPorNombre(trozoNombre As String)
+    Public Function AlumnosOrdenadosPorNombre(trozoNombre As String) As List(Of Alumno)
         Dim listaAlumnos As New List(Of Alumno)
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS WHERE NOMBRE like @TROZONOMBRE + '%' ORDER BY NOMBRE"
@@ -733,6 +733,28 @@ Public Class GestionFunciones
             Return Nothing
         End Try
         Return listaAlumnos
+    End Function
+
+    Public Function DevolverAlumnoPorDni(dni As String) As Alumno
+        Dim alumno As Alumno
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "SELECT DNI, HORASTOTALES, NOMBRE, APELLIDO1, APELLIDO2, CICLO, ALIAS FROM ALUMNO WHERE DNI = @DNI"
+        Dim cmdAlumno As New SqlCommand(sql, conexion)
+        cmdAlumno.Parameters.AddWithValue("DNI", dni)
+        Try
+            conexion.Open()
+            Dim drAlumno As SqlDataReader =
+                cmdAlumno.ExecuteReader
+            If drAlumno.Read() Then
+                alumno = New Alumno(drAlumno("DNI"), drAlumno("HORASTOTALES"), drAlumno("NOMBRE"), drAlumno("APELLIDO1"), drAlumno("APELLIDO2"), drAlumno("CICLO"), drAlumno("ALIAS"))
+            End If
+            drAlumno.Close()
+        Catch ex As Exception
+            Throw New Exception("Error con la bbdd: " & ex.Message)
+        Finally
+            conexion.Close()
+        End Try
+        Return alumno
     End Function
 
     Public Shared Function ValidarFormatoDNI(dni As String) As Boolean
