@@ -52,6 +52,7 @@ Partial Class FrmAlumno
         '
         Me.txtHorasTrabajadas.Location = New System.Drawing.Point(363, 197)
         Me.txtHorasTrabajadas.Name = "txtHorasTrabajadas"
+        Me.txtHorasTrabajadas.ReadOnly = True
         Me.txtHorasTrabajadas.Size = New System.Drawing.Size(56, 22)
         Me.txtHorasTrabajadas.TabIndex = 59
         '
@@ -59,6 +60,7 @@ Partial Class FrmAlumno
         '
         Me.txtJornadasRealizadas.Location = New System.Drawing.Point(363, 113)
         Me.txtJornadasRealizadas.Name = "txtJornadasRealizadas"
+        Me.txtJornadasRealizadas.ReadOnly = True
         Me.txtJornadasRealizadas.Size = New System.Drawing.Size(56, 22)
         Me.txtJornadasRealizadas.TabIndex = 58
         '
@@ -69,7 +71,7 @@ Partial Class FrmAlumno
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(328, 54)
         Me.Button1.TabIndex = 58
-        Me.Button1.Text = "Cerrar Sesion"
+        Me.Button1.Text = "Atras"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'btnVerMisDatos

@@ -1,7 +1,9 @@
 ﻿Imports Entidades
 
 Public Class FrmAlumno
-    Dim alumnoSeleccionado As Alumno = FrmListarAlumnos.lstAlumnos.SelectedItem
+
+    Dim alumnoSeleccionado As Alumno
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
@@ -11,7 +13,17 @@ Public Class FrmAlumno
     End Sub
 
     Private Sub FrmAlumno_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblNombreAlumno.Text = alumnoSeleccionado.Nombre
+
+        alumnoSeleccionado = FrmListarAlumnos.lstAlumnos.SelectedItem
+
+
+        lblNombreAlumno.Text = ""
+        If alumnoSeleccionado IsNot Nothing Then
+            lblNombreAlumno.Text = alumnoSeleccionado.Nombre
+        End If
+
+        txtHorasTrabajadas.Text = ""
+        txtJornadasRealizadas.Text = ""
     End Sub
 
     Private Sub btnJornadasRealizadas_Click(sender As Object, e As EventArgs) Handles btnJornadasRealizadas.Click
@@ -22,3 +34,4 @@ Public Class FrmAlumno
         txtHorasTrabajadas.Text = gestionfrm.MostrarHorasDeAlumno(alumnoSeleccionado.DNI)
     End Sub
 End Class
+
