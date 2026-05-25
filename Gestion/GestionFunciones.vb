@@ -769,9 +769,26 @@ Public Class GestionFunciones
                 Return False
             End If
         Next
-        If Not Char.IsUpper(dni(8)) Then
-            Return False
-        End If
+
+        Dim numeros As Integer = Integer.Parse(dni.Substring(0, 8))
+        Dim letrasDNI As String = "TRWAGMYFPDXBNJZSQVHLCKE"
+        Dim letraCorrecta As Char = letrasDNI(numeros Mod 23)
+
+        Return Char.ToUpper(dni(8)) = letraCorrecta
+    End Function
+
+    Public Function EsCorreoValido(correo As String) As Boolean
+        If Not correo.Contains("@") Then Return False
+
+        If Not correo.Contains(".") Then Return False
+
+        Dim partes As String() = correo.Split("@")
+        If partes.Length <> 2 Then Return False
+        If String.IsNullOrWhiteSpace(partes(0)) Or String.IsNullOrWhiteSpace(partes(1)) Then Return False
+
+        If Not partes(1).Contains(".") Then Return False
+
+        If correo.Contains(" ") Then Return False
 
         Return True
     End Function
