@@ -78,7 +78,7 @@ Partial Class FrmAlumno
         Me.btnVerMisDatos.Name = "btnVerMisDatos"
         Me.btnVerMisDatos.Size = New System.Drawing.Size(326, 49)
         Me.btnVerMisDatos.TabIndex = 55
-        Me.btnVerMisDatos.Text = "Mis Datos"
+        Me.btnVerMisDatos.Text = "Sus Datos"
         Me.btnVerMisDatos.UseVisualStyleBackColor = True
         '
         'btnPartesSemanales
