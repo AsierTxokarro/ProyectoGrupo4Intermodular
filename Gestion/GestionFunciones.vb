@@ -44,7 +44,6 @@ Public Class GestionFunciones
             crear.ExecuteNonQuery()
         Catch ex As Exception
             Return "Algo salio mal al intentar insertar el alumno a la base de datos."
-            ''Return "Error del insertar un alumno: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -126,7 +125,6 @@ Public Class GestionFunciones
             Return "Insertado"
         Catch ex As Exception
             Return "Algo salio mal al intentar insertar una jornada la base de datos,"
-            ''Return "Error del añadir jornada: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -172,7 +170,6 @@ Public Class GestionFunciones
             actualizar.ExecuteNonQuery()
         Catch ex As Exception
             Return "Algo salio mal al intentar cambiar una jornada de la base de datos."
-            ''Return "Error al intentar cambiar una jornada: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -196,7 +193,6 @@ Public Class GestionFunciones
             tareasConEseDNIYFecha = comprobar.ExecuteReader()
             Return tareasConEseDNIYFecha.HasRows
         Catch ex As Exception
-            '"Error del comprobar jornada repetida: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -218,7 +214,6 @@ Public Class GestionFunciones
             Return resultado.ToString
         Catch ex As Exception
             Return "Algo salio mal al intentar mostrar las horas de un alumno."
-            ''Return "Error al mirar las horas de un alumno: " & ex.Message
         Finally
             conexion.Close()
         End Try
@@ -239,7 +234,6 @@ Public Class GestionFunciones
             End Using
         Catch ex As Exception
             Return "Algo salio mal al intentar borrar un alumno de la base de datos"
-            ''Return "Error al intentar borrar un alumno: " & ex.Message
         End Try
 
         Return ""
@@ -270,12 +264,8 @@ Public Class GestionFunciones
             End If
             Return "Tarea insertada correctamente"
         Catch ex As Exception
-<<<<<<< HEAD
             Return "Algo salio mal al intentar añadir una tarea."
-            ''Return "Error del añadir tarea: " & ex.Message
-=======
             Return "Error en la base de datos: " & ex.Message
->>>>>>> 0ff1c28c79b606bdaa9300dee0557c14a16069c2
         Finally
             conexion.Close()
         End Try
