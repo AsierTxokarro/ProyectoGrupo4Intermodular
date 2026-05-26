@@ -354,9 +354,9 @@ Public Class GestionFunciones
             If numFilas2 = 0 Then
                 Return "Error desconocido en la base de datos o la tarea no existe"
             End If
-            Return "Se ha modificado la tarea correctamente"
+            Return "Se ha eliminado la tarea correctamente"
         Catch ex As Exception
-            Return "Error en la base de datos: " & ex.Message
+            Return "Error en la base de datos"
         Finally
             conexion.Close()
         End Try
@@ -451,7 +451,7 @@ Public Class GestionFunciones
 
     End Function
 
-    Public Function ModificarModuloYRAsTarea(tareaAModificar As TareasCompletas, moduloAModificar As String, nuevoModulo As String, rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
+    Public Function ModificarModulosYRAsTarea(tareaAModificar As TareasCompletas, moduloAModificar As String, nuevoModulo As String, rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
         If tareaAModificar Is Nothing Then
             Return "Error: la tarea no puede estar vacía"
         End If
@@ -538,17 +538,35 @@ Public Class GestionFunciones
                     conexion.Open()
                     Using drMostrarTareas As SqlDataReader = cmdMostrar.ExecuteReader()
                         While drMostrarTareas.Read()
-                            listaTareasMostrar.Add(New TareasCompletas(
-                            drMostrarTareas("Dni").ToString(),
-                            Convert.ToInt32(drMostrarTareas("CodigoTarea")),
-                            drMostrarTareas("Ra"),
-                            drMostrarTareas("DescripcionRA"),
-                            drMostrarTareas("CodigoModulo"),
-                            drMostrarTareas("Modulo"),
-                            Convert.ToDateTime(drMostrarTareas("FechaJornada")),
-                            drMostrarTareas("DescripcionTarea").ToString(),
-                            Convert.ToInt32(drMostrarTareas("Duracion"))
-                        ))
+                            Dim seEncuentra As Boolean = False
+                            For Each tareaAMostrar As TareasCompletas In listaTareasMostrar
+                                If tareaAMostrar.CodigoTarea = drMostrarTareas("CodigoTarea") AndAlso Not tareaAMostrar.CodigosModulos.Contains(drMostrarTareas("CodigoModulo")) Then
+                                    seEncuentra = True
+                                    tareaAMostrar.CodigosModulos.Add(drMostrarTareas("CodigoModulo"))
+                                    tareaAMostrar.Modulos.Add(drMostrarTareas("Modulo"))
+                                    tareaAMostrar.RAs.Add(drMostrarTareas("Ra"))
+                                    tareaAMostrar.DescripcionesRAs.Add(drMostrarTareas("DescripcionRA"))
+                                    Exit For
+                                ElseIf tareaAMostrar.CodigoTarea = drMostrarTareas("CodigoTarea") AndAlso tareaAMostrar.CodigosModulos.Contains(drMostrarTareas("CodigoModulo")) Then
+                                    seEncuentra = True
+                                    tareaAMostrar.RAs.Add(drMostrarTareas("Ra"))
+                                    tareaAMostrar.DescripcionesRAs.Add(drMostrarTareas("DescripcionRA"))
+                                    Exit For
+                                End If
+                            Next
+                            If seEncuentra = False Then
+                                listaTareasMostrar.Add(New TareasCompletas(
+                                    drMostrarTareas("Dni").ToString(),
+                                    Convert.ToInt32(drMostrarTareas("CodigoTarea")),
+                                    New List(Of Integer) From {drMostrarTareas("Ra")},
+                                    New List(Of String) From {drMostrarTareas("DescripcionRA")},
+                                    New List(Of Integer) From {drMostrarTareas("CodigoModulo")},
+                                    New List(Of String) From {drMostrarTareas("Modulo")},
+                                    Convert.ToDateTime(drMostrarTareas("FechaJornada")),
+                                    drMostrarTareas("DescripcionTarea").ToString(),
+                                    Convert.ToInt32(drMostrarTareas("Duracion"))
+                                ))
+                            End If
                         End While
                     End Using
                 Catch ex As Exception
@@ -754,4 +772,25 @@ Public Class GestionFunciones
         Return True
     End Function
 
+    Public Function DevolverAlumnoPorDni(dni As String) As Alumno
+        Dim alumno As Alumno
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "SELECT DNI, HORASTOTALES, NOMBRE, APELLIDO1, APELLIDO2, CICLO, ALIAS FROM ALUMNO WHERE DNI = @DNI"
+        Dim cmdAlumno As New SqlCommand(sql, conexion)
+        cmdAlumno.Parameters.AddWithValue("DNI", dni)
+        Try
+            conexion.Open()
+            Dim drAlumno As SqlDataReader =
+                cmdAlumno.ExecuteReader
+            If drAlumno.Read() Then
+                alumno = New Alumno(drAlumno("DNI"), drAlumno("HORASTOTALES"), drAlumno("NOMBRE"), drAlumno("APELLIDO1"), drAlumno("APELLIDO2"), drAlumno("CICLO"), drAlumno("ALIAS"))
+            End If
+            drAlumno.Close()
+        Catch ex As Exception
+            Throw New Exception("Error con la bbdd: " & ex.Message)
+        Finally
+            conexion.Close()
+        End Try
+        Return alumno
+    End Function
 End Class
