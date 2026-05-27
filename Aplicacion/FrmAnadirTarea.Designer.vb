@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmModificarTarea
+Partial Class FrmAnadirTarea
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -30,8 +30,10 @@ Partial Class FrmModificarTarea
         Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.grbControlesDinamicos = New System.Windows.Forms.GroupBox()
-        Me.btnModificar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
+        Me.btnConfirmar = New System.Windows.Forms.Button()
+        Me.btnAnyadirModulo = New System.Windows.Forms.Button()
+        Me.btnQuitarModulo = New System.Windows.Forms.Button()
         Me.grbControlesNoDinamicos.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,10 +45,10 @@ Partial Class FrmModificarTarea
         Me.grbControlesNoDinamicos.Controls.Add(Me.Label2)
         Me.grbControlesNoDinamicos.Controls.Add(Me.MonthCalendar1)
         Me.grbControlesNoDinamicos.Controls.Add(Me.Label1)
-        Me.grbControlesNoDinamicos.Location = New System.Drawing.Point(72, -11)
+        Me.grbControlesNoDinamicos.Location = New System.Drawing.Point(100, 22)
         Me.grbControlesNoDinamicos.Name = "grbControlesNoDinamicos"
         Me.grbControlesNoDinamicos.Size = New System.Drawing.Size(1178, 282)
-        Me.grbControlesNoDinamicos.TabIndex = 0
+        Me.grbControlesNoDinamicos.TabIndex = 1
         Me.grbControlesNoDinamicos.TabStop = False
         '
         'txtDuracion
@@ -99,41 +101,61 @@ Partial Class FrmModificarTarea
         '
         'grbControlesDinamicos
         '
-        Me.grbControlesDinamicos.Location = New System.Drawing.Point(72, 277)
+        Me.grbControlesDinamicos.Location = New System.Drawing.Point(100, 324)
         Me.grbControlesDinamicos.Name = "grbControlesDinamicos"
-        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 326)
-        Me.grbControlesDinamicos.TabIndex = 1
+        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 356)
+        Me.grbControlesDinamicos.TabIndex = 2
         Me.grbControlesDinamicos.TabStop = False
-        '
-        'btnModificar
-        '
-        Me.btnModificar.Location = New System.Drawing.Point(192, 633)
-        Me.btnModificar.Name = "btnModificar"
-        Me.btnModificar.Size = New System.Drawing.Size(223, 43)
-        Me.btnModificar.TabIndex = 0
-        Me.btnModificar.Text = "Confirmar"
-        Me.btnModificar.UseVisualStyleBackColor = True
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(858, 633)
+        Me.btnCancelar.Location = New System.Drawing.Point(919, 686)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(224, 43)
-        Me.btnCancelar.TabIndex = 2
+        Me.btnCancelar.TabIndex = 4
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
-        'FrmModificarTarea
+        'btnConfirmar
+        '
+        Me.btnConfirmar.Location = New System.Drawing.Point(277, 686)
+        Me.btnConfirmar.Name = "btnConfirmar"
+        Me.btnConfirmar.Size = New System.Drawing.Size(223, 43)
+        Me.btnConfirmar.TabIndex = 3
+        Me.btnConfirmar.Text = "Confirmar"
+        Me.btnConfirmar.UseVisualStyleBackColor = True
+        '
+        'btnAnyadirModulo
+        '
+        Me.btnAnyadirModulo.Location = New System.Drawing.Point(1299, 412)
+        Me.btnAnyadirModulo.Name = "btnAnyadirModulo"
+        Me.btnAnyadirModulo.Size = New System.Drawing.Size(167, 41)
+        Me.btnAnyadirModulo.TabIndex = 5
+        Me.btnAnyadirModulo.Text = "Añadir Módulo"
+        Me.btnAnyadirModulo.UseVisualStyleBackColor = True
+        '
+        'btnQuitarModulo
+        '
+        Me.btnQuitarModulo.Location = New System.Drawing.Point(1299, 557)
+        Me.btnQuitarModulo.Name = "btnQuitarModulo"
+        Me.btnQuitarModulo.Size = New System.Drawing.Size(167, 41)
+        Me.btnQuitarModulo.TabIndex = 6
+        Me.btnQuitarModulo.Text = "Quitar Modulo"
+        Me.btnQuitarModulo.UseVisualStyleBackColor = True
+        '
+        'FrmAnadirTarea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1327, 700)
+        Me.ClientSize = New System.Drawing.Size(1487, 736)
+        Me.Controls.Add(Me.btnQuitarModulo)
+        Me.Controls.Add(Me.btnAnyadirModulo)
         Me.Controls.Add(Me.btnCancelar)
-        Me.Controls.Add(Me.btnModificar)
+        Me.Controls.Add(Me.btnConfirmar)
         Me.Controls.Add(Me.grbControlesDinamicos)
         Me.Controls.Add(Me.grbControlesNoDinamicos)
-        Me.Name = "FrmModificarTarea"
-        Me.Text = "FrmModificarTarea"
+        Me.Name = "FrmAnadirTarea"
+        Me.Text = "FrmAnadirTarea"
         Me.grbControlesNoDinamicos.ResumeLayout(False)
         Me.grbControlesNoDinamicos.PerformLayout()
         Me.ResumeLayout(False)
@@ -141,13 +163,15 @@ Partial Class FrmModificarTarea
     End Sub
 
     Friend WithEvents grbControlesNoDinamicos As GroupBox
-    Friend WithEvents grbControlesDinamicos As GroupBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents MonthCalendar1 As MonthCalendar
-    Friend WithEvents txtDescripcion As TextBox
-    Friend WithEvents Label2 As Label
     Friend WithEvents txtDuracion As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents btnModificar As Button
+    Friend WithEvents txtDescripcion As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents MonthCalendar1 As MonthCalendar
+    Friend WithEvents Label1 As Label
+    Friend WithEvents grbControlesDinamicos As GroupBox
     Friend WithEvents btnCancelar As Button
+    Friend WithEvents btnConfirmar As Button
+    Friend WithEvents btnAnyadirModulo As Button
+    Friend WithEvents btnQuitarModulo As Button
 End Class

@@ -1,17 +1,13 @@
 ﻿Imports Entidades
 
-Public Class frmVerAlumno
+Public Class FrmVerAlumno
     Dim alumnoSeleccionado As Alumno
     Private Sub frmVerAlumno_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        alumnoSeleccionado = gestionfrm.DevolverAlumnoPorDni(FrmLogin.txtDNI.Text)
+        alumnoSeleccionado = FrmListarAlumnos.lstAlumnos.SelectedItem
         lblNombreAlumno.Text = ""
         lstTareas.DataSource = Nothing
         lstTareas.Items.Clear()
         lblNombreAlumno.Text = alumnoSeleccionado.Nombre
-    End Sub
-
-    Private Sub btnVerDatosAlumno_Click(sender As Object, e As EventArgs) Handles btnVerDatosAlumno.Click
-        FrmDatosAlumno.ShowDialog()
     End Sub
 
     Private Sub btnFichajesRealizados_Click(sender As Object, e As EventArgs) Handles btnFichajesRealizados.Click
@@ -31,16 +27,20 @@ Public Class frmVerAlumno
         Me.Close()
     End Sub
 
-    Private Sub btnEliminarAlumno_Click(sender As Object, e As EventArgs)
+
+    Private Sub btnEliminarAlumno_Click(sender As Object, e As EventArgs) Handles btnEliminarAlumno.Click
         Dim mensaje = gestionfrm.EliminarAlumno(alumnoSeleccionado.DNI)
         If mensaje = "" Then
-            MessageBox.Show("Alumno eliminado con exito")
+            MessageBox.Show("Alumno eliminado con éxito")
+
+            FrmListarAlumnos.CargarAlumnos()
+
             Me.Close()
         Else
-            MessageBox.Show($"No se ha podido eliminar a {alumnoSeleccionado.Nombre}, verifica que no tenga ninguna jornada o tarea asociada ")
+            MessageBox.Show($"No se ha podido eliminar a {alumnoSeleccionado.Nombre}...")
         End If
-
     End Sub
+
 
     Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateChanged
         Dim tareasPorfecha As List(Of TareasCompletas)
@@ -55,43 +55,5 @@ Public Class frmVerAlumno
         Else
             MessageBox.Show("Este alumno no ha realizado ninguna tarea en esta fecha")
         End If
-    End Sub
-
-    Private Sub btnEliminarTarea_Click(sender As Object, e As EventArgs) Handles btnEliminarTarea.Click
-        If lstTareas.SelectedIndex = -1 Then
-            MessageBox.Show("Debes seleccionar una tarea")
-            Exit Sub
-        End If
-
-        MessageBox.Show("¿Estás seguro que quieres eliminar la tarea/s?", "Eliminar tarea", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If DialogResult.Yes Then
-            Dim resultado As String = ""
-            For Each tareaAEliminar As TareasCompletas In lstTareas.SelectedItems
-                resultado = gestionfrm.EliminarTarea(New Tarea(tareaAEliminar.CodigoTarea, tareaAEliminar.DniAlumno, tareaAEliminar.FechaJornada, tareaAEliminar.DescripcionTarea, tareaAEliminar.Duracion))
-                If resultado.Contains("Error") Then
-                    MessageBox.Show(resultado)
-                    Exit Sub
-                End If
-            Next
-            MessageBox.Show(resultado)
-        End If
-        Dim tareas As List(Of TareasCompletas)
-        Dim dni As String = alumnoSeleccionado.DNI
-        tareas = gestionfrm.MostrarTareasAlumno(dni)
-        lstTareas.DataSource = Nothing
-        lstTareas.DisplayMember = "DescripcionTarea"
-        lstTareas.DataSource = tareas
-    End Sub
-
-    Private Sub btnModificarTarea_Click(sender As Object, e As EventArgs) Handles btnModificarTarea.Click
-        If lstTareas.SelectedIndex = -1 Then
-            MessageBox.Show("Debes seleccionar una tarea")
-            Exit Sub
-        End If
-        If lstTareas.SelectedIndices.Count > 1 Then
-            MessageBox.Show("Debes seleccionar una sola tarea")
-            Exit Sub
-        End If
-        FrmModificarTarea.ShowDialog()
     End Sub
 End Class

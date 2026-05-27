@@ -73,6 +73,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAnadirTarea.Designer.vb">
+      <DependentUpon>FrmAnadirTarea.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAnadirTarea.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVerTareasAlumno.Designer.vb">
+      <DependentUpon>FrmVerTareasAlumno.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVerTareasAlumno.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmAlumno.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -110,10 +122,10 @@
     <Compile Include="FrmModificarTarea.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmVerAlumno.Designer.vb">
-      <DependentUpon>frmVerAlumno.vb</DependentUpon>
+    <Compile Include="FrmVerAlumno.Designer.vb">
+      <DependentUpon>FrmVerAlumno.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmVerAlumno.vb">
+    <Compile Include="FrmVerAlumno.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLogin.Designer.vb">
@@ -144,6 +156,9 @@
     <EmbeddedResource Include="FrmAlumno.resx">
       <DependentUpon>FrmAlumno.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmAnadirTarea.resx">
+      <DependentUpon>FrmAnadirTarea.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCrearAlumno.resx">
       <DependentUpon>FrmCrearAlumno.vb</DependentUpon>
     </EmbeddedResource>
@@ -159,11 +174,14 @@
     <EmbeddedResource Include="FrmModificarTarea.resx">
       <DependentUpon>FrmModificarTarea.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmVerAlumno.resx">
-      <DependentUpon>frmVerAlumno.vb</DependentUpon>
+    <EmbeddedResource Include="FrmVerAlumno.resx">
+      <DependentUpon>FrmVerAlumno.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVerTareasAlumno.resx">
+      <DependentUpon>FrmVerTareasAlumno.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

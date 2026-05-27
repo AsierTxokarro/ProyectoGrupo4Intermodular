@@ -6,7 +6,8 @@
     Public Property HorasTotales As Integer
     Public Property Ciclo As Integer
     Public Property AliasCurso As String
-
+    Public Sub New()
+    End Sub
     Public Sub New(dNI As String, nombre As String, apellido1 As String, apellido2 As String, horasTotales As Integer, ciclo As Integer, aliasCurso As String)
         Me.DNI = dNI
         Me.Nombre = nombre

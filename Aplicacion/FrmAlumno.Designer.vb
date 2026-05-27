@@ -30,11 +30,13 @@ Partial Class FrmAlumno
         Me.btnPartesSemanales = New System.Windows.Forms.Button()
         Me.btnJornadasRealizadas = New System.Windows.Forms.Button()
         Me.lblNombreAlumno = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Button2)
         Me.GroupBox2.Controls.Add(Me.txtHorasTrabajadas)
         Me.GroupBox2.Controls.Add(Me.txtJornadasRealizadas)
         Me.GroupBox2.Controls.Add(Me.Button1)
@@ -44,7 +46,7 @@ Partial Class FrmAlumno
         Me.GroupBox2.Controls.Add(Me.lblNombreAlumno)
         Me.GroupBox2.Location = New System.Drawing.Point(116, 54)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(447, 480)
+        Me.GroupBox2.Size = New System.Drawing.Size(447, 492)
         Me.GroupBox2.TabIndex = 57
         Me.GroupBox2.TabStop = False
         '
@@ -52,6 +54,7 @@ Partial Class FrmAlumno
         '
         Me.txtHorasTrabajadas.Location = New System.Drawing.Point(363, 197)
         Me.txtHorasTrabajadas.Name = "txtHorasTrabajadas"
+        Me.txtHorasTrabajadas.ReadOnly = True
         Me.txtHorasTrabajadas.Size = New System.Drawing.Size(56, 22)
         Me.txtHorasTrabajadas.TabIndex = 59
         '
@@ -59,17 +62,18 @@ Partial Class FrmAlumno
         '
         Me.txtJornadasRealizadas.Location = New System.Drawing.Point(363, 113)
         Me.txtJornadasRealizadas.Name = "txtJornadasRealizadas"
+        Me.txtJornadasRealizadas.ReadOnly = True
         Me.txtJornadasRealizadas.Size = New System.Drawing.Size(56, 22)
         Me.txtJornadasRealizadas.TabIndex = 58
         '
         'Button1
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.Button1.Location = New System.Drawing.Point(12, 409)
+        Me.Button1.Location = New System.Drawing.Point(106, 423)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(328, 54)
+        Me.Button1.Size = New System.Drawing.Size(148, 54)
         Me.Button1.TabIndex = 58
-        Me.Button1.Text = "Cerrar Sesion"
+        Me.Button1.Text = "Atras"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'btnVerMisDatos
@@ -78,7 +82,7 @@ Partial Class FrmAlumno
         Me.btnVerMisDatos.Name = "btnVerMisDatos"
         Me.btnVerMisDatos.Size = New System.Drawing.Size(326, 49)
         Me.btnVerMisDatos.TabIndex = 55
-        Me.btnVerMisDatos.Text = "Mis Datos"
+        Me.btnVerMisDatos.Text = "Sus Datos"
         Me.btnVerMisDatos.UseVisualStyleBackColor = True
         '
         'btnPartesSemanales
@@ -107,6 +111,15 @@ Partial Class FrmAlumno
         Me.lblNombreAlumno.Size = New System.Drawing.Size(328, 29)
         Me.lblNombreAlumno.TabIndex = 53
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(13, 351)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(327, 53)
+        Me.Button2.TabIndex = 60
+        Me.Button2.Text = "Sus tareas"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'FrmAlumno
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -129,4 +142,5 @@ Partial Class FrmAlumno
     Friend WithEvents lblNombreAlumno As Label
     Friend WithEvents txtHorasTrabajadas As TextBox
     Friend WithEvents txtJornadasRealizadas As TextBox
+    Friend WithEvents Button2 As Button
 End Class

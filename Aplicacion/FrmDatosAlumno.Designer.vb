@@ -106,6 +106,7 @@ Partial Class FrmDatosAlumno
         '
         Me.txtDni.Location = New System.Drawing.Point(187, 32)
         Me.txtDni.Name = "txtDni"
+        Me.txtDni.ReadOnly = True
         Me.txtDni.Size = New System.Drawing.Size(142, 22)
         Me.txtDni.TabIndex = 7
         '
@@ -113,6 +114,7 @@ Partial Class FrmDatosAlumno
         '
         Me.txtCiclo.Location = New System.Drawing.Point(187, 272)
         Me.txtCiclo.Name = "txtCiclo"
+        Me.txtCiclo.ReadOnly = True
         Me.txtCiclo.Size = New System.Drawing.Size(142, 22)
         Me.txtCiclo.TabIndex = 8
         '
@@ -120,6 +122,7 @@ Partial Class FrmDatosAlumno
         '
         Me.txtApellido2.Location = New System.Drawing.Point(187, 223)
         Me.txtApellido2.Name = "txtApellido2"
+        Me.txtApellido2.ReadOnly = True
         Me.txtApellido2.Size = New System.Drawing.Size(142, 22)
         Me.txtApellido2.TabIndex = 9
         '
@@ -127,6 +130,7 @@ Partial Class FrmDatosAlumno
         '
         Me.txtApellido1.Location = New System.Drawing.Point(187, 174)
         Me.txtApellido1.Name = "txtApellido1"
+        Me.txtApellido1.ReadOnly = True
         Me.txtApellido1.Size = New System.Drawing.Size(142, 22)
         Me.txtApellido1.TabIndex = 10
         '
@@ -134,6 +138,7 @@ Partial Class FrmDatosAlumno
         '
         Me.txtNombre.Location = New System.Drawing.Point(187, 118)
         Me.txtNombre.Name = "txtNombre"
+        Me.txtNombre.ReadOnly = True
         Me.txtNombre.Size = New System.Drawing.Size(142, 22)
         Me.txtNombre.TabIndex = 11
         '
@@ -141,6 +146,7 @@ Partial Class FrmDatosAlumno
         '
         Me.txtHoras.Location = New System.Drawing.Point(187, 71)
         Me.txtHoras.Name = "txtHoras"
+        Me.txtHoras.ReadOnly = True
         Me.txtHoras.Size = New System.Drawing.Size(142, 22)
         Me.txtHoras.TabIndex = 12
         '
@@ -148,6 +154,7 @@ Partial Class FrmDatosAlumno
         '
         Me.txtCurso.Location = New System.Drawing.Point(187, 314)
         Me.txtCurso.Name = "txtCurso"
+        Me.txtCurso.ReadOnly = True
         Me.txtCurso.Size = New System.Drawing.Size(142, 22)
         Me.txtCurso.TabIndex = 13
         '
