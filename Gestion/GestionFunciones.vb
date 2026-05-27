@@ -708,7 +708,7 @@ Public Class GestionFunciones
         Return lista
     End Function
 
-    Public Function AlumnosOrdenadosPorNombre(trozoNombre As String)
+    Public Function AlumnosOrdenadosPorNombre(trozoNombre As String) As List(Of Alumno)
         Dim listaAlumnos As New List(Of Alumno)
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT DNI, NOMBRE, [APELLIDO 1], [APELLIDO 2], HORASTOTALES, CICLO, ALIAS FROM ALUMNOS WHERE NOMBRE like @TROZONOMBRE + '%' ORDER BY NOMBRE"
@@ -735,6 +735,28 @@ Public Class GestionFunciones
         Return listaAlumnos
     End Function
 
+    Public Function DevolverAlumnoPorDni(dni As String) As Alumno
+        Dim alumno As Alumno
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sql As String = "SELECT DNI, HORASTOTALES, NOMBRE, APELLIDO1, APELLIDO2, CICLO, ALIAS FROM ALUMNO WHERE DNI = @DNI"
+        Dim cmdAlumno As New SqlCommand(sql, conexion)
+        cmdAlumno.Parameters.AddWithValue("DNI", dni)
+        Try
+            conexion.Open()
+            Dim drAlumno As SqlDataReader =
+                cmdAlumno.ExecuteReader
+            If drAlumno.Read() Then
+                alumno = New Alumno(drAlumno("DNI"), drAlumno("HORASTOTALES"), drAlumno("NOMBRE"), drAlumno("APELLIDO1"), drAlumno("APELLIDO2"), drAlumno("CICLO"), drAlumno("ALIAS"))
+            End If
+            drAlumno.Close()
+        Catch ex As Exception
+            Throw New Exception("Error con la bbdd: " & ex.Message)
+        Finally
+            conexion.Close()
+        End Try
+        Return alumno
+    End Function
+
     Public Shared Function ValidarFormatoDNI(dni As String) As Boolean
         If String.IsNullOrWhiteSpace(dni) Then
             Return False
@@ -747,9 +769,26 @@ Public Class GestionFunciones
                 Return False
             End If
         Next
-        If Not Char.IsUpper(dni(8)) Then
-            Return False
-        End If
+
+        Dim numeros As Integer = Integer.Parse(dni.Substring(0, 8))
+        Dim letrasDNI As String = "TRWAGMYFPDXBNJZSQVHLCKE"
+        Dim letraCorrecta As Char = letrasDNI(numeros Mod 23)
+
+        Return Char.ToUpper(dni(8)) = letraCorrecta
+    End Function
+
+    Public Function EsCorreoValido(correo As String) As Boolean
+        If Not correo.Contains("@") Then Return False
+
+        If Not correo.Contains(".") Then Return False
+
+        Dim partes As String() = correo.Split("@")
+        If partes.Length <> 2 Then Return False
+        If String.IsNullOrWhiteSpace(partes(0)) Or String.IsNullOrWhiteSpace(partes(1)) Then Return False
+
+        If Not partes(1).Contains(".") Then Return False
+
+        If correo.Contains(" ") Then Return False
 
         Return True
     End Function

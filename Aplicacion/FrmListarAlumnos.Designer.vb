@@ -42,7 +42,7 @@ Partial Class FrmListarAlumnos
         Me.btnCerrarSesion.Name = "btnCerrarSesion"
         Me.btnCerrarSesion.Size = New System.Drawing.Size(220, 54)
         Me.btnCerrarSesion.TabIndex = 60
-        Me.btnCerrarSesion.Text = "Cerrar Sesion"
+        Me.btnCerrarSesion.Text = "Atras"
         Me.btnCerrarSesion.UseVisualStyleBackColor = False
         '
         'lblBuscarAlumno
