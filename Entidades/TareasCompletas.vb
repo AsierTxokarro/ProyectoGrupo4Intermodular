@@ -9,14 +9,14 @@
     Public Property DescripcionTarea As String
     Public Property Duracion As Decimal
 
-    Public Sub New(dniAlumno As String, codigoTarea As Integer, rAs As List(Of Integer), descripcionRAs As List(Of String), codigosModulos As List(Of Integer), modulos As List(Of String), fechaJornadas As Date, descripcionTarea As String, duracion As Decimal)
+    Public Sub New(dniAlumno As String, codigoTarea As Integer, rAs As List(Of Integer), descripcionesRAs As List(Of String), codigosModulos As List(Of Integer), modulos As List(Of String), fechaJornada As Date, descripcionTarea As String, duracion As Decimal)
         Me.DniAlumno = dniAlumno
         Me.CodigoTarea = codigoTarea
         Me.RAs = rAs
-        Me.DescripcionesRAs = descripcionRAs
+        Me.DescripcionesRAs = descripcionesRAs
         Me.CodigosModulos = codigosModulos
         Me.Modulos = modulos
-        Me.FechaJornada = FechaJornada
+        Me.FechaJornada = fechaJornada
         Me.DescripcionTarea = descripcionTarea
         Me.Duracion = duracion
     End Sub

@@ -1,6 +1,6 @@
 ﻿Imports Entidades
 
-Public Class frmVerAlumno
+Public Class FrmVerAlumno
     Dim alumnoSeleccionado As Alumno
     Private Sub frmVerAlumno_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         alumnoSeleccionado = FrmListarAlumnos.lstAlumnos.SelectedItem
@@ -56,6 +56,4 @@ Public Class frmVerAlumno
             MessageBox.Show("Este alumno no ha realizado ninguna tarea en esta fecha")
         End If
     End Sub
-
-
 End Class
