@@ -24,11 +24,11 @@ VALUES (3, 'Realización de consultas', '0484', '1', 'DAM');
 
 -- 3. Vincular la tarea de Carlos en la tabla INCLUYEN (usando el número 3)
 INSERT INTO INCLUYEN (CodigoTarea, FechaJornada, Dni, CodigoModulo, Ciclo, Alias, RA)
-VALUES (1, '20260518', '12345678A', '0484', '1', 'DAM', 3);
+VALUES (1, '20260518', '06729414M', '0484', '1', 'DAM', 3);
 
 INSERT INTO INCLUYEN (CodigoTarea, FechaJornada, Dni, CodigoModulo, Ciclo, Alias, RA)
 VALUES 
-(2, '20260518', '12345678A', '0484', '1', 'DAM', 3), -- Tarea 2 de Carlos
-(3, '20260519', '12345678A', '0484', '1', 'DAM', 3); -- Tarea 3 de Carlos
+(2, '20260518', '06729414M', '0484', '1', 'DAM', 3), -- Tarea 2 de Carlos
+(3, '20260519', '06729414M', '0484', '1', 'DAM', 3); -- Tarea 3 de Carlos
 
 select * from TAREASREALIZADAS
