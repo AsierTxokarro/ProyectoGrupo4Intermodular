@@ -5,7 +5,7 @@ Public Class FrmModificarTarea
     Dim alumno As Alumno
     Private Sub FrmModificarTarea_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tareaAModificar = FrmVerTareasAlumno.lstTareas.SelectedItem
-        alumno = gestionfrm.DevolverAlumnoPorDni(FrmVerTareasAlumno.lblAlumno.Text)
+        alumno = gestionfrm.DevolverAlumnoPorDni(FrmLogin.txtDNI.Text)
         For i As Integer = grbControlesDinamicos.Controls.Count - 1 To 0 Step -1
             grbControlesDinamicos.Controls.Remove(grbControlesDinamicos.Controls(i))
         Next
@@ -26,44 +26,51 @@ Public Class FrmModificarTarea
             cmbModulo.ValueMember = "CodigoModulo"
             cmbModulo.DataSource = listaModulos
 
+            Dim moduloSeleccionado As Modulo = Nothing
+
             For Each modulo In listaModulos
                 If modulo.NombreModulo = tareaAModificar.Modulos(i) Then
+                    moduloSeleccionado = modulo
                     cmbModulo.SelectedItem = modulo
                     Exit For
                 End If
             Next
 
-            Dim lstRA As New ListBox
-            lstRA.Location = New Point(300, posY)
-            lstRA.Width = 400
-            lstRA.Height = 120
-            lstRA.SelectionMode = SelectionMode.MultiExtended
-            Dim moduloSeleccionado As Modulo = DirectCast(cmbModulo.SelectedItem, Modulo)
-            Dim listaRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(moduloSeleccionado.CodigoModulo, moduloSeleccionado.Ciclo, moduloSeleccionado.AliasCurso)
+            If moduloSeleccionado IsNot Nothing Then
+                Dim listaRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(moduloSeleccionado.CodigoModulo, moduloSeleccionado.Ciclo, moduloSeleccionado.AliasCurso)
 
-            lstRA.DisplayMember = "DescripcionRA"
-            lstRA.DataSource = listaRAs
-
-            For Each ra As RA In listaRAs
-                If tareaAModificar.RAs.Contains(ra.RA) Then
-                    Dim index As Integer = listaRAs.IndexOf(ra)
-                    lstRA.SetSelected(index, True)
-                End If
-            Next
-
-            AddHandler cmbModulo.SelectedIndexChanged,
-            Sub(objSender As Object, argE As EventArgs)
-                Dim combo As ComboBox = DirectCast(objSender, ComboBox)
-                Dim modulo As Modulo = DirectCast(combo.SelectedItem, Modulo)
-                Dim nuevosRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(modulo.CodigoModulo, modulo.Ciclo, modulo.AliasCurso)
-
-                lstRA.DataSource = Nothing
+                Dim lstRA As New ListBox
+                lstRA.Location = New Point(300, posY)
+                lstRA.Width = 400
+                lstRA.Height = 120
+                lstRA.SelectionMode = SelectionMode.MultiExtended
                 lstRA.DisplayMember = "DescripcionRA"
-                lstRA.DataSource = nuevosRAs
-            End Sub
-            grbControlesDinamicos.Controls.Add(cmbModulo)
-            grbControlesDinamicos.Controls.Add(lstRA)
-            posY += 140
+
+                For Each ra As RA In listaRAs
+                    lstRA.Items.Add(ra)
+                Next
+
+                For Each ra As RA In listaRAs
+                    If tareaAModificar.RAs.Contains(ra.RA) Then
+                        Dim index As Integer = listaRAs.IndexOf(ra)
+                        lstRA.SetSelected(index, True)
+                    End If
+                Next
+
+                AddHandler cmbModulo.SelectedIndexChanged,
+                Sub(objSender As Object, argE As EventArgs)
+                    Dim combo As ComboBox = TryCast(objSender, ComboBox)
+                    Dim modulo As Modulo = TryCast(combo.SelectedItem, Modulo)
+                    Dim nuevosRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(modulo.CodigoModulo, modulo.Ciclo, modulo.AliasCurso)
+
+                    lstRA.DataSource = Nothing
+                    lstRA.DisplayMember = "DescripcionRA"
+                    lstRA.DataSource = nuevosRAs
+                End Sub
+                grbControlesDinamicos.Controls.Add(cmbModulo)
+                grbControlesDinamicos.Controls.Add(lstRA)
+                posY += 140
+            End If
         Next
     End Sub
 

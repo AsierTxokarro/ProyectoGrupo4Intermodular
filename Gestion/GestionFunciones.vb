@@ -783,25 +783,24 @@ Public Class GestionFunciones
     End Function
 
     Public Function DevolverAlumnoPorDni(dni As String) As Alumno
-        Dim alumno As Alumno
+        Dim alumnoAux As Alumno
         Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "SELECT DNI, HORASTOTALES, NOMBRE, APELLIDO1, APELLIDO2, CICLO, ALIAS FROM ALUMNO WHERE DNI = @DNI"
+        Dim sql As String = "SELECT DNI, HORASTOTALES, NOMBRE, [APELLIDO 1], [APELLIDO 2], CICLO, ALIAS FROM ALUMNOS WHERE DNI = @DNI"
         Dim cmdAlumno As New SqlCommand(sql, conexion)
-        cmdAlumno.Parameters.AddWithValue("DNI", dni)
+        cmdAlumno.Parameters.AddWithValue("@DNI", dni)
         Try
             conexion.Open()
-            Dim drAlumno As SqlDataReader =
-                cmdAlumno.ExecuteReader
+            Dim drAlumno As SqlDataReader = cmdAlumno.ExecuteReader
             If drAlumno.Read() Then
-                alumno = New Alumno(drAlumno("DNI"), drAlumno("HORASTOTALES"), drAlumno("NOMBRE"), drAlumno("APELLIDO1"), drAlumno("APELLIDO2"), drAlumno("CICLO"), drAlumno("ALIAS"))
+                alumnoAux = New Alumno(drAlumno("DNI"), drAlumno("NOMBRE"), drAlumno("APELLIDO 1"), drAlumno("APELLIDO 2"), drAlumno("HORASTOTALES"), drAlumno("CICLO"), drAlumno("ALIAS"))
+                Return alumnoAux
             End If
-            drAlumno.Close()
+            Return Nothing
         Catch ex As Exception
-            Throw New Exception("Error con la bbdd: " & ex.Message)
+
         Finally
             conexion.Close()
         End Try
-        Return alumno
     End Function
 
     Public Shared Function ValidarFormatoDNI(dni As String) As Boolean
