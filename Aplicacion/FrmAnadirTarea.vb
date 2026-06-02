@@ -35,7 +35,7 @@ Public Class FrmAnadirTarea
         lstRA.Height = 120
         lstRA.SelectionMode = SelectionMode.MultiExtended
 
-        Dim moduloInicial As Modulo = TryCast(cmbModulo.SelectedItem, Modulo)
+        Dim moduloInicial As Modulo = listaModulos(0)
 
         Dim listaRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(moduloInicial.CodigoModulo, moduloInicial.Ciclo, moduloInicial.AliasCurso)
         lstRA.DisplayMember = "DescripcionRA"

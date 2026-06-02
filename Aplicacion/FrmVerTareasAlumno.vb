@@ -4,6 +4,11 @@ Public Class FrmVerTareasAlumno
     Dim alumnoSeleccionado As Alumno
     Private Sub frmVerAlumno_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         alumnoSeleccionado = gestionfrm.DevolverAlumnoPorDni(FrmLogin.txtDNI.Text)
+        If alumnoSeleccionado Is Nothing Then
+            MessageBox.Show("NO hay ningun alumno con ese DNI")
+            Me.Close()
+            Exit Sub
+        End If
         lblNombreAlumno.Text = ""
         lstTareas.DataSource = Nothing
         lstTareas.Items.Clear()
