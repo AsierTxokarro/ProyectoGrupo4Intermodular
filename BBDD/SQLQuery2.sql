@@ -1,34 +1,34 @@
 Select * From Alumnos
 INSERT INTO JORNADAS (FECHA, DNI, DURACION)
 VALUES 
-('20260518', '12345678A', 8), -- Jornada para Carlos
-('20260519', '12345678A', 6), -- Otra jornada para Carlos
-('20260519', '23456789B', 7), -- Jornada para Luc韆
+('20260518', '06729414M', 8), -- Jornada para Carlos
+('20260519', '06729414M', 6), -- Otra jornada para Carlos
+('20260519', '23456789B', 7), -- Jornada para Luc铆a
 ('20260519', '45678901D', 5); -- Jornada para Marta
 
 
 INSERT INTO TAREASREALIZADAS (CODIGOTAREA, FECHAJORNADA, DNI, DESCRIPCION, DURACION)
 VALUES 
-(1, '20260518', '12345678A', 'Dise駉 del modelo entidad-relaci髇', 4),
-(2, '20260518', '12345678A', 'Creaci髇 de tablas en SQL Server', 4),
-(3, '20260519', '12345678A', 'Pruebas de sentencias INSERT y SELECT', 6),
+(1, '20260518', '06729414M', 'Dise帽o del modelo entidad-relaci贸n', 4),
+(2, '20260518', '06729414M', 'Creaci贸n de tablas en SQL Server', 4),
+(3, '20260519', '06729414M', 'Pruebas de sentencias INSERT y SELECT', 6),
 (4, '20260519', '23456789B', 'Desarrollo de la interfaz de login', 7),
-(5, '20260519', '45678901D', 'Documentaci髇 t閏nica del proyecto', 5);
+(5, '20260519', '45678901D', 'Documentaci贸n t茅cnica del proyecto', 5);
 
--- 1. Primero un m骴ulo de ejemplo (usando el ciclo '1' y alias 'DAM' que tienen tus alumnos)
+-- 1. Primero un m贸dulo de ejemplo (usando el ciclo '1' y alias 'DAM' que tienen tus alumnos)
 INSERT INTO MODULOS (CodigoModulo, NombreM, Ciclo, Alias)
 VALUES ('0484', 'Bases de Datos', '1', 'DAM');
--- 2. Un Resultado de Aprendizaje (RA) para ese m骴ulo (ahora con el n鷐ero 3)
+-- 2. Un Resultado de Aprendizaje (RA) para ese m贸dulo (ahora con el n煤mero 3)
 INSERT INTO RAS (Ra, Descripcion, CodigoModulo, Ciclo, Alias)
-VALUES (3, 'Realizaci髇 de consultas', '0484', '1', 'DAM');
+VALUES (3, 'Realizaci贸n de consultas', '0484', '1', 'DAM');
 
--- 3. Vincular la tarea de Carlos en la tabla INCLUYEN (usando el n鷐ero 3)
+-- 3. Vincular la tarea de Carlos en la tabla INCLUYEN (usando el n煤mero 3)
 INSERT INTO INCLUYEN (CodigoTarea, FechaJornada, Dni, CodigoModulo, Ciclo, Alias, RA)
-VALUES (1, '20260518', '12345678A', '0484', '1', 'DAM', 3);
+VALUES (1, '20260518', '06729414M', '0484', '1', 'DAM', 3);
 
 INSERT INTO INCLUYEN (CodigoTarea, FechaJornada, Dni, CodigoModulo, Ciclo, Alias, RA)
 VALUES 
-(2, '20260518', '12345678A', '0484', '1', 'DAM', 3), -- Tarea 2 de Carlos
-(3, '20260519', '12345678A', '0484', '1', 'DAM', 3); -- Tarea 3 de Carlos
+(2, '20260518', '06729414M', '0484', '1', 'DAM', 3), -- Tarea 2 de Carlos
+(3, '20260519', '06729414M', '0484', '1', 'DAM', 3); -- Tarea 3 de Carlos
 
 select * from TAREASREALIZADAS
