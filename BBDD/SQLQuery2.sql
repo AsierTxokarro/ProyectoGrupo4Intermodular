@@ -11,7 +11,7 @@ INSERT INTO TAREASREALIZADAS (CODIGOTAREA, FECHAJORNADA, DNI, DESCRIPCION, DURAC
 VALUES 
 (1, '20260518', '06729414M', 'Diseño del modelo entidad-relación', 4),
 (2, '20260518', '06729414M', 'Creación de tablas en SQL Server', 4),
-(3, '20260519', '106729414M', 'Pruebas de sentencias INSERT y SELECT', 6),
+(3, '20260519', '06729414M', 'Pruebas de sentencias INSERT y SELECT', 6),
 (4, '20260519', '23456789B', 'Desarrollo de la interfaz de login', 7),
 (5, '20260519', '45678901D', 'Documentación técnica del proyecto', 5);
 
