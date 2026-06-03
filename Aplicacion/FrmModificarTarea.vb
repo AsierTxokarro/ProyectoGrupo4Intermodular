@@ -4,13 +4,25 @@ Public Class FrmModificarTarea
     Dim tareaAModificar As TareasCompletas
     Dim alumno As Alumno
     Private Sub FrmModificarTarea_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        tareaAModificar = FrmVerTareasAlumno.lstTareas.SelectedItem
+        tareaAModificar = TryCast(FrmVerTareasAlumno.lstTareas.SelectedItem, TareasCompletas)
+        If tareaAModificar Is Nothing Then
+            MessageBox.Show("No hay ninguna tarea seleccionada.")
+            Me.Close()
+            Return
+        End If
+
         alumno = gestionfrm.DevolverAlumnoPorDni(FrmLogin.txtDNI.Text)
+        If alumno Is Nothing Then
+            MessageBox.Show("No se ha podido recuperar el alumno.")
+            Me.Close()
+            Return
+        End If
+
         For i As Integer = grbControlesDinamicos.Controls.Count - 1 To 0 Step -1
             grbControlesDinamicos.Controls.Remove(grbControlesDinamicos.Controls(i))
         Next
 
-        MonthCalendar1.SetDate(tareaAModificar.FechaJornada)
+        lblFechaJornada.Text = tareaAModificar.FechaJornada
         txtDescripcion.Text = tareaAModificar.DescripcionTarea
         txtDuracion.Text = tareaAModificar.Duracion
 
@@ -19,6 +31,7 @@ Public Class FrmModificarTarea
 
         For i As Integer = 0 To tareaAModificar.Modulos.Count - 1
             Dim cmbModulo As New ComboBox
+            cmbModulo.Name = "cmbModulo" & i
             cmbModulo.Location = New Point(20, posY)
             cmbModulo.Width = 250
             cmbModulo.DropDownStyle = ComboBoxStyle.DropDownList
@@ -40,6 +53,7 @@ Public Class FrmModificarTarea
                 Dim listaRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(moduloSeleccionado.CodigoModulo, moduloSeleccionado.Ciclo, moduloSeleccionado.AliasCurso)
 
                 Dim lstRA As New ListBox
+                lstRA.Name = "lstRA" & i
                 lstRA.Location = New Point(300, posY)
                 lstRA.Width = 400
                 lstRA.Height = 120
@@ -53,7 +67,9 @@ Public Class FrmModificarTarea
                 For Each ra As RA In listaRAs
                     If tareaAModificar.RAs.Contains(ra.RA) Then
                         Dim index As Integer = listaRAs.IndexOf(ra)
-                        lstRA.SetSelected(index, True)
+                        If index >= 0 AndAlso index < lstRA.Items.Count Then
+                            lstRA.SetSelected(index, True)
+                        End If
                     End If
                 Next
 
@@ -61,11 +77,19 @@ Public Class FrmModificarTarea
                 Sub(objSender As Object, argE As EventArgs)
                     Dim combo As ComboBox = TryCast(objSender, ComboBox)
                     Dim modulo As Modulo = TryCast(combo.SelectedItem, Modulo)
+                    If modulo Is Nothing Then
+                        lstRA.DataSource = Nothing
+                        lstRA.Items.Clear()
+                        Return
+                    End If
                     Dim nuevosRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(modulo.CodigoModulo, modulo.Ciclo, modulo.AliasCurso)
 
                     lstRA.DataSource = Nothing
                     lstRA.DisplayMember = "DescripcionRA"
-                    lstRA.DataSource = nuevosRAs
+                    lstRA.Items.Clear()
+                    For Each r As RA In nuevosRAs
+                        lstRA.Items.Add(r)
+                    Next
                 End Sub
                 grbControlesDinamicos.Controls.Add(cmbModulo)
                 grbControlesDinamicos.Controls.Add(lstRA)
@@ -131,29 +155,35 @@ Public Class FrmModificarTarea
             Exit Sub
         End If
 
-        Dim nuevaFecha As Date = MonthCalendar1.SelectionStart
-        Dim resultadoFecha As String = gestionfrm.ModificarFechaJornada(tareaAModificar, nuevaFecha)
-        If resultadoFecha.StartsWith("Error") Then
-            MessageBox.Show(resultadoFecha)
-            Exit Sub
-        End If
-
         For Each control As Control In grbControlesDinamicos.Controls
             If TypeOf control Is ComboBox Then
                 Dim cmbModulo As ComboBox = TryCast(control, ComboBox)
                 Dim indice As String = cmbModulo.Name.Replace("cmbModulo", "")
+                If String.IsNullOrWhiteSpace(indice) Then
+                    Continue For
+                End If
 
                 Dim lstRA As ListBox = TryCast(grbControlesDinamicos.Controls("lstRA" & indice), ListBox)
                 If cmbModulo.SelectedItem Is Nothing Then
                     Continue For
                 End If
 
+                If lstRA Is Nothing Then
+                    Continue For
+                End If
+
                 Dim moduloSeleccionado As Modulo = TryCast(cmbModulo.SelectedItem, Modulo)
+                If moduloSeleccionado Is Nothing Then
+                    Continue For
+                End If
+
                 Dim nuevosRAs As New List(Of Integer)
 
                 For Each itemSeleccionado In lstRA.SelectedItems
                     Dim raSeleccionado As RA = TryCast(itemSeleccionado, RA)
-                    nuevosRAs.Add(raSeleccionado.RA)
+                    If raSeleccionado IsNot Nothing Then
+                        nuevosRAs.Add(raSeleccionado.RA)
+                    End If
                 Next
 
                 Dim moduloOriginal As String = tareaAModificar.Modulos(Convert.ToInt32(indice))
@@ -166,5 +196,6 @@ Public Class FrmModificarTarea
             End If
         Next
         MessageBox.Show("La tarea se ha modificado correctamente")
+        Me.Close()
     End Sub
 End Class

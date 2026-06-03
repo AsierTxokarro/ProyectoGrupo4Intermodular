@@ -27,21 +27,21 @@ Partial Class FrmModificarTarea
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.grbControlesDinamicos = New System.Windows.Forms.GroupBox()
         Me.btnModificar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
+        Me.lblFechaJornada = New System.Windows.Forms.Label()
         Me.grbControlesNoDinamicos.SuspendLayout()
         Me.SuspendLayout()
         '
         'grbControlesNoDinamicos
         '
+        Me.grbControlesNoDinamicos.Controls.Add(Me.lblFechaJornada)
         Me.grbControlesNoDinamicos.Controls.Add(Me.txtDuracion)
         Me.grbControlesNoDinamicos.Controls.Add(Me.Label3)
         Me.grbControlesNoDinamicos.Controls.Add(Me.txtDescripcion)
         Me.grbControlesNoDinamicos.Controls.Add(Me.Label2)
-        Me.grbControlesNoDinamicos.Controls.Add(Me.MonthCalendar1)
         Me.grbControlesNoDinamicos.Controls.Add(Me.Label1)
         Me.grbControlesNoDinamicos.Location = New System.Drawing.Point(72, -11)
         Me.grbControlesNoDinamicos.Name = "grbControlesNoDinamicos"
@@ -81,13 +81,6 @@ Partial Class FrmModificarTarea
         Me.Label2.TabIndex = 68
         Me.Label2.Text = "Descripción:"
         '
-        'MonthCalendar1
-        '
-        Me.MonthCalendar1.Location = New System.Drawing.Point(153, 17)
-        Me.MonthCalendar1.MaxSelectionCount = 1
-        Me.MonthCalendar1.Name = "MonthCalendar1"
-        Me.MonthCalendar1.TabIndex = 67
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -101,13 +94,13 @@ Partial Class FrmModificarTarea
         '
         Me.grbControlesDinamicos.Location = New System.Drawing.Point(72, 277)
         Me.grbControlesDinamicos.Name = "grbControlesDinamicos"
-        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 326)
+        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 416)
         Me.grbControlesDinamicos.TabIndex = 1
         Me.grbControlesDinamicos.TabStop = False
         '
         'btnModificar
         '
-        Me.btnModificar.Location = New System.Drawing.Point(192, 633)
+        Me.btnModificar.Location = New System.Drawing.Point(196, 699)
         Me.btnModificar.Name = "btnModificar"
         Me.btnModificar.Size = New System.Drawing.Size(223, 43)
         Me.btnModificar.TabIndex = 0
@@ -116,18 +109,26 @@ Partial Class FrmModificarTarea
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(858, 633)
+        Me.btnCancelar.Location = New System.Drawing.Point(858, 699)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(224, 43)
         Me.btnCancelar.TabIndex = 2
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
+        'lblFechaJornada
+        '
+        Me.lblFechaJornada.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.lblFechaJornada.Location = New System.Drawing.Point(155, 73)
+        Me.lblFechaJornada.Name = "lblFechaJornada"
+        Me.lblFechaJornada.Size = New System.Drawing.Size(162, 25)
+        Me.lblFechaJornada.TabIndex = 72
+        '
         'FrmModificarTarea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1327, 700)
+        Me.ClientSize = New System.Drawing.Size(1327, 754)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnModificar)
         Me.Controls.Add(Me.grbControlesDinamicos)
@@ -143,11 +144,11 @@ Partial Class FrmModificarTarea
     Friend WithEvents grbControlesNoDinamicos As GroupBox
     Friend WithEvents grbControlesDinamicos As GroupBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents MonthCalendar1 As MonthCalendar
     Friend WithEvents txtDescripcion As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txtDuracion As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents btnModificar As Button
     Friend WithEvents btnCancelar As Button
+    Friend WithEvents lblFechaJornada As Label
 End Class

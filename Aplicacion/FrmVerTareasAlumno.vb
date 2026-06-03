@@ -53,8 +53,8 @@ Public Class FrmVerTareasAlumno
             Exit Sub
         End If
 
-        MessageBox.Show("¿Estás seguro que quieres eliminar la tarea/s?", "Eliminar tarea", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If DialogResult.Yes Then
+        Dim resultadoPreguntaSeguroEliminar As Integer = MessageBox.Show("¿Estás seguro que quieres eliminar la tarea/s?", "Eliminar tarea", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resultadoPreguntaSeguroEliminar = DialogResult.Yes Then
             Dim resultado As String = ""
             For Each tareaAEliminar As TareasCompletas In lstTareas.SelectedItems
                 resultado = gestionfrm.EliminarTarea(New Tarea(tareaAEliminar.CodigoTarea, tareaAEliminar.DniAlumno, tareaAEliminar.FechaJornada, tareaAEliminar.DescripcionTarea, tareaAEliminar.Duracion))
@@ -64,13 +64,13 @@ Public Class FrmVerTareasAlumno
                 End If
             Next
             MessageBox.Show(resultado)
+            Dim tareas As List(Of TareasCompletas)
+            Dim dni As String = alumnoSeleccionado.DNI
+            tareas = gestionfrm.MostrarTareasAlumno(dni)
+            lstTareas.DataSource = Nothing
+            lstTareas.DisplayMember = "DescripcionTarea"
+            lstTareas.DataSource = tareas
         End If
-        Dim tareas As List(Of TareasCompletas)
-        Dim dni As String = alumnoSeleccionado.DNI
-        tareas = gestionfrm.MostrarTareasAlumno(dni)
-        lstTareas.DataSource = Nothing
-        lstTareas.DisplayMember = "DescripcionTarea"
-        lstTareas.DataSource = tareas
     End Sub
 
     Private Sub btnModificarTarea_Click(sender As Object, e As EventArgs) Handles btnModificarTarea.Click
@@ -82,10 +82,10 @@ Public Class FrmVerTareasAlumno
             MessageBox.Show("Debes seleccionar una sola tarea")
             Exit Sub
         End If
-        FrmModificarTarea.ShowDialog()
+        FrmModificarTarea.Show()
     End Sub
 
     Private Sub btnAnadirTarea_Click(sender As Object, e As EventArgs) Handles btnAnadirTarea.Click
-        FrmAnadirTarea.ShowDialog()
+        FrmAnadirTarea.Show()
     End Sub
 End Class

@@ -4,52 +4,118 @@ Public Class FrmAnadirTarea
     Private listaModulosDinamicos As New List(Of ComboBox)
     Private listaRAsDinamicos As New List(Of ListBox)
     Private contadorModulos As Integer = 0
-    Private alumnoActual As Alumno = gestionfrm.DevolverAlumnoPorDni(FrmLogin.txtDNI.Text)
+    Private alumnoActual As Alumno
+
+    Private Sub ResetControlesDinamicos()
+        grbControlesDinamicos.Controls.Clear()
+        listaModulosDinamicos.Clear()
+        listaRAsDinamicos.Clear()
+        contadorModulos = 0
+    End Sub
+
     Private Sub CrearModuloYRA()
-        Dim posY As Integer = 20 + (contadorModulos * 170)
+        Dim anchoComboBox As Integer = 220
+        Dim alturaComboBox As Integer = 28
+        Dim anchoLista As Integer = 220
+        Dim alturaLista As Integer = 120
+        Dim alturaEtiqueta As Integer = 18
+        Dim espacioALoAncho As Integer = 20
+        Dim espacioALoAlto As Integer = 16
+
+        Dim anchoBloque As Integer = Math.Max(anchoComboBox, anchoLista)
+        Dim altoBloque As Integer = alturaEtiqueta + alturaComboBox + alturaEtiqueta + alturaLista + (espacioALoAlto)
+
+        Dim leftPadding As Integer = 10
+        Dim topPadding As Integer = 10
+
+        Dim anchoDisponible As Integer = Math.Max(1, grbControlesDinamicos.ClientSize.Width - leftPadding)
+        Dim columnas As Integer = Math.Max(1, (anchoDisponible + espacioALoAncho) \ (anchoBloque + espacioALoAncho))
+
+        Dim col As Integer = contadorModulos
+        Dim fil As Integer = contadorModulos \ columnas
+
+        Dim posX As Integer = leftPadding + col * (anchoBloque + espacioALoAncho)
+        Dim posY As Integer = topPadding + fil * (altoBloque + espacioALoAlto)
+
+        If posY + altoBloque > grbControlesDinamicos.ClientSize.Height - topPadding Then
+            MessageBox.Show("No queda espacio para añadir más módulos.", "Espacio insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
         Dim lblModulo As New Label
-        lblModulo.Text = "Modulo"
-        lblModulo.Location = New Point(40, posY)
-        lblModulo.AutoSize = True
+        lblModulo.Name = "lblModulo" & contadorModulos
+        lblModulo.Text = "Módulo"
+        lblModulo.Location = New Point(posX, posY)
+        lblModulo.AutoSize = False
+        lblModulo.Size = New Size(anchoBloque, alturaEtiqueta)
+        lblModulo.TextAlign = ContentAlignment.MiddleLeft
 
         Dim cmbModulo As New ComboBox
         cmbModulo.Name = "cmbModulo" & contadorModulos
-        cmbModulo.Location = New Point(40, posY + 30)
-        cmbModulo.Width = 250
+        cmbModulo.Location = New Point(posX, posY + alturaEtiqueta)
+        cmbModulo.Width = anchoComboBox
+        cmbModulo.Height = alturaComboBox
         cmbModulo.DropDownStyle = ComboBoxStyle.DropDownList
         cmbModulo.DisplayMember = "NombreModulo"
         cmbModulo.ValueMember = "CodigoModulo"
 
-        Dim listaModulos As List(Of Modulo) = gestionfrm.DevolverModulosDeUnCurso(alumnoActual.Ciclo, alumnoActual.AliasCurso)
-        cmbModulo.DataSource = listaModulos
-
         Dim lblRA As New Label
+        lblRA.Name = "lblRA" & contadorModulos
         lblRA.Text = "RAs"
-        lblRA.Location = New Point(40, posY + 75)
-        lblRA.AutoSize = True
+        lblRA.Location = New Point(posX, posY + alturaEtiqueta + alturaComboBox)
+        lblRA.AutoSize = False
+        lblRA.Size = New Size(anchoBloque, alturaEtiqueta)
+        lblRA.TextAlign = ContentAlignment.MiddleLeft
 
         Dim lstRA As New ListBox
         lstRA.Name = "lstRA" & contadorModulos
-        lstRA.Location = New Point(40, posY + 105)
-        lstRA.Width = 250
-        lstRA.Height = 120
+        lstRA.Location = New Point(posX, posY + alturaEtiqueta + alturaComboBox + alturaEtiqueta)
+        lstRA.Width = anchoLista
+        lstRA.Height = alturaLista
         lstRA.SelectionMode = SelectionMode.MultiExtended
+        lstRA.DisplayMember = "DescripcionRA"
+
+        Dim listaModulos As List(Of Modulo) = Nothing
+        Try
+            listaModulos = gestionfrm.DevolverModulosDeUnCurso(alumnoActual.Ciclo, alumnoActual.AliasCurso)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar módulos: " & ex.Message)
+            Return
+        End Try
+
+        If listaModulos Is Nothing OrElse listaModulos.Count = 0 Then
+            MessageBox.Show("No hay módulos disponibles para el curso del alumno.")
+            Return
+        End If
+
+        cmbModulo.DataSource = listaModulos
 
         Dim moduloInicial As Modulo = listaModulos(0)
+        Dim listaRAs As List(Of RA) = Nothing
+        Try
+            listaRAs = gestionfrm.DevolverRAsDeModulo(moduloInicial.CodigoModulo, moduloInicial.Ciclo, moduloInicial.AliasCurso)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar RAs: " & ex.Message)
+        End Try
 
-        Dim listaRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(moduloInicial.CodigoModulo, moduloInicial.Ciclo, moduloInicial.AliasCurso)
-        lstRA.DisplayMember = "DescripcionRA"
+        If listaRAs Is Nothing Then listaRAs = New List(Of RA)
         lstRA.DataSource = listaRAs
 
         AddHandler cmbModulo.SelectedIndexChanged, Sub(obj As Object, args As EventArgs)
                                                        Dim combo As ComboBox = TryCast(obj, ComboBox)
                                                        Dim moduloSeleccionado As Modulo = TryCast(combo.SelectedItem, Modulo)
+                                                       If moduloSeleccionado Is Nothing Then
+                                                           lstRA.DataSource = Nothing
+                                                           Return
+                                                       End If
                                                        Dim nuevosRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(moduloSeleccionado.CodigoModulo, moduloSeleccionado.Ciclo, moduloSeleccionado.AliasCurso)
-
                                                        lstRA.DataSource = Nothing
                                                        lstRA.DisplayMember = "DescripcionRA"
-                                                       lstRA.DataSource = nuevosRAs
+                                                       If nuevosRAs IsNot Nothing Then
+                                                           lstRA.DataSource = nuevosRAs
+                                                       End If
                                                    End Sub
+
         grbControlesDinamicos.Controls.Add(lblModulo)
         grbControlesDinamicos.Controls.Add(cmbModulo)
         grbControlesDinamicos.Controls.Add(lblRA)
@@ -60,7 +126,22 @@ Public Class FrmAnadirTarea
     End Sub
 
     Private Sub FrmAnadirTarea_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ResetControlesDinamicos()
+        txtDescripcion.Clear()
+        txtDuracion.Clear()
+
+        alumnoActual = gestionfrm.DevolverAlumnoPorDni(FrmLogin.txtDNI.Text)
+        If alumnoActual Is Nothing Then
+            MessageBox.Show("No se pudo recuperar el alumno actual. Comprueba el DNI de sesión.")
+            Me.Close()
+            Return
+        End If
+
         CrearModuloYRA()
+    End Sub
+
+    Private Sub FrmAnadirTarea_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        ResetControlesDinamicos()
     End Sub
 
     Private Sub BtnAnyadirModulo_Click(sender As Object, e As EventArgs) Handles btnAnyadirModulo.Click
@@ -72,22 +153,25 @@ Public Class FrmAnadirTarea
             Exit Sub
         End If
 
-        Dim ultimoCombo As ComboBox = listaModulosDinamicos.Last()
-        Dim ultimaLista As ListBox = listaRAsDinamicos.Last()
-        Dim controlesAEliminar As New List(Of Control)
+        Dim ultimoIndice As Integer = contadorModulos - 1
 
-        For Each control As Control In grbControlesDinamicos.Controls
-            If control.Top >= ultimoCombo.Top - 30 Then
-                controlesAEliminar.Add(control)
+        Dim nombresAQuitar As String() = {"lblModulo" & ultimoIndice, "cmbModulo" & ultimoIndice, "lblRA" & ultimoIndice, "lstRA" & ultimoIndice}
+        For Each nq In nombresAQuitar
+            Dim controles() As Control = grbControlesDinamicos.Controls.Find(nq, True)
+            If controles IsNot Nothing AndAlso controles.Length > 0 Then
+                For Each contr In controles
+                    grbControlesDinamicos.Controls.Remove(contr)
+                Next
             End If
         Next
 
-        For Each controlEliminar In controlesAEliminar
-            grbControlesDinamicos.Controls.Remove(controlEliminar)
-        Next
+        If listaModulosDinamicos.Count > ultimoIndice Then
+            listaModulosDinamicos.RemoveAt(ultimoIndice)
+        End If
+        If listaRAsDinamicos.Count > ultimoIndice Then
+            listaRAsDinamicos.RemoveAt(ultimoIndice)
+        End If
 
-        listaModulosDinamicos.RemoveAt(listaModulosDinamicos.Count - 1)
-        listaRAsDinamicos.RemoveAt(listaRAsDinamicos.Count - 1)
         contadorModulos -= 1
     End Sub
 
@@ -115,11 +199,15 @@ Public Class FrmAnadirTarea
             Exit Sub
         End If
 
+        Dim nuevoCodigoTarea As Integer = gestionfrm.ObtenerCodigoTareaPorValores(fecha, alumnoActual.DNI)
+        If nuevoCodigoTarea <= 0 Then
+            MessageBox.Show("No se pudo obtener el código de la tarea recién insertada.")
+            Exit Sub
+        End If
+
         For i As Integer = 0 To listaModulosDinamicos.Count - 1
-            Dim cmbModulo As ComboBox =
-                listaModulosDinamicos(i)
-            Dim lstRA As ListBox =
-                listaRAsDinamicos(i)
+            Dim cmbModulo As ComboBox = listaModulosDinamicos(i)
+            Dim lstRA As ListBox = listaRAsDinamicos(i)
 
             If cmbModulo.SelectedItem Is Nothing Then
                 Continue For
@@ -129,10 +217,12 @@ Public Class FrmAnadirTarea
             Dim listaRAsSeleccionados As New List(Of Integer)
             For Each item In lstRA.SelectedItems
                 Dim ra As RA = TryCast(item, RA)
-                listaRAsSeleccionados.Add(ra.RA)
+                If ra IsNot Nothing Then
+                    listaRAsSeleccionados.Add(ra.RA)
+                End If
             Next
 
-            Dim respuesta As String = gestionfrm.AñadirRAsYModulosALaTarea(modulo.Ciclo, modulo.AliasCurso, modulo.NombreModulo, listaRAsSeleccionados, fecha, alumnoActual.DNI)
+            Dim respuesta As String = gestionfrm.AñadirRAsYModulosALaTarea(nuevoCodigoTarea, modulo.Ciclo, modulo.AliasCurso, modulo.NombreModulo, listaRAsSeleccionados, fecha, alumnoActual.DNI)
             If respuesta.StartsWith("Error") Then
                 MessageBox.Show(respuesta)
                 Exit Sub

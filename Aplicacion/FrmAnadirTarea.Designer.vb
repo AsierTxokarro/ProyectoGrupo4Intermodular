@@ -103,13 +103,13 @@ Partial Class FrmAnadirTarea
         '
         Me.grbControlesDinamicos.Location = New System.Drawing.Point(100, 324)
         Me.grbControlesDinamicos.Name = "grbControlesDinamicos"
-        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 356)
+        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 673)
         Me.grbControlesDinamicos.TabIndex = 2
         Me.grbControlesDinamicos.TabStop = False
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(919, 686)
+        Me.btnCancelar.Location = New System.Drawing.Point(1299, 879)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(224, 43)
         Me.btnCancelar.TabIndex = 4
@@ -118,7 +118,7 @@ Partial Class FrmAnadirTarea
         '
         'btnConfirmar
         '
-        Me.btnConfirmar.Location = New System.Drawing.Point(277, 686)
+        Me.btnConfirmar.Location = New System.Drawing.Point(1299, 795)
         Me.btnConfirmar.Name = "btnConfirmar"
         Me.btnConfirmar.Size = New System.Drawing.Size(223, 43)
         Me.btnConfirmar.TabIndex = 3
@@ -127,7 +127,7 @@ Partial Class FrmAnadirTarea
         '
         'btnAnyadirModulo
         '
-        Me.btnAnyadirModulo.Location = New System.Drawing.Point(1299, 412)
+        Me.btnAnyadirModulo.Location = New System.Drawing.Point(1299, 392)
         Me.btnAnyadirModulo.Name = "btnAnyadirModulo"
         Me.btnAnyadirModulo.Size = New System.Drawing.Size(167, 41)
         Me.btnAnyadirModulo.TabIndex = 5
@@ -136,7 +136,7 @@ Partial Class FrmAnadirTarea
         '
         'btnQuitarModulo
         '
-        Me.btnQuitarModulo.Location = New System.Drawing.Point(1299, 557)
+        Me.btnQuitarModulo.Location = New System.Drawing.Point(1299, 477)
         Me.btnQuitarModulo.Name = "btnQuitarModulo"
         Me.btnQuitarModulo.Size = New System.Drawing.Size(167, 41)
         Me.btnQuitarModulo.TabIndex = 6
@@ -147,7 +147,7 @@ Partial Class FrmAnadirTarea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1487, 736)
+        Me.ClientSize = New System.Drawing.Size(1487, 1009)
         Me.Controls.Add(Me.btnQuitarModulo)
         Me.Controls.Add(Me.btnAnyadirModulo)
         Me.Controls.Add(Me.btnCancelar)
