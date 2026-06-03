@@ -127,6 +127,7 @@ Public Class GestionFunciones
             conexion.Close()
         End Try
     End Function
+    
     Public Function EliminarJornada(fecha As Date, dni As String) As String
         If Not ComprobarJornadaRepetida(fecha, dni) = True Then
             Return "No hay una jornada en ese dia con ese DNI"
@@ -151,6 +152,7 @@ Public Class GestionFunciones
 
         Return "Jornada eliminado"
     End Function
+    
     Public Function ModificarJornada(fecha As Date, dni As String, duracion As Decimal) As String
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim fechaAPasar As Date = fecha
@@ -564,7 +566,6 @@ Public Class GestionFunciones
         Return listaTareasMostrar
     End Function
 
-
     Public Function MostrarTareasAlumnoDeUnaFecha(dniAlumno As String, fechaJornada As Date) As List(Of TareasCompletas)
         Dim listaTareasMostrar As New List(Of TareasCompletas)
         If dniAlumno Is Nothing OrElse String.IsNullOrWhiteSpace(dniAlumno) Then
@@ -619,7 +620,6 @@ Public Class GestionFunciones
             conexion.Close()
         End Try
     End Function
-
 
     Public Function DevolverAlumnosFiltrados(curso As String, ciclo As Integer) As List(Of Alumno)
         Dim lista As New List(Of Alumno)()
