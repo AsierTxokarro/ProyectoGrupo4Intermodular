@@ -868,4 +868,40 @@ Public Class GestionFunciones
         End Using
         Return lista
     End Function
+
+    Public Function ComprobarCapacidadJornada(fecha As Date, dni As String, nuevaDuracion As Decimal) As Boolean
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Dim sqlJornada As String = "SELECT DURACION FROM JORNADAS WHERE FECHA = @fecha AND DNI = @dni"
+        Dim sqlSumTareas As String = "SELECT ISNULL(SUM(Duracion), 0) FROM TAREASREALIZADAS WHERE FechaJornada = @fecha AND Dni = @dni"
+
+        Try
+            conexion.Open()
+            Dim cmdJ As New SqlCommand(sqlJornada, conexion)
+            cmdJ.Parameters.AddWithValue("@fecha", fecha)
+            cmdJ.Parameters.AddWithValue("@dni", dni)
+            Dim jornadaObj = cmdJ.ExecuteScalar()
+            If jornadaObj Is Nothing OrElse IsDBNull(jornadaObj) Then
+                Return False
+            End If
+            Dim duracionJornada As Decimal = Convert.ToDecimal(jornadaObj)
+
+            Dim cmdSum As New SqlCommand(sqlSumTareas, conexion)
+            cmdSum.Parameters.AddWithValue("@fecha", fecha)
+            cmdSum.Parameters.AddWithValue("@dni", dni)
+            Dim sumaObj = cmdSum.ExecuteScalar()
+            Dim sumaTareas As Decimal = 0
+            If Not (sumaObj Is Nothing OrElse IsDBNull(sumaObj)) Then
+                sumaTareas = Convert.ToDecimal(sumaObj)
+            End If
+            If sumaTareas + nuevaDuracion <= duracionJornada Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Return False
+        Finally
+            conexion.Close()
+        End Try
+    End Function
 End Class
