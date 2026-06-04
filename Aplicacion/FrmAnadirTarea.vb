@@ -193,6 +193,11 @@ Public Class FrmAnadirTarea
             Exit Sub
         End If
 
+        If Not gestionfrm.ComprobarCapacidadJornada(fecha, alumnoActual.DNI, duracion) Then
+            MessageBox.Show("La duración de esta tarea más las tareas existentes en esa jornada excede la duración permitida de la jornada.", "Duración excedida", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
         Dim resultado As String = gestionfrm.AñadirTarea(fecha, alumnoActual.DNI, txtDescripcion.Text.Trim(), duracion)
         If resultado.StartsWith("Error") Then
             MessageBox.Show(resultado)
