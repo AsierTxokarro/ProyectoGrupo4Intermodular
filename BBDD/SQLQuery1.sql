@@ -2,7 +2,7 @@
 INSERT INTO CURSOS (CICLO, ALIAS, NOMBRECURSO)
 VALUES 
 (1, 'DAM', 'Desarrollo de Aplicaciones Multiplataforma'),
-(2, 'ASIR', 'Administracion de Sistemas Informaticos');
+(2, 'ASIR', 'Administracion de Sistemas Informaticos en Red');
 
 -- Insertar 5 alumnos
 INSERT INTO ALUMNOS 
