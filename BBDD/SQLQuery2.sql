@@ -1,4 +1,3 @@
-Select * From Alumnos
 INSERT INTO JORNADAS (FECHA, DNI, DURACION)
 VALUES 
 ('20260518', '06729414M', 8), -- Jornada para Carlos
@@ -30,5 +29,3 @@ INSERT INTO INCLUYEN (CodigoTarea, FechaJornada, Dni, CodigoModulo, Ciclo, Alias
 VALUES 
 (2, '20260518', '06729414M', '0484', '1', 'DAM', 3), -- Tarea 2 de Carlos
 (3, '20260519', '06729414M', '0484', '1', 'DAM', 3); -- Tarea 3 de Carlos
-
-select * from TAREASREALIZADAS
