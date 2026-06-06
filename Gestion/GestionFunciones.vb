@@ -430,52 +430,6 @@ Public Class GestionFunciones
         End Try
     End Function
 
-    Public Function ModificarModulosYRAsTarea(tareaAModificar As TareasCompletas, moduloAModificar As String, nuevoModulo As String, rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
-        If tareaAModificar Is Nothing Then
-            Return "Error: la tarea no puede estar vacía"
-        End If
-        If String.IsNullOrWhiteSpace(nuevoModulo) OrElse String.IsNullOrWhiteSpace(moduloAModificar) OrElse rAsNuevos Is Nothing OrElse ciclo < 1 OrElse ciclo > 2 Then
-            Return "Error: el nuevo valor del modulo y/o de los RAs a modificar tienen un formato invalido o están vacíos o el curso no es valido"
-        End If
-        Dim codigoNuevoModulo As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nuevoModulo)
-        If codigoNuevoModulo = -1 Then
-            Return "Error: no se pudo conectar con la base de datos"
-        End If
-        Dim codigoModuloAModificar As Integer
-        codigoModuloAModificar = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, moduloAModificar)
-        If codigoModuloAModificar = -1 Then
-            Return "Error: no se pudo conectar con la base de datos"
-        End If
-        Dim conexion As New SqlConnection(cadenaConexion)
-        Dim sql As String = "Update INCLUYEN Set CodigoModulo = @codigoNuevoModulo, RA = @nuevoRA  Where CodigoTarea = @codigoTarea And FechaJornada = @fechaJornada And DNI = @dniAlumno And CodigoModulo = @codigoModulo And RA = @rA"
-        Dim cmdUpdateIncluyen As New SqlCommand(sql, conexion)
-        Try
-            conexion.Open()
-            For contadorRAs As Integer = 0 To rAsNuevos.Count - 1
-                If contadorRAs >= tareaAModificar.RAs.Count Then
-                    Return "Error: el número de RAs nuevos no coincide con los RAs originales"
-                End If
-                cmdUpdateIncluyen.Parameters.Clear()
-                cmdUpdateIncluyen.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
-                cmdUpdateIncluyen.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
-                cmdUpdateIncluyen.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
-                cmdUpdateIncluyen.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
-                cmdUpdateIncluyen.Parameters.AddWithValue("@rA", tareaAModificar.RAs(contadorRAs))
-                cmdUpdateIncluyen.Parameters.AddWithValue("@nuevoRA", rAsNuevos(contadorRAs))
-                cmdUpdateIncluyen.Parameters.AddWithValue("@codigoNuevoModulo", codigoNuevoModulo)
-                Dim numFilas As Integer = cmdUpdateIncluyen.ExecuteNonQuery()
-                If numFilas = 0 Then
-                    Return "Error desconocido en la base de datos o la tarea no existe"
-                End If
-            Next
-            Return "Se ha modificado el módulo y/o los RAs correctamente"
-        Catch ex As Exception
-            Return "Error en la base de datos relacionado con la modificación del módulo o del RA o con la conexion con esta: " & ex.Message
-        Finally
-            conexion.Close()
-        End Try
-    End Function
-
     Public Function ObtenerCodigoModuloPorSuNombreYCiclo(ciclo As Integer, aliasCiclo As String, nombreModulo As String) As Integer
         If ciclo < 1 OrElse ciclo > 2 OrElse String.IsNullOrWhiteSpace(aliasCiclo) OrElse String.IsNullOrWhiteSpace(nombreModulo) Then
             Return 0
@@ -900,6 +854,95 @@ Public Class GestionFunciones
             End If
         Catch ex As Exception
             Return False
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
+    Public Function ModificarModulosYRAsTarea(tareaAModificar As TareasCompletas, moduloAModificar As String, nuevoModulo As String, rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
+        If tareaAModificar Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        If String.IsNullOrWhiteSpace(nuevoModulo) OrElse String.IsNullOrWhiteSpace(moduloAModificar) OrElse rAsNuevos Is Nothing OrElse ciclo < 1 OrElse ciclo > 2 Then
+            Return "Error: el nuevo valor del modulo y/o de los RAs a modificar tienen un formato invalido o están vacíos o el curso no es valido"
+        End If
+
+        Dim codigoNuevoModulo As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nuevoModulo)
+        If codigoNuevoModulo = -1 Then
+            Return "Error: no se pudo conectar con la base de datos"
+        End If
+
+        Dim codigoModuloAModificar As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, moduloAModificar)
+        If codigoModuloAModificar = -1 Then
+            Return "Error: no se pudo conectar con la base de datos"
+        End If
+
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Try
+            conexion.Open()
+            Dim listaOriginalRAs As New List(Of Integer)
+            Dim sqlGetOriginal As String = "SELECT RA FROM INCLUYEN WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo"
+            Using cmdGet As New SqlCommand(sqlGetOriginal, conexion)
+                cmdGet.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+                cmdGet.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+                cmdGet.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+                cmdGet.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
+                Using dr As SqlDataReader = cmdGet.ExecuteReader()
+                    While dr.Read()
+                        listaOriginalRAs.Add(Convert.ToInt32(dr("RA")))
+                    End While
+                End Using
+            End Using
+
+            Dim minCount As Integer = Math.Min(listaOriginalRAs.Count, rAsNuevos.Count)
+
+            Dim sqlUpdate As String = "UPDATE INCLUYEN SET CodigoModulo = @codigoNuevoModulo, RA = @nuevoRA WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo AND RA = @originalRA"
+            For i As Integer = 0 To minCount - 1
+                Using cmdUpdate As New SqlCommand(sqlUpdate, conexion)
+                    cmdUpdate.Parameters.AddWithValue("@codigoNuevoModulo", codigoNuevoModulo)
+                    cmdUpdate.Parameters.AddWithValue("@nuevoRA", rAsNuevos(i))
+                    cmdUpdate.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+                    cmdUpdate.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+                    cmdUpdate.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+                    cmdUpdate.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
+                    cmdUpdate.Parameters.AddWithValue("@originalRA", listaOriginalRAs(i))
+                    cmdUpdate.ExecuteNonQuery()
+                End Using
+            Next
+
+            If rAsNuevos.Count > listaOriginalRAs.Count Then
+                Dim sqlInsert As String = "INSERT INTO Incluyen(CODIGOTAREA, FECHAJORNADA, DNI, RA, CODIGOMODULO, CICLO, ALIAS) VALUES (@codTarea, @fecha, @dni, @rA, @codModulo, @ciclo, @alias)"
+                For i As Integer = minCount To rAsNuevos.Count - 1
+                    Using cmdInsert As New SqlCommand(sqlInsert, conexion)
+                        cmdInsert.Parameters.AddWithValue("@codTarea", tareaAModificar.CodigoTarea)
+                        cmdInsert.Parameters.AddWithValue("@fecha", tareaAModificar.FechaJornada)
+                        cmdInsert.Parameters.AddWithValue("@dni", tareaAModificar.DniAlumno)
+                        cmdInsert.Parameters.AddWithValue("@codModulo", codigoNuevoModulo)
+                        cmdInsert.Parameters.AddWithValue("@rA", rAsNuevos(i))
+                        cmdInsert.Parameters.AddWithValue("@ciclo", ciclo)
+                        cmdInsert.Parameters.AddWithValue("@alias", aliasCiclo)
+                        Dim filasIns As Integer = cmdInsert.ExecuteNonQuery()
+                        If filasIns = 0 Then
+                            Return "Error desconocido al insertar RA adicional"
+                        End If
+                    End Using
+                Next
+            ElseIf rAsNuevos.Count < listaOriginalRAs.Count Then
+                Dim sqlDelete As String = "DELETE FROM INCLUYEN WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo AND RA = @originalRA"
+                For i As Integer = minCount To listaOriginalRAs.Count - 1
+                    Using cmdDelete As New SqlCommand(sqlDelete, conexion)
+                        cmdDelete.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+                        cmdDelete.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+                        cmdDelete.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+                        cmdDelete.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
+                        cmdDelete.Parameters.AddWithValue("@originalRA", listaOriginalRAs(i))
+                        cmdDelete.ExecuteNonQuery()
+                    End Using
+                Next
+            End If
+            Return "Se ha modificado el módulo y/o los RAs correctamente"
+        Catch ex As Exception
+            Return "Error en la base de datos relacionado con la modificación del módulo o del RA o con la conexion con esta: " & ex.Message
         Finally
             conexion.Close()
         End Try

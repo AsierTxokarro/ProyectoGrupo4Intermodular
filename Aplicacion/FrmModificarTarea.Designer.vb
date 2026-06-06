@@ -23,6 +23,7 @@ Partial Class FrmModificarTarea
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.grbControlesNoDinamicos = New System.Windows.Forms.GroupBox()
+        Me.lblFechaJornada = New System.Windows.Forms.Label()
         Me.txtDuracion = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
@@ -31,7 +32,6 @@ Partial Class FrmModificarTarea
         Me.grbControlesDinamicos = New System.Windows.Forms.GroupBox()
         Me.btnModificar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
-        Me.lblFechaJornada = New System.Windows.Forms.Label()
         Me.grbControlesNoDinamicos.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,15 +43,23 @@ Partial Class FrmModificarTarea
         Me.grbControlesNoDinamicos.Controls.Add(Me.txtDescripcion)
         Me.grbControlesNoDinamicos.Controls.Add(Me.Label2)
         Me.grbControlesNoDinamicos.Controls.Add(Me.Label1)
-        Me.grbControlesNoDinamicos.Location = New System.Drawing.Point(72, -11)
+        Me.grbControlesNoDinamicos.Location = New System.Drawing.Point(72, 12)
         Me.grbControlesNoDinamicos.Name = "grbControlesNoDinamicos"
-        Me.grbControlesNoDinamicos.Size = New System.Drawing.Size(1178, 282)
+        Me.grbControlesNoDinamicos.Size = New System.Drawing.Size(1178, 131)
         Me.grbControlesNoDinamicos.TabIndex = 0
         Me.grbControlesNoDinamicos.TabStop = False
         '
+        'lblFechaJornada
+        '
+        Me.lblFechaJornada.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.lblFechaJornada.Location = New System.Drawing.Point(155, 59)
+        Me.lblFechaJornada.Name = "lblFechaJornada"
+        Me.lblFechaJornada.Size = New System.Drawing.Size(162, 25)
+        Me.lblFechaJornada.TabIndex = 72
+        '
         'txtDuracion
         '
-        Me.txtDuracion.Location = New System.Drawing.Point(997, 73)
+        Me.txtDuracion.Location = New System.Drawing.Point(997, 59)
         Me.txtDuracion.Name = "txtDuracion"
         Me.txtDuracion.Size = New System.Drawing.Size(137, 26)
         Me.txtDuracion.TabIndex = 71
@@ -59,7 +67,7 @@ Partial Class FrmModificarTarea
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(914, 77)
+        Me.Label3.Location = New System.Drawing.Point(914, 63)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 20)
         Me.Label3.TabIndex = 70
@@ -67,7 +75,7 @@ Partial Class FrmModificarTarea
         '
         'txtDescripcion
         '
-        Me.txtDescripcion.Location = New System.Drawing.Point(559, 73)
+        Me.txtDescripcion.Location = New System.Drawing.Point(559, 59)
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(280, 26)
         Me.txtDescripcion.TabIndex = 69
@@ -75,7 +83,7 @@ Partial Class FrmModificarTarea
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(457, 73)
+        Me.Label2.Location = New System.Drawing.Point(457, 59)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(96, 20)
         Me.Label2.TabIndex = 68
@@ -84,7 +92,7 @@ Partial Class FrmModificarTarea
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(21, 73)
+        Me.Label1.Location = New System.Drawing.Point(21, 59)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(120, 20)
         Me.Label1.TabIndex = 0
@@ -92,9 +100,9 @@ Partial Class FrmModificarTarea
         '
         'grbControlesDinamicos
         '
-        Me.grbControlesDinamicos.Location = New System.Drawing.Point(72, 277)
+        Me.grbControlesDinamicos.Location = New System.Drawing.Point(72, 159)
         Me.grbControlesDinamicos.Name = "grbControlesDinamicos"
-        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 416)
+        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 534)
         Me.grbControlesDinamicos.TabIndex = 1
         Me.grbControlesDinamicos.TabStop = False
         '
@@ -115,14 +123,6 @@ Partial Class FrmModificarTarea
         Me.btnCancelar.TabIndex = 2
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
-        '
-        'lblFechaJornada
-        '
-        Me.lblFechaJornada.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.lblFechaJornada.Location = New System.Drawing.Point(155, 73)
-        Me.lblFechaJornada.Name = "lblFechaJornada"
-        Me.lblFechaJornada.Size = New System.Drawing.Size(162, 25)
-        Me.lblFechaJornada.TabIndex = 72
         '
         'FrmModificarTarea
         '

@@ -27,73 +27,99 @@ Public Class FrmModificarTarea
         txtDuracion.Text = tareaAModificar.Duracion
 
         Dim listaModulos As List(Of Modulo) = gestionfrm.DevolverModulosDeUnCurso(alumno.Ciclo, alumno.AliasCurso)
+
+        Dim posX As Integer = 20
         Dim posY As Integer = 10
+        Dim controlWidthModulo As Integer = 200
+        Dim controlWidthLista As Integer = 250
+        Dim controlHeight As Integer = 120
+        Dim spaceBetweenColumns As Integer = 40
+        Dim stepY As Integer = controlHeight + 20
+        Dim columnWidth As Integer = controlWidthModulo + controlWidthLista + spaceBetweenColumns
 
         For i As Integer = 0 To tareaAModificar.Modulos.Count - 1
             Dim cmbModulo As New ComboBox
             cmbModulo.Name = "cmbModulo" & i
-            cmbModulo.Location = New Point(20, posY)
-            cmbModulo.Width = 250
+            cmbModulo.Location = New Point(posX, posY)
+            cmbModulo.Width = controlWidthModulo
             cmbModulo.DropDownStyle = ComboBoxStyle.DropDownList
             cmbModulo.DisplayMember = "NombreModulo"
             cmbModulo.ValueMember = "CodigoModulo"
-            cmbModulo.DataSource = listaModulos
 
-            Dim moduloSeleccionado As Modulo = Nothing
+            Dim modulosCopia As New List(Of Modulo)(listaModulos)
+            cmbModulo.BindingContext = New BindingContext()
+            cmbModulo.DataSource = modulosCopia
 
-            For Each modulo In listaModulos
-                If modulo.NombreModulo = tareaAModificar.Modulos(i) Then
-                    moduloSeleccionado = modulo
-                    cmbModulo.SelectedItem = modulo
+            Dim selectedIndex As Integer = -1
+            For idx As Integer = 0 To modulosCopia.Count - 1
+                If modulosCopia(idx).NombreModulo = tareaAModificar.Modulos(i) Then
+                    selectedIndex = idx
                     Exit For
                 End If
             Next
 
+            Dim moduloSeleccionado As Modulo = Nothing
+            If selectedIndex >= 0 Then
+                cmbModulo.SelectedIndex = selectedIndex
+                moduloSeleccionado = modulosCopia(selectedIndex)
+            Else
+                cmbModulo.SelectedIndex = -1
+            End If
+
             If moduloSeleccionado IsNot Nothing Then
-                Dim listaRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(moduloSeleccionado.CodigoModulo, moduloSeleccionado.Ciclo, moduloSeleccionado.AliasCurso)
+                Dim rAsDelModulo As List(Of RA) = gestionfrm.DevolverRAsDeModulo(moduloSeleccionado.CodigoModulo, moduloSeleccionado.Ciclo, moduloSeleccionado.AliasCurso)
 
                 Dim lstRA As New ListBox
                 lstRA.Name = "lstRA" & i
-                lstRA.Location = New Point(300, posY)
-                lstRA.Width = 400
-                lstRA.Height = 120
+                lstRA.Location = New Point(posX + controlWidthModulo + 30, posY)
+                lstRA.Width = controlWidthLista
+                lstRA.Height = controlHeight
                 lstRA.SelectionMode = SelectionMode.MultiExtended
                 lstRA.DisplayMember = "DescripcionRA"
 
-                For Each ra As RA In listaRAs
+                For Each ra As RA In rAsDelModulo
                     lstRA.Items.Add(ra)
                 Next
 
-                For Each ra As RA In listaRAs
-                    If tareaAModificar.RAs.Contains(ra.RA) Then
-                        Dim index As Integer = listaRAs.IndexOf(ra)
+                For Each ra As RA In rAsDelModulo
+                    If tareaAModificar.DescripcionesRAs.Contains(ra.DescripcionRA) Then
+                        Dim index As Integer = rAsDelModulo.IndexOf(ra)
                         If index >= 0 AndAlso index < lstRA.Items.Count Then
                             lstRA.SetSelected(index, True)
                         End If
                     End If
                 Next
 
-                AddHandler cmbModulo.SelectedIndexChanged,
+                Dim lstRALocal As ListBox = lstRA
+                Dim cmbModuloLocal As ComboBox = cmbModulo
+
+                AddHandler cmbModuloLocal.SelectedIndexChanged,
                 Sub(objSender As Object, argE As EventArgs)
                     Dim combo As ComboBox = TryCast(objSender, ComboBox)
                     Dim modulo As Modulo = TryCast(combo.SelectedItem, Modulo)
                     If modulo Is Nothing Then
-                        lstRA.DataSource = Nothing
-                        lstRA.Items.Clear()
+                        lstRALocal.DataSource = Nothing
+                        lstRALocal.Items.Clear()
                         Return
                     End If
                     Dim nuevosRAs As List(Of RA) = gestionfrm.DevolverRAsDeModulo(modulo.CodigoModulo, modulo.Ciclo, modulo.AliasCurso)
 
-                    lstRA.DataSource = Nothing
-                    lstRA.DisplayMember = "DescripcionRA"
-                    lstRA.Items.Clear()
-                    For Each r As RA In nuevosRAs
-                        lstRA.Items.Add(r)
+                    lstRALocal.DataSource = Nothing
+                    lstRALocal.DisplayMember = "DescripcionRA"
+                    lstRALocal.Items.Clear()
+                    For Each ra As RA In nuevosRAs
+                        lstRALocal.Items.Add(ra)
                     Next
                 End Sub
+
                 grbControlesDinamicos.Controls.Add(cmbModulo)
                 grbControlesDinamicos.Controls.Add(lstRA)
-                posY += 140
+
+                posY += stepY
+                If posY + controlHeight > grbControlesDinamicos.ClientSize.Height - 10 Then
+                    posY = 10
+                    posX += columnWidth
+                End If
             End If
         Next
     End Sub
@@ -147,6 +173,15 @@ Public Class FrmModificarTarea
         If Not Decimal.TryParse(txtDuracion.Text, duracionNueva) Then
             MessageBox.Show("La duración no es válida")
             Exit Sub
+        End If
+
+        Dim diferenciaDuracion As Decimal = duracionNueva - tareaAModificar.Duracion
+        If diferenciaDuracion > 0 Then
+            Dim comprobarDuracionJornada As Boolean = gestionfrm.ComprobarCapacidadJornada(tareaAModificar.FechaJornada, tareaAModificar.DniAlumno, diferenciaDuracion)
+            If Not comprobarDuracionJornada Then
+                MessageBox.Show("No se puede aumentar la duración: la suma de las tareas de la jornada superaría la duración de la jornada.")
+                Exit Sub
+            End If
         End If
 
         Dim resultadoDuracion As String = gestionfrm.ModificarDuracionTarea(tareaAModificar, duracionNueva)
