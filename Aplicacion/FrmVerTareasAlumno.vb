@@ -28,6 +28,19 @@ Public Class FrmVerTareasAlumno
         End If
     End Sub
 
+    Public Sub RefrescarTareas()
+        Dim tareas As List(Of TareasCompletas)
+        Dim dni As String = alumnoSeleccionado.DNI
+        tareas = gestionfrm.MostrarTareasAlumno(dni)
+        lstTareas.DataSource = Nothing
+        If tareas IsNot Nothing AndAlso tareas.Count > 0 Then
+            lstTareas.DisplayMember = "DescripcionTarea"
+            lstTareas.DataSource = tareas
+        Else
+            lstTareas.Items.Clear()
+        End If
+    End Sub
+
     Private Sub btnCerrarSesion_Click(sender As Object, e As EventArgs) Handles btnCerrarSesion.Click
         Me.Close()
     End Sub
@@ -64,12 +77,7 @@ Public Class FrmVerTareasAlumno
                 End If
             Next
             MessageBox.Show(resultado)
-            Dim tareas As List(Of TareasCompletas)
-            Dim dni As String = alumnoSeleccionado.DNI
-            tareas = gestionfrm.MostrarTareasAlumno(dni)
-            lstTareas.DataSource = Nothing
-            lstTareas.DisplayMember = "DescripcionTarea"
-            lstTareas.DataSource = tareas
+            RefrescarTareas()
         End If
     End Sub
 

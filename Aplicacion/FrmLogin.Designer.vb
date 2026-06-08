@@ -23,7 +23,6 @@ Partial Class FrmLogin
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txtContraseña = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtDNI = New System.Windows.Forms.TextBox()
         Me.btnIniciarSesion = New System.Windows.Forms.Button()
@@ -34,27 +33,16 @@ Partial Class FrmLogin
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.GroupBox1.Controls.Add(Me.txtContraseña)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.txtDNI)
         Me.GroupBox1.Controls.Add(Me.btnIniciarSesion)
         Me.GroupBox1.Location = New System.Drawing.Point(188, 166)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.GroupBox1.Size = New System.Drawing.Size(529, 280)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox1.Size = New System.Drawing.Size(529, 218)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
-        '
-        'txtContraseña
-        '
-        Me.txtContraseña.ForeColor = System.Drawing.SystemColors.ScrollBar
-        Me.txtContraseña.Location = New System.Drawing.Point(34, 112)
-        Me.txtContraseña.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.txtContraseña.Name = "txtContraseña"
-        Me.txtContraseña.Size = New System.Drawing.Size(465, 26)
-        Me.txtContraseña.TabIndex = 5
-        Me.txtContraseña.Text = "Contraseña"
         '
         'Label2
         '
@@ -64,15 +52,15 @@ Partial Class FrmLogin
         Me.Label2.Location = New System.Drawing.Point(29, 25)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(329, 20)
+        Me.Label2.Size = New System.Drawing.Size(294, 20)
         Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Iniciar sesión en Fichajes para Empresa"
+        Me.Label2.Text = "Iniciar sesión en Tareas del Alumno"
         '
         'txtDNI
         '
         Me.txtDNI.ForeColor = System.Drawing.SystemColors.ScrollBar
         Me.txtDNI.Location = New System.Drawing.Point(34, 72)
-        Me.txtDNI.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtDNI.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDNI.Name = "txtDNI"
         Me.txtDNI.Size = New System.Drawing.Size(465, 26)
         Me.txtDNI.TabIndex = 2
@@ -81,10 +69,10 @@ Partial Class FrmLogin
         'btnIniciarSesion
         '
         Me.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnIniciarSesion.Location = New System.Drawing.Point(34, 175)
-        Me.btnIniciarSesion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnIniciarSesion.Location = New System.Drawing.Point(34, 125)
+        Me.btnIniciarSesion.Margin = New System.Windows.Forms.Padding(4)
         Me.btnIniciarSesion.Name = "btnIniciarSesion"
-        Me.btnIniciarSesion.Size = New System.Drawing.Size(467, 61)
+        Me.btnIniciarSesion.Size = New System.Drawing.Size(465, 61)
         Me.btnIniciarSesion.TabIndex = 1
         Me.btnIniciarSesion.Text = "Iniciar Sesión"
         Me.btnIniciarSesion.UseVisualStyleBackColor = False
@@ -117,7 +105,6 @@ Partial Class FrmLogin
     End Sub
 
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents txtContraseña As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txtDNI As TextBox
     Friend WithEvents btnIniciarSesion As Button

@@ -146,7 +146,7 @@ Partial Class FrmVerTareasAlumno
         Me.Controls.Add(Me.btnCerrarSesion)
         Me.Controls.Add(Me.GroupBox2)
         Me.Name = "FrmVerTareasAlumno"
-        Me.Text = "Form1"
+        Me.Text = "Tareas Alumno"
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)

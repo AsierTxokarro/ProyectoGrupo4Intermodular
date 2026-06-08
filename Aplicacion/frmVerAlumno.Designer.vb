@@ -36,10 +36,10 @@ Partial Class FrmVerAlumno
         'btnCerrarSesion
         '
         Me.btnCerrarSesion.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.btnCerrarSesion.Location = New System.Drawing.Point(519, 458)
+        Me.btnCerrarSesion.Location = New System.Drawing.Point(584, 572)
         Me.btnCerrarSesion.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnCerrarSesion.Name = "btnCerrarSesion"
-        Me.btnCerrarSesion.Size = New System.Drawing.Size(217, 26)
+        Me.btnCerrarSesion.Size = New System.Drawing.Size(244, 32)
         Me.btnCerrarSesion.TabIndex = 58
         Me.btnCerrarSesion.Text = "Atras"
         Me.btnCerrarSesion.UseVisualStyleBackColor = False
@@ -50,28 +50,30 @@ Partial Class FrmVerAlumno
         Me.GroupBox2.Controls.Add(Me.btnFichajesRealizados)
         Me.GroupBox2.Controls.Add(Me.lblAlumno)
         Me.GroupBox2.Controls.Add(Me.lblNombreAlumno)
-        Me.GroupBox2.Location = New System.Drawing.Point(103, 31)
+        Me.GroupBox2.Location = New System.Drawing.Point(116, 39)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.GroupBox2.Size = New System.Drawing.Size(266, 229)
+        Me.GroupBox2.Size = New System.Drawing.Size(299, 286)
         Me.GroupBox2.TabIndex = 54
         Me.GroupBox2.TabStop = False
         '
         'btnEliminarAlumno
         '
-        Me.btnEliminarAlumno.Location = New System.Drawing.Point(6, 144)
+        Me.btnEliminarAlumno.Location = New System.Drawing.Point(7, 180)
         Me.btnEliminarAlumno.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnEliminarAlumno.Name = "btnEliminarAlumno"
-        Me.btnEliminarAlumno.Size = New System.Drawing.Size(216, 49)
+        Me.btnEliminarAlumno.Size = New System.Drawing.Size(243, 61)
         Me.btnEliminarAlumno.TabIndex = 51
         Me.btnEliminarAlumno.Text = "Eliminar Alumno"
         Me.btnEliminarAlumno.UseVisualStyleBackColor = True
         '
         'btnFichajesRealizados
         '
-        Me.btnFichajesRealizados.Location = New System.Drawing.Point(6, 69)
+        Me.btnFichajesRealizados.Location = New System.Drawing.Point(7, 86)
+        Me.btnFichajesRealizados.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnFichajesRealizados.Name = "btnFichajesRealizados"
-        Me.btnFichajesRealizados.Size = New System.Drawing.Size(216, 49)
+        Me.btnFichajesRealizados.Size = New System.Drawing.Size(243, 61)
         Me.btnFichajesRealizados.TabIndex = 45
         Me.btnFichajesRealizados.Text = "Tareas"
         Me.btnFichajesRealizados.UseVisualStyleBackColor = True
@@ -79,50 +81,49 @@ Partial Class FrmVerAlumno
         'lblAlumno
         '
         Me.lblAlumno.AutoSize = True
-        Me.lblAlumno.Location = New System.Drawing.Point(6, 25)
+        Me.lblAlumno.Location = New System.Drawing.Point(7, 31)
         Me.lblAlumno.Name = "lblAlumno"
-        Me.lblAlumno.Size = New System.Drawing.Size(61, 16)
+        Me.lblAlumno.Size = New System.Drawing.Size(74, 20)
         Me.lblAlumno.TabIndex = 43
         Me.lblAlumno.Text = "Alumn@:"
         '
         'lblNombreAlumno
         '
         Me.lblNombreAlumno.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.lblNombreAlumno.Location = New System.Drawing.Point(73, 18)
+        Me.lblNombreAlumno.Location = New System.Drawing.Point(82, 22)
         Me.lblNombreAlumno.Name = "lblNombreAlumno"
-        Me.lblNombreAlumno.Size = New System.Drawing.Size(149, 29)
+        Me.lblNombreAlumno.Size = New System.Drawing.Size(168, 36)
         Me.lblNombreAlumno.TabIndex = 44
         '
         'lstTareas
         '
         Me.lstTareas.FormattingEnabled = True
-        Me.lstTareas.ItemHeight = 16
-        Me.lstTareas.Location = New System.Drawing.Point(458, 34)
+        Me.lstTareas.ItemHeight = 20
+        Me.lstTareas.Location = New System.Drawing.Point(515, 42)
         Me.lstTareas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.lstTareas.Name = "lstTareas"
-        Me.lstTareas.Size = New System.Drawing.Size(299, 420)
+        Me.lstTareas.Size = New System.Drawing.Size(336, 524)
         Me.lstTareas.TabIndex = 59
         '
         'MonthCalendar1
         '
-        Me.MonthCalendar1.Location = New System.Drawing.Point(128, 277)
-        Me.MonthCalendar1.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
+        Me.MonthCalendar1.Location = New System.Drawing.Point(144, 346)
         Me.MonthCalendar1.MaxSelectionCount = 1
         Me.MonthCalendar1.Name = "MonthCalendar1"
         Me.MonthCalendar1.TabIndex = 62
         '
-        'frmVerAlumno
+        'FrmVerAlumno
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(884, 500)
+        Me.ClientSize = New System.Drawing.Size(994, 625)
         Me.Controls.Add(Me.MonthCalendar1)
         Me.Controls.Add(Me.lstTareas)
         Me.Controls.Add(Me.btnCerrarSesion)
         Me.Controls.Add(Me.GroupBox2)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Name = "frmVerAlumno"
-        Me.Text = "FrmTutor2"
+        Me.Name = "FrmVerAlumno"
+        Me.Text = "Ver Alumno"
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)

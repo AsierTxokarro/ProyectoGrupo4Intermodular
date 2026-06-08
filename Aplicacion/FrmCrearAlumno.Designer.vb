@@ -26,9 +26,9 @@ Partial Class FrmCrearAlumno
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblHoras = New System.Windows.Forms.Label()
         Me.txtHorasTotales = New System.Windows.Forms.TextBox()
-        Me.Cursos = New System.Windows.Forms.ListBox()
+        Me.lstCursos = New System.Windows.Forms.ListBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.Ciclos = New System.Windows.Forms.ListBox()
+        Me.lstCiclos = New System.Windows.Forms.ListBox()
         Me.lblCiclos = New System.Windows.Forms.Label()
         Me.lblDNI = New System.Windows.Forms.Label()
         Me.txtDNI = New System.Windows.Forms.TextBox()
@@ -47,9 +47,10 @@ Partial Class FrmCrearAlumno
         'btnSalir
         '
         Me.btnSalir.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.btnSalir.Location = New System.Drawing.Point(24, 342)
+        Me.btnSalir.Location = New System.Drawing.Point(27, 428)
+        Me.btnSalir.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnSalir.Name = "btnSalir"
-        Me.btnSalir.Size = New System.Drawing.Size(175, 29)
+        Me.btnSalir.Size = New System.Drawing.Size(197, 36)
         Me.btnSalir.TabIndex = 34
         Me.btnSalir.Text = "Salir"
         Me.btnSalir.UseVisualStyleBackColor = False
@@ -59,9 +60,9 @@ Partial Class FrmCrearAlumno
         Me.GroupBox1.BackColor = System.Drawing.Color.Silver
         Me.GroupBox1.Controls.Add(Me.lblHoras)
         Me.GroupBox1.Controls.Add(Me.txtHorasTotales)
-        Me.GroupBox1.Controls.Add(Me.Cursos)
+        Me.GroupBox1.Controls.Add(Me.lstCursos)
         Me.GroupBox1.Controls.Add(Me.Label9)
-        Me.GroupBox1.Controls.Add(Me.Ciclos)
+        Me.GroupBox1.Controls.Add(Me.lstCiclos)
         Me.GroupBox1.Controls.Add(Me.lblCiclos)
         Me.GroupBox1.Controls.Add(Me.lblDNI)
         Me.GroupBox1.Controls.Add(Me.txtDNI)
@@ -73,65 +74,70 @@ Partial Class FrmCrearAlumno
         Me.GroupBox1.Controls.Add(Me.txtCorreoElec)
         Me.GroupBox1.Controls.Add(Me.lblBuscarAlumno)
         Me.GroupBox1.Controls.Add(Me.txtNombre)
-        Me.GroupBox1.Location = New System.Drawing.Point(24, 86)
+        Me.GroupBox1.Location = New System.Drawing.Point(27, 108)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(753, 250)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(847, 312)
         Me.GroupBox1.TabIndex = 33
         Me.GroupBox1.TabStop = False
         '
         'lblHoras
         '
         Me.lblHoras.AutoSize = True
-        Me.lblHoras.Location = New System.Drawing.Point(345, 182)
+        Me.lblHoras.Location = New System.Drawing.Point(388, 228)
         Me.lblHoras.Name = "lblHoras"
-        Me.lblHoras.Size = New System.Drawing.Size(99, 16)
+        Me.lblHoras.Size = New System.Drawing.Size(116, 20)
         Me.lblHoras.TabIndex = 46
         Me.lblHoras.Text = "Horas Totales :"
         Me.lblHoras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtHorasTotales
         '
-        Me.txtHorasTotales.Location = New System.Drawing.Point(450, 179)
+        Me.txtHorasTotales.Location = New System.Drawing.Point(506, 224)
+        Me.txtHorasTotales.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtHorasTotales.Name = "txtHorasTotales"
-        Me.txtHorasTotales.Size = New System.Drawing.Size(94, 22)
+        Me.txtHorasTotales.Size = New System.Drawing.Size(105, 26)
         Me.txtHorasTotales.TabIndex = 45
         '
-        'Cursos
+        'lstCursos
         '
-        Me.Cursos.FormattingEnabled = True
-        Me.Cursos.ItemHeight = 16
-        Me.Cursos.Items.AddRange(New Object() {"DES", "DAM", "ASIR", "SMR"})
-        Me.Cursos.Location = New System.Drawing.Point(76, 182)
-        Me.Cursos.Name = "Cursos"
-        Me.Cursos.Size = New System.Drawing.Size(139, 20)
-        Me.Cursos.TabIndex = 44
+        Me.lstCursos.FormattingEnabled = True
+        Me.lstCursos.ItemHeight = 20
+        Me.lstCursos.Items.AddRange(New Object() {"DAM", "ASIR"})
+        Me.lstCursos.Location = New System.Drawing.Point(86, 239)
+        Me.lstCursos.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstCursos.Name = "lstCursos"
+        Me.lstCursos.Size = New System.Drawing.Size(156, 44)
+        Me.lstCursos.TabIndex = 44
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(20, 186)
+        Me.Label9.Location = New System.Drawing.Point(22, 239)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(55, 16)
+        Me.Label9.Size = New System.Drawing.Size(67, 20)
         Me.Label9.TabIndex = 43
         Me.Label9.Text = "Cursos :"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Ciclos
+        'lstCiclos
         '
-        Me.Ciclos.FormattingEnabled = True
-        Me.Ciclos.ItemHeight = 16
-        Me.Ciclos.Items.AddRange(New Object() {"1", "2"})
-        Me.Ciclos.Location = New System.Drawing.Point(76, 133)
-        Me.Ciclos.Name = "Ciclos"
-        Me.Ciclos.Size = New System.Drawing.Size(139, 20)
-        Me.Ciclos.TabIndex = 42
+        Me.lstCiclos.FormattingEnabled = True
+        Me.lstCiclos.ItemHeight = 20
+        Me.lstCiclos.Items.AddRange(New Object() {"1", "2"})
+        Me.lstCiclos.Location = New System.Drawing.Point(86, 171)
+        Me.lstCiclos.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstCiclos.Name = "lstCiclos"
+        Me.lstCiclos.Size = New System.Drawing.Size(156, 44)
+        Me.lstCiclos.TabIndex = 42
         '
         'lblCiclos
         '
         Me.lblCiclos.AutoSize = True
-        Me.lblCiclos.Location = New System.Drawing.Point(20, 137)
+        Me.lblCiclos.Location = New System.Drawing.Point(22, 171)
         Me.lblCiclos.Name = "lblCiclos"
-        Me.lblCiclos.Size = New System.Drawing.Size(50, 16)
+        Me.lblCiclos.Size = New System.Drawing.Size(59, 20)
         Me.lblCiclos.TabIndex = 41
         Me.lblCiclos.Text = "Ciclos :"
         Me.lblCiclos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -139,108 +145,115 @@ Partial Class FrmCrearAlumno
         'lblDNI
         '
         Me.lblDNI.AutoSize = True
-        Me.lblDNI.Location = New System.Drawing.Point(352, 51)
+        Me.lblDNI.Location = New System.Drawing.Point(396, 64)
         Me.lblDNI.Name = "lblDNI"
-        Me.lblDNI.Size = New System.Drawing.Size(36, 16)
+        Me.lblDNI.Size = New System.Drawing.Size(45, 20)
         Me.lblDNI.TabIndex = 38
         Me.lblDNI.Text = "DNI :"
         Me.lblDNI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtDNI
         '
-        Me.txtDNI.Location = New System.Drawing.Point(394, 48)
+        Me.txtDNI.Location = New System.Drawing.Point(443, 60)
+        Me.txtDNI.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtDNI.Name = "txtDNI"
-        Me.txtDNI.Size = New System.Drawing.Size(219, 22)
+        Me.txtDNI.Size = New System.Drawing.Size(246, 26)
         Me.txtDNI.TabIndex = 37
         '
         'lblApellido1
         '
         Me.lblApellido1.AutoSize = True
-        Me.lblApellido1.Location = New System.Drawing.Point(19, 93)
+        Me.lblApellido1.Location = New System.Drawing.Point(21, 116)
         Me.lblApellido1.Name = "lblApellido1"
-        Me.lblApellido1.Size = New System.Drawing.Size(108, 16)
+        Me.lblApellido1.Size = New System.Drawing.Size(126, 20)
         Me.lblApellido1.TabIndex = 36
         Me.lblApellido1.Text = "Primer Apellido : "
         Me.lblApellido1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtApellidoUno
         '
-        Me.txtApellidoUno.Location = New System.Drawing.Point(138, 94)
+        Me.txtApellidoUno.Location = New System.Drawing.Point(155, 118)
+        Me.txtApellidoUno.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtApellidoUno.Name = "txtApellidoUno"
-        Me.txtApellidoUno.Size = New System.Drawing.Size(219, 22)
+        Me.txtApellidoUno.Size = New System.Drawing.Size(246, 26)
         Me.txtApellidoUno.TabIndex = 35
         '
         'lblApellido2
         '
         Me.lblApellido2.AutoSize = True
-        Me.lblApellido2.Location = New System.Drawing.Point(374, 93)
+        Me.lblApellido2.Location = New System.Drawing.Point(421, 116)
         Me.lblApellido2.Name = "lblApellido2"
-        Me.lblApellido2.Size = New System.Drawing.Size(121, 16)
+        Me.lblApellido2.Size = New System.Drawing.Size(142, 20)
         Me.lblApellido2.TabIndex = 34
         Me.lblApellido2.Text = "Segundo Apellido :"
         Me.lblApellido2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtApellidoDos
         '
-        Me.txtApellidoDos.Location = New System.Drawing.Point(507, 94)
+        Me.txtApellidoDos.Location = New System.Drawing.Point(570, 118)
+        Me.txtApellidoDos.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtApellidoDos.Name = "txtApellidoDos"
-        Me.txtApellidoDos.Size = New System.Drawing.Size(219, 22)
+        Me.txtApellidoDos.Size = New System.Drawing.Size(246, 26)
         Me.txtApellidoDos.TabIndex = 33
         '
         'lblCorreo
         '
         Me.lblCorreo.AutoSize = True
-        Me.lblCorreo.Location = New System.Drawing.Point(342, 137)
+        Me.lblCorreo.Location = New System.Drawing.Point(385, 171)
         Me.lblCorreo.Name = "lblCorreo"
-        Me.lblCorreo.Size = New System.Drawing.Size(120, 16)
+        Me.lblCorreo.Size = New System.Drawing.Size(142, 20)
         Me.lblCorreo.TabIndex = 32
         Me.lblCorreo.Text = "Correo electrónico:"
         Me.lblCorreo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtCorreoElec
         '
-        Me.txtCorreoElec.Location = New System.Drawing.Point(475, 137)
+        Me.txtCorreoElec.Location = New System.Drawing.Point(534, 171)
+        Me.txtCorreoElec.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtCorreoElec.Name = "txtCorreoElec"
-        Me.txtCorreoElec.Size = New System.Drawing.Size(205, 22)
+        Me.txtCorreoElec.Size = New System.Drawing.Size(230, 26)
         Me.txtCorreoElec.TabIndex = 31
         '
         'lblBuscarAlumno
         '
         Me.lblBuscarAlumno.AutoSize = True
-        Me.lblBuscarAlumno.Location = New System.Drawing.Point(20, 48)
+        Me.lblBuscarAlumno.Location = New System.Drawing.Point(22, 60)
         Me.lblBuscarAlumno.Name = "lblBuscarAlumno"
-        Me.lblBuscarAlumno.Size = New System.Drawing.Size(62, 16)
+        Me.lblBuscarAlumno.Size = New System.Drawing.Size(73, 20)
         Me.lblBuscarAlumno.TabIndex = 30
         Me.lblBuscarAlumno.Text = "Nombre :"
         Me.lblBuscarAlumno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(97, 49)
+        Me.txtNombre.Location = New System.Drawing.Point(109, 61)
+        Me.txtNombre.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(219, 22)
+        Me.txtNombre.Size = New System.Drawing.Size(246, 26)
         Me.txtNombre.TabIndex = 29
         '
         'btnAnadir
         '
         Me.btnAnadir.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.btnAnadir.Location = New System.Drawing.Point(602, 342)
+        Me.btnAnadir.Location = New System.Drawing.Point(677, 428)
+        Me.btnAnadir.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnAnadir.Name = "btnAnadir"
-        Me.btnAnadir.Size = New System.Drawing.Size(175, 29)
+        Me.btnAnadir.Size = New System.Drawing.Size(197, 36)
         Me.btnAnadir.TabIndex = 35
         Me.btnAnadir.Text = "Añadir"
         Me.btnAnadir.UseVisualStyleBackColor = False
         '
         'FrmCrearAlumno
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(900, 562)
         Me.Controls.Add(Me.btnAnadir)
         Me.Controls.Add(Me.btnSalir)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmCrearAlumno"
-        Me.Text = "FrmDatosAlumno"
+        Me.Text = "Añadir Alumno"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -251,9 +264,9 @@ Partial Class FrmCrearAlumno
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents lblHoras As Label
     Friend WithEvents txtHorasTotales As TextBox
-    Friend WithEvents Cursos As ListBox
+    Friend WithEvents lstCursos As ListBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents Ciclos As ListBox
+    Friend WithEvents lstCiclos As ListBox
     Friend WithEvents lblCiclos As Label
     Friend WithEvents lblDNI As Label
     Friend WithEvents txtDNI As TextBox

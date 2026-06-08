@@ -19,17 +19,4 @@
             txtDNI.ForeColor = Color.Gray
         End If
     End Sub
-
-    Private Sub txtContraseña_QuitarPlaceHolder(sender As Object, e As EventArgs) Handles txtContraseña.GotFocus
-        If txtContraseña.Text = "Contraseña" Then
-            txtContraseña.Text = ""
-            txtContraseña.ForeColor = Color.Black
-        End If
-    End Sub
-    Private Sub txtContraseña_AñadirPlaceHolder(sender As Object, e As EventArgs) Handles txtContraseña.LostFocus
-        If String.IsNullOrWhiteSpace(txtContraseña.Text) Then
-            txtContraseña.Text = "Contraseña"
-            txtContraseña.ForeColor = Color.Gray
-        End If
-    End Sub
 End Class

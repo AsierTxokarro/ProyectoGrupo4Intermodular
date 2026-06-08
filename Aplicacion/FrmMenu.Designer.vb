@@ -30,51 +30,56 @@ Partial Class FrmMenu
         '
         'btnAlumno
         '
-        Me.btnAlumno.Location = New System.Drawing.Point(293, 146)
+        Me.btnAlumno.Location = New System.Drawing.Point(330, 182)
+        Me.btnAlumno.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnAlumno.Name = "btnAlumno"
-        Me.btnAlumno.Size = New System.Drawing.Size(216, 49)
+        Me.btnAlumno.Size = New System.Drawing.Size(243, 61)
         Me.btnAlumno.TabIndex = 46
         Me.btnAlumno.Text = "Alumno"
         Me.btnAlumno.UseVisualStyleBackColor = True
         '
         'BtnCrearAlumno
         '
-        Me.BtnCrearAlumno.Location = New System.Drawing.Point(29, 146)
+        Me.BtnCrearAlumno.Location = New System.Drawing.Point(33, 182)
+        Me.BtnCrearAlumno.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnCrearAlumno.Name = "BtnCrearAlumno"
-        Me.BtnCrearAlumno.Size = New System.Drawing.Size(216, 49)
+        Me.BtnCrearAlumno.Size = New System.Drawing.Size(243, 61)
         Me.BtnCrearAlumno.TabIndex = 47
         Me.BtnCrearAlumno.Text = "Crear alumno"
         Me.BtnCrearAlumno.UseVisualStyleBackColor = True
         '
         'BtnTutor
         '
-        Me.BtnTutor.Location = New System.Drawing.Point(562, 146)
+        Me.BtnTutor.Location = New System.Drawing.Point(632, 182)
+        Me.BtnTutor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnTutor.Name = "BtnTutor"
-        Me.BtnTutor.Size = New System.Drawing.Size(216, 49)
+        Me.BtnTutor.Size = New System.Drawing.Size(243, 61)
         Me.BtnTutor.TabIndex = 48
         Me.BtnTutor.Text = "Tutor"
         Me.BtnTutor.UseVisualStyleBackColor = True
         '
         'BtnCerrarSesion
         '
-        Me.BtnCerrarSesion.Location = New System.Drawing.Point(293, 328)
+        Me.BtnCerrarSesion.Location = New System.Drawing.Point(330, 410)
+        Me.BtnCerrarSesion.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnCerrarSesion.Name = "BtnCerrarSesion"
-        Me.BtnCerrarSesion.Size = New System.Drawing.Size(216, 49)
+        Me.BtnCerrarSesion.Size = New System.Drawing.Size(243, 61)
         Me.BtnCerrarSesion.TabIndex = 49
         Me.BtnCerrarSesion.Text = "Cerrar sesion"
         Me.BtnCerrarSesion.UseVisualStyleBackColor = True
         '
         'FrmMenu
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(900, 562)
         Me.Controls.Add(Me.BtnCerrarSesion)
         Me.Controls.Add(Me.BtnTutor)
         Me.Controls.Add(Me.BtnCrearAlumno)
         Me.Controls.Add(Me.btnAlumno)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmMenu"
-        Me.Text = "FrmMenu"
+        Me.Text = "Menu"
         Me.ResumeLayout(False)
 
     End Sub

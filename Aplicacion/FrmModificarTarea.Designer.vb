@@ -45,7 +45,7 @@ Partial Class FrmModificarTarea
         Me.grbControlesNoDinamicos.Controls.Add(Me.Label1)
         Me.grbControlesNoDinamicos.Location = New System.Drawing.Point(72, 12)
         Me.grbControlesNoDinamicos.Name = "grbControlesNoDinamicos"
-        Me.grbControlesNoDinamicos.Size = New System.Drawing.Size(1178, 131)
+        Me.grbControlesNoDinamicos.Size = New System.Drawing.Size(1613, 131)
         Me.grbControlesNoDinamicos.TabIndex = 0
         Me.grbControlesNoDinamicos.TabStop = False
         '
@@ -59,7 +59,7 @@ Partial Class FrmModificarTarea
         '
         'txtDuracion
         '
-        Me.txtDuracion.Location = New System.Drawing.Point(997, 59)
+        Me.txtDuracion.Location = New System.Drawing.Point(1448, 59)
         Me.txtDuracion.Name = "txtDuracion"
         Me.txtDuracion.Size = New System.Drawing.Size(137, 26)
         Me.txtDuracion.TabIndex = 71
@@ -67,7 +67,7 @@ Partial Class FrmModificarTarea
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(914, 63)
+        Me.Label3.Location = New System.Drawing.Point(1365, 62)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 20)
         Me.Label3.TabIndex = 70
@@ -77,7 +77,7 @@ Partial Class FrmModificarTarea
         '
         Me.txtDescripcion.Location = New System.Drawing.Point(559, 59)
         Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(280, 26)
+        Me.txtDescripcion.Size = New System.Drawing.Size(701, 26)
         Me.txtDescripcion.TabIndex = 69
         '
         'Label2
@@ -102,7 +102,7 @@ Partial Class FrmModificarTarea
         '
         Me.grbControlesDinamicos.Location = New System.Drawing.Point(72, 159)
         Me.grbControlesDinamicos.Name = "grbControlesDinamicos"
-        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1178, 534)
+        Me.grbControlesDinamicos.Size = New System.Drawing.Size(1798, 534)
         Me.grbControlesDinamicos.TabIndex = 1
         Me.grbControlesDinamicos.TabStop = False
         '
@@ -128,13 +128,13 @@ Partial Class FrmModificarTarea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1327, 754)
+        Me.ClientSize = New System.Drawing.Size(1893, 754)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnModificar)
         Me.Controls.Add(Me.grbControlesDinamicos)
         Me.Controls.Add(Me.grbControlesNoDinamicos)
         Me.Name = "FrmModificarTarea"
-        Me.Text = "FrmModificarTarea"
+        Me.Text = "Modificar Tarea"
         Me.grbControlesNoDinamicos.ResumeLayout(False)
         Me.grbControlesNoDinamicos.PerformLayout()
         Me.ResumeLayout(False)

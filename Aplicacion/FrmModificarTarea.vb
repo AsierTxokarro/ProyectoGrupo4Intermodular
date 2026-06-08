@@ -4,8 +4,8 @@ Public Class FrmModificarTarea
     Dim tareaAModificar As TareasCompletas
     Dim alumno As Alumno
     Private Sub FrmModificarTarea_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        tareaAModificar = TryCast(FrmVerTareasAlumno.lstTareas.SelectedItem, TareasCompletas)
-        If tareaAModificar Is Nothing Then
+        Dim tareaSeleccionada As TareasCompletas = TryCast(FrmVerTareasAlumno.lstTareas.SelectedItem, TareasCompletas)
+        If tareaSeleccionada Is Nothing Then
             MessageBox.Show("No hay ninguna tarea seleccionada.")
             Me.Close()
             Return
@@ -16,6 +16,19 @@ Public Class FrmModificarTarea
             MessageBox.Show("No se ha podido recuperar el alumno.")
             Me.Close()
             Return
+        End If
+
+        Dim tareasFecha As List(Of TareasCompletas) = gestionfrm.MostrarTareasAlumnoDeUnaFecha(tareaSeleccionada.DniAlumno, tareaSeleccionada.FechaJornada)
+        If tareasFecha IsNot Nothing Then
+            For Each t In tareasFecha
+                If t.CodigoTarea = tareaSeleccionada.CodigoTarea AndAlso t.DniAlumno = tareaSeleccionada.DniAlumno AndAlso t.FechaJornada = tareaSeleccionada.FechaJornada Then
+                    tareaAModificar = t
+                    Exit For
+                End If
+            Next
+        End If
+        If tareaAModificar Is Nothing Then
+            tareaAModificar = tareaSeleccionada
         End If
 
         For i As Integer = grbControlesDinamicos.Controls.Count - 1 To 0 Step -1
@@ -30,8 +43,8 @@ Public Class FrmModificarTarea
 
         Dim posX As Integer = 20
         Dim posY As Integer = 10
-        Dim controlWidthModulo As Integer = 200
-        Dim controlWidthLista As Integer = 250
+        Dim controlWidthModulo As Integer = 125
+        Dim controlWidthLista As Integer = 225
         Dim controlHeight As Integer = 120
         Dim spaceBetweenColumns As Integer = 40
         Dim stepY As Integer = controlHeight + 20
@@ -51,9 +64,9 @@ Public Class FrmModificarTarea
             cmbModulo.DataSource = modulosCopia
 
             Dim selectedIndex As Integer = -1
-            For idx As Integer = 0 To modulosCopia.Count - 1
-                If modulosCopia(idx).NombreModulo = tareaAModificar.Modulos(i) Then
-                    selectedIndex = idx
+            For indice As Integer = 0 To modulosCopia.Count - 1
+                If modulosCopia(indice).NombreModulo = tareaAModificar.Modulos(i) Then
+                    selectedIndex = indice
                     Exit For
                 End If
             Next
@@ -111,10 +124,8 @@ Public Class FrmModificarTarea
                         lstRALocal.Items.Add(ra)
                     Next
                 End Sub
-
                 grbControlesDinamicos.Controls.Add(cmbModulo)
                 grbControlesDinamicos.Controls.Add(lstRA)
-
                 posY += stepY
                 If posY + controlHeight > grbControlesDinamicos.ClientSize.Height - 10 Then
                     posY = 10
@@ -231,6 +242,16 @@ Public Class FrmModificarTarea
             End If
         Next
         MessageBox.Show("La tarea se ha modificado correctamente")
+        If FrmVerTareasAlumno IsNot Nothing Then
+            FrmVerTareasAlumno.RefrescarTareas()
+            For i As Integer = 0 To FrmVerTareasAlumno.lstTareas.Items.Count - 1
+                Dim t As TareasCompletas = TryCast(FrmVerTareasAlumno.lstTareas.Items(i), TareasCompletas)
+                If t IsNot Nothing AndAlso t.CodigoTarea = tareaAModificar.CodigoTarea AndAlso t.FechaJornada = tareaAModificar.FechaJornada AndAlso t.DniAlumno = tareaAModificar.DniAlumno Then
+                    FrmVerTareasAlumno.lstTareas.SelectedIndex = i
+                    Exit For
+                End If
+            Next
+        End If
         Me.Close()
     End Sub
 End Class

@@ -155,7 +155,7 @@ Partial Class FrmAnadirTarea
         Me.Controls.Add(Me.grbControlesDinamicos)
         Me.Controls.Add(Me.grbControlesNoDinamicos)
         Me.Name = "FrmAnadirTarea"
-        Me.Text = "FrmAnadirTarea"
+        Me.Text = "Añadir Tarea"
         Me.grbControlesNoDinamicos.ResumeLayout(False)
         Me.grbControlesNoDinamicos.PerformLayout()
         Me.ResumeLayout(False)

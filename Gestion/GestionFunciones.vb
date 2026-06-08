@@ -41,12 +41,13 @@ Public Class GestionFunciones
         Try
             conexion.Open()
             crear.ExecuteNonQuery()
+
+            Return "Alumno añadido correctamente"
         Catch ex As Exception
             Return "Error: algo salio mal al intentar insertar el alumno a la base de datos."
         Finally
             conexion.Close()
         End Try
-        Return "Insertado"
     End Function
 
     Public Function Existe(dni As String, ByRef mensaje As String) As Boolean
@@ -218,13 +219,12 @@ Public Class GestionFunciones
         End Try
     End Function
 
-    Public Function MostrarHorasDeAlumno(nombreAlumno As String) As String
+    Public Function MostrarHorasDeAlumno(dni As String) As String
         Dim conexion As New SqlConnection(cadenaConexion)
-        Dim alumnoAPasar As String = nombreAlumno
-        Dim lineaComando As String = "SELECT ALUMNOS.HORASTOTALES FROM ALUMNOS WHERE NOMBRE = @nombre"
+        Dim lineaComando As String = "SELECT Sum(Duracion) FROM JORNADAS WHERE Dni = @dni"
         Dim buscarAlumno As New SqlCommand(lineaComando, conexion)
 
-        buscarAlumno.Parameters.AddWithValue("@nombre", alumnoAPasar)
+        buscarAlumno.Parameters.AddWithValue("@dni", dni)
 
         Try
             conexion.Open()
@@ -257,33 +257,6 @@ Public Class GestionFunciones
         Return ""
     End Function
 
-    Public Function AñadirTarea(fecha As Date, dni As String, descripcion As String, duracion As Decimal) As String
-        If (duracion > 8) Then
-            Return "Error: no puedes realizar mas de 8 horas"
-        End If
-
-        Dim conexion As New SqlConnection(cadenaConexion)
-        Dim cmdTareasRealizadas As New SqlCommand("AUTOINDEXADO_TAREASREALIZADAS", conexion)
-        cmdTareasRealizadas.CommandType = CommandType.StoredProcedure
-        cmdTareasRealizadas.Parameters.AddWithValue("@FECHAJORNADA", fecha)
-        cmdTareasRealizadas.Parameters.AddWithValue("@DNI", dni)
-        cmdTareasRealizadas.Parameters.AddWithValue("@DESCRIPCION", descripcion)
-        cmdTareasRealizadas.Parameters.AddWithValue("@DURACION", duracion)
-
-        Try
-            conexion.Open()
-            Dim numFilas As Integer = cmdTareasRealizadas.ExecuteNonQuery()
-            If numFilas = 0 Then
-                Return "Error: no se ha podido insertar la tarea"
-            End If
-            Return "Tarea insertada correctamente"
-        Catch ex As Exception
-            Return "Error: algo salio mal en la base de datos al intentar añadir la tarea."
-        Finally
-            conexion.Close()
-        End Try
-    End Function
-
     Public Function ObtenerCodigoTareaPorValores(fecha As Date, dni As String) As Integer
         Dim conexion As New SqlConnection(cadenaConexion)
         Dim sql As String = "SELECT Max(CodigoTarea) FROM TAREASREALIZADAS WHERE FECHAJORNADA = @fecha AND DNI = @dni"
@@ -302,6 +275,32 @@ Public Class GestionFunciones
         Finally
             conexion.Close()
         End Try
+    End Function
+
+    Public Function AñadirTarea(fecha As Date, dni As String, descripcion As String, duracion As Decimal) As Integer
+        If (duracion > 8) Then
+            Return -1
+        End If
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Using cmdTareasRealizadas As New SqlCommand("AUTOINDEXADO_TAREASREALIZADAS", conexion)
+            cmdTareasRealizadas.CommandType = CommandType.StoredProcedure
+            cmdTareasRealizadas.Parameters.AddWithValue("@FECHAJORNADA", fecha)
+            cmdTareasRealizadas.Parameters.AddWithValue("@DNI", dni)
+            cmdTareasRealizadas.Parameters.AddWithValue("@DESCRIPCION", descripcion)
+            cmdTareasRealizadas.Parameters.AddWithValue("@DURACION", duracion)
+            Try
+                conexion.Open()
+                Dim result = cmdTareasRealizadas.ExecuteScalar()
+                If result Is Nothing OrElse IsDBNull(result) Then
+                    Return ObtenerCodigoTareaPorValores(fecha, dni)
+                End If
+                Return Convert.ToInt32(result)
+            Catch ex As Exception
+                Return -1
+            Finally
+                conexion.Close()
+            End Try
+        End Using
     End Function
 
     Public Function AñadirRAsYModulosALaTarea(codigoTarea As Integer, ciclo As Integer, aliasCiclo As String, nombreModulo As String, rAs As List(Of Integer), fechaJornada As Date, dniAlumno As String) As String
@@ -454,45 +453,142 @@ Public Class GestionFunciones
         End Try
     End Function
 
+    Public Function ModificarModulosYRAsTarea(tareaAModificar As TareasCompletas, moduloAModificar As String, nuevoModulo As String, rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
+        If tareaAModificar Is Nothing Then
+            Return "Error: la tarea no puede estar vacía"
+        End If
+        If String.IsNullOrWhiteSpace(nuevoModulo) OrElse String.IsNullOrWhiteSpace(moduloAModificar) OrElse rAsNuevos Is Nothing OrElse ciclo < 1 OrElse ciclo > 2 Then
+            Return "Error: el nuevo valor del modulo y/o de los RAs a modificar tienen un formato invalido o están vacíos o el curso no es valido"
+        End If
+
+        Dim codigoNuevoModulo As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nuevoModulo)
+        If codigoNuevoModulo = -1 Then
+            Return "Error: no se pudo conectar con la base de datos"
+        End If
+
+        Dim codigoModuloAModificar As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, moduloAModificar)
+        If codigoModuloAModificar = -1 Then
+            Return "Error: no se pudo conectar con la base de datos"
+        End If
+
+        Dim conexion As New SqlConnection(cadenaConexion)
+        Try
+            conexion.Open()
+            Dim listaOriginalRAs As New List(Of Integer)
+            Dim sqlGetOriginal As String = "SELECT RA FROM INCLUYEN WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo"
+            Using cmdGet As New SqlCommand(sqlGetOriginal, conexion)
+                cmdGet.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+                cmdGet.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+                cmdGet.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+                cmdGet.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
+                Using dr As SqlDataReader = cmdGet.ExecuteReader()
+                    While dr.Read()
+                        listaOriginalRAs.Add(Convert.ToInt32(dr("RA")))
+                    End While
+                End Using
+            End Using
+
+            Dim minCount As Integer = Math.Min(listaOriginalRAs.Count, rAsNuevos.Count)
+
+            Dim sqlUpdate As String = "UPDATE INCLUYEN SET CodigoModulo = @codigoNuevoModulo, RA = @nuevoRA WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo AND RA = @originalRA"
+            For i As Integer = 0 To minCount - 1
+                Using cmdUpdate As New SqlCommand(sqlUpdate, conexion)
+                    cmdUpdate.Parameters.AddWithValue("@codigoNuevoModulo", codigoNuevoModulo)
+                    cmdUpdate.Parameters.AddWithValue("@nuevoRA", rAsNuevos(i))
+                    cmdUpdate.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+                    cmdUpdate.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+                    cmdUpdate.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+                    cmdUpdate.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
+                    cmdUpdate.Parameters.AddWithValue("@originalRA", listaOriginalRAs(i))
+                    cmdUpdate.ExecuteNonQuery()
+                End Using
+            Next
+
+            If rAsNuevos.Count > listaOriginalRAs.Count Then
+                Dim sqlInsert As String = "INSERT INTO Incluyen(CODIGOTAREA, FECHAJORNADA, DNI, RA, CODIGOMODULO, CICLO, ALIAS) VALUES (@codTarea, @fecha, @dni, @rA, @codModulo, @ciclo, @alias)"
+                For i As Integer = minCount To rAsNuevos.Count - 1
+                    Using cmdInsert As New SqlCommand(sqlInsert, conexion)
+                        cmdInsert.Parameters.AddWithValue("@codTarea", tareaAModificar.CodigoTarea)
+                        cmdInsert.Parameters.AddWithValue("@fecha", tareaAModificar.FechaJornada)
+                        cmdInsert.Parameters.AddWithValue("@dni", tareaAModificar.DniAlumno)
+                        cmdInsert.Parameters.AddWithValue("@codModulo", codigoNuevoModulo)
+                        cmdInsert.Parameters.AddWithValue("@rA", rAsNuevos(i))
+                        cmdInsert.Parameters.AddWithValue("@ciclo", ciclo)
+                        cmdInsert.Parameters.AddWithValue("@alias", aliasCiclo)
+                        Dim filasIns As Integer = cmdInsert.ExecuteNonQuery()
+                        If filasIns = 0 Then
+                            Return "Error desconocido al insertar RA adicional"
+                        End If
+                    End Using
+                Next
+            ElseIf rAsNuevos.Count < listaOriginalRAs.Count Then
+                Dim sqlDelete As String = "DELETE FROM INCLUYEN WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo AND RA = @originalRA"
+                For i As Integer = minCount To listaOriginalRAs.Count - 1
+                    Using cmdDelete As New SqlCommand(sqlDelete, conexion)
+                        cmdDelete.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
+                        cmdDelete.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
+                        cmdDelete.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
+                        cmdDelete.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
+                        cmdDelete.Parameters.AddWithValue("@originalRA", listaOriginalRAs(i))
+                        cmdDelete.ExecuteNonQuery()
+                    End Using
+                Next
+            End If
+            Return "Se ha modificado el módulo y/o los RAs correctamente"
+        Catch ex As Exception
+            Return "Error en la base de datos relacionado con la modificación del módulo o del RA o con la conexion con esta: " & ex.Message
+        Finally
+            conexion.Close()
+        End Try
+    End Function
+
     Public Function MostrarTareasAlumno(dniAlumno As String) As List(Of TareasCompletas)
         Dim listaTareasMostrar As New List(Of TareasCompletas)
-
         If String.IsNullOrWhiteSpace(dniAlumno) Then
             Return listaTareasMostrar
         End If
 
         Dim sql As String = "SELECT TAREASREALIZADAS.Dni, TAREASREALIZADAS.CodigoTarea, " &
-                        "TAREASREALIZADAS.Descripcion As DescripcionTarea, TAREASREALIZADAS.Duracion, " &
-                        "INCLUYEN.CodigoModulo, MODULOS.NombreM As Modulo, RAS.Ra, " &
-                        "RAS.Descripcion As DescripcionRA, TAREASREALIZADAS.FechaJornada " &
-                        "FROM TAREASREALIZADAS " &
-                        "INNER JOIN INCLUYEN ON TAREASREALIZADAS.CodigoTarea = INCLUYEN.CodigoTarea AND TAREASREALIZADAS.FechaJornada = INCLUYEN.FechaJornada AND TAREASREALIZADAS.Dni = INCLUYEN.Dni " &
-                        "INNER JOIN RAS ON INCLUYEN.CodigoModulo = RAS.CodigoModulo AND INCLUYEN.Ciclo = RAS.Ciclo AND INCLUYEN.Alias = RAS.Alias AND INCLUYEN.RA = RAS.RA " &
-                        "INNER JOIN MODULOS ON RAS.CodigoModulo = MODULOS.CodigoModulo AND RAS.Ciclo = MODULOS.Ciclo AND RAS.Alias = MODULOS.Alias " &
-                        "WHERE TAREASREALIZADAS.Dni = @dniAlumno"
+                            "TAREASREALIZADAS.Descripcion As DescripcionTarea, TAREASREALIZADAS.Duracion, " &
+                            "INCLUYEN.CodigoModulo, MODULOS.NombreM As Modulo, RAS.Ra, " &
+                            "RAS.Descripcion As DescripcionRA, TAREASREALIZADAS.FechaJornada " &
+                            "FROM TAREASREALIZADAS " &
+                            "INNER JOIN INCLUYEN ON TAREASREALIZADAS.CodigoTarea = INCLUYEN.CodigoTarea AND TAREASREALIZADAS.FechaJornada = INCLUYEN.FechaJornada AND TAREASREALIZADAS.Dni = INCLUYEN.Dni " &
+                            "INNER JOIN RAS ON INCLUYEN.CodigoModulo = RAS.CodigoModulo AND INCLUYEN.Ciclo = RAS.Ciclo AND INCLUYEN.Alias = RAS.Alias AND INCLUYEN.RA = RAS.RA " &
+                            "INNER JOIN MODULOS ON RAS.CodigoModulo = MODULOS.CodigoModulo AND RAS.Ciclo = MODULOS.Ciclo AND RAS.Alias = MODULOS.Alias " &
+                            "WHERE TAREASREALIZADAS.Dni = @dniAlumno"
 
         Using conexion As New SqlConnection(cadenaConexion)
             Using cmdMostrar As New SqlCommand(sql, conexion)
                 cmdMostrar.Parameters.AddWithValue("@dniAlumno", dniAlumno.Trim())
-
                 Try
                     conexion.Open()
                     Using drMostrarTareas As SqlDataReader = cmdMostrar.ExecuteReader()
                         While drMostrarTareas.Read()
                             Dim seEncuentra As Boolean = False
                             For Each tareaAMostrar As TareasCompletas In listaTareasMostrar
-                                If tareaAMostrar.CodigoTarea = Convert.ToInt32(drMostrarTareas("CodigoTarea")) AndAlso Not tareaAMostrar.CodigosModulos.Contains(Convert.ToInt32(drMostrarTareas("CodigoModulo"))) Then
+                                If tareaAMostrar.CodigoTarea = Convert.ToInt32(drMostrarTareas("CodigoTarea")) _
+                                   AndAlso tareaAMostrar.FechaJornada = Convert.ToDateTime(drMostrarTareas("FechaJornada")) _
+                                   AndAlso tareaAMostrar.DniAlumno = drMostrarTareas("Dni").ToString() _
+                                   AndAlso Not tareaAMostrar.CodigosModulos.Contains(Convert.ToInt32(drMostrarTareas("CodigoModulo"))) Then
+
                                     seEncuentra = True
                                     tareaAMostrar.CodigosModulos.Add(Convert.ToInt32(drMostrarTareas("CodigoModulo")))
                                     tareaAMostrar.Modulos.Add(drMostrarTareas("Modulo").ToString())
                                     tareaAMostrar.RAs.Add(Convert.ToInt32(drMostrarTareas("Ra")))
                                     tareaAMostrar.DescripcionesRAs.Add(drMostrarTareas("DescripcionRA").ToString())
                                     Exit For
-                                ElseIf tareaAMostrar.CodigoTarea = Convert.ToInt32(drMostrarTareas("CodigoTarea")) AndAlso tareaAMostrar.CodigosModulos.Contains(Convert.ToInt32(drMostrarTareas("CodigoModulo"))) Then
+
+                                ElseIf tareaAMostrar.CodigoTarea = Convert.ToInt32(drMostrarTareas("CodigoTarea")) _
+                                       AndAlso tareaAMostrar.FechaJornada = Convert.ToDateTime(drMostrarTareas("FechaJornada")) _
+                                       AndAlso tareaAMostrar.DniAlumno = drMostrarTareas("Dni").ToString() _
+                                       AndAlso tareaAMostrar.CodigosModulos.Contains(Convert.ToInt32(drMostrarTareas("CodigoModulo"))) Then
+
                                     seEncuentra = True
                                     tareaAMostrar.RAs.Add(Convert.ToInt32(drMostrarTareas("Ra")))
                                     tareaAMostrar.DescripcionesRAs.Add(drMostrarTareas("DescripcionRA").ToString())
                                     Exit For
+
                                 End If
                             Next
                             If seEncuentra = False Then
@@ -505,13 +601,12 @@ Public Class GestionFunciones
                                     New List(Of String) From {drMostrarTareas("Modulo").ToString()},
                                     Convert.ToDateTime(drMostrarTareas("FechaJornada")),
                                     drMostrarTareas("DescripcionTarea").ToString(),
-                                    Convert.ToInt32(drMostrarTareas("Duracion"))
+                                    Convert.ToDecimal(drMostrarTareas("Duracion"))
                                 ))
                             End If
                         End While
                     End Using
                 Catch ex As Exception
-
                     Return Nothing
                 End Try
             End Using
@@ -539,18 +634,25 @@ Public Class GestionFunciones
             While drMostrarTareas.Read()
                 Dim seEncuentra As Boolean = False
                 For Each tareaAMostrar As TareasCompletas In listaTareasMostrar
-                    If tareaAMostrar.CodigoTarea = Convert.ToInt32(drMostrarTareas("CodigoTarea")) AndAlso Not tareaAMostrar.CodigosModulos.Contains(Convert.ToInt32(drMostrarTareas("CodigoModulo"))) Then
+                    If tareaAMostrar.CodigoTarea = Convert.ToInt32(drMostrarTareas("CodigoTarea")) _
+                       AndAlso tareaAMostrar.FechaJornada = Convert.ToDateTime(drMostrarTareas("FechaJornada")) _
+                       AndAlso tareaAMostrar.DniAlumno = drMostrarTareas("Dni").ToString() _
+                       AndAlso Not tareaAMostrar.CodigosModulos.Contains(Convert.ToInt32(drMostrarTareas("CodigoModulo"))) Then
+
                         seEncuentra = True
                         tareaAMostrar.CodigosModulos.Add(Convert.ToInt32(drMostrarTareas("CodigoModulo")))
                         tareaAMostrar.Modulos.Add(drMostrarTareas("Modulo").ToString())
                         tareaAMostrar.RAs.Add(Convert.ToInt32(drMostrarTareas("Ra")))
                         tareaAMostrar.DescripcionesRAs.Add(drMostrarTareas("DescripcionRA").ToString())
                         Exit For
-                    ElseIf tareaAMostrar.CodigoTarea = Convert.ToInt32(drMostrarTareas("CodigoTarea")) AndAlso tareaAMostrar.CodigosModulos.Contains(Convert.ToInt32(drMostrarTareas("CodigoModulo"))) Then
+
+                    ElseIf tareaAMostrar.CodigoTarea = Convert.ToInt32(drMostrarTareas("CodigoTarea")) AndAlso tareaAMostrar.FechaJornada = Convert.ToDateTime(drMostrarTareas("FechaJornada")) AndAlso tareaAMostrar.DniAlumno = drMostrarTareas("Dni").ToString() AndAlso tareaAMostrar.CodigosModulos.Contains(Convert.ToInt32(drMostrarTareas("CodigoModulo"))) Then
+
                         seEncuentra = True
                         tareaAMostrar.RAs.Add(Convert.ToInt32(drMostrarTareas("Ra")))
                         tareaAMostrar.DescripcionesRAs.Add(drMostrarTareas("DescripcionRA").ToString())
                         Exit For
+
                     End If
                 Next
                 If seEncuentra = False Then
@@ -563,7 +665,7 @@ Public Class GestionFunciones
                                     New List(Of String) From {drMostrarTareas("Modulo").ToString()},
                                     Convert.ToDateTime(drMostrarTareas("FechaJornada")),
                                     drMostrarTareas("DescripcionTarea").ToString(),
-                                    Convert.ToInt32(drMostrarTareas("Duracion"))
+                                    Convert.ToDecimal(drMostrarTareas("Duracion"))
                                 ))
                 End If
             End While
@@ -624,19 +726,20 @@ Public Class GestionFunciones
         Try
             conexion.Open()
             Dim drCursos As SqlDataReader = cmdCursos.ExecuteReader()
+
             While drCursos.Read()
                 Dim curso As New Curso
 
                 curso.AliasCurso = drCursos("ALIAS").ToString()
                 listaCursos.Add(curso)
             End While
-            drCursos.Close()
+
+            Return listaCursos
         Catch ex As Exception
             Return New List(Of Curso)
         Finally
             conexion.Close()
         End Try
-        Return listaCursos
     End Function
 
     Public Function DevolverCiclosPorCurso(curso As String) As List(Of Curso)
@@ -741,7 +844,7 @@ Public Class GestionFunciones
         End Try
     End Function
 
-    Public Shared Function ValidarFormatoDNI(dni As String) As Boolean
+    Public Function ValidarFormatoDNI(dni As String) As Boolean
         If String.IsNullOrWhiteSpace(dni) Then
             Return False
         End If
@@ -854,95 +957,6 @@ Public Class GestionFunciones
             End If
         Catch ex As Exception
             Return False
-        Finally
-            conexion.Close()
-        End Try
-    End Function
-
-    Public Function ModificarModulosYRAsTarea(tareaAModificar As TareasCompletas, moduloAModificar As String, nuevoModulo As String, rAsNuevos As List(Of Integer), ciclo As Integer, aliasCiclo As String) As String
-        If tareaAModificar Is Nothing Then
-            Return "Error: la tarea no puede estar vacía"
-        End If
-        If String.IsNullOrWhiteSpace(nuevoModulo) OrElse String.IsNullOrWhiteSpace(moduloAModificar) OrElse rAsNuevos Is Nothing OrElse ciclo < 1 OrElse ciclo > 2 Then
-            Return "Error: el nuevo valor del modulo y/o de los RAs a modificar tienen un formato invalido o están vacíos o el curso no es valido"
-        End If
-
-        Dim codigoNuevoModulo As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, nuevoModulo)
-        If codigoNuevoModulo = -1 Then
-            Return "Error: no se pudo conectar con la base de datos"
-        End If
-
-        Dim codigoModuloAModificar As Integer = ObtenerCodigoModuloPorSuNombreYCiclo(ciclo, aliasCiclo, moduloAModificar)
-        If codigoModuloAModificar = -1 Then
-            Return "Error: no se pudo conectar con la base de datos"
-        End If
-
-        Dim conexion As New SqlConnection(cadenaConexion)
-        Try
-            conexion.Open()
-            Dim listaOriginalRAs As New List(Of Integer)
-            Dim sqlGetOriginal As String = "SELECT RA FROM INCLUYEN WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo"
-            Using cmdGet As New SqlCommand(sqlGetOriginal, conexion)
-                cmdGet.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
-                cmdGet.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
-                cmdGet.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
-                cmdGet.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
-                Using dr As SqlDataReader = cmdGet.ExecuteReader()
-                    While dr.Read()
-                        listaOriginalRAs.Add(Convert.ToInt32(dr("RA")))
-                    End While
-                End Using
-            End Using
-
-            Dim minCount As Integer = Math.Min(listaOriginalRAs.Count, rAsNuevos.Count)
-
-            Dim sqlUpdate As String = "UPDATE INCLUYEN SET CodigoModulo = @codigoNuevoModulo, RA = @nuevoRA WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo AND RA = @originalRA"
-            For i As Integer = 0 To minCount - 1
-                Using cmdUpdate As New SqlCommand(sqlUpdate, conexion)
-                    cmdUpdate.Parameters.AddWithValue("@codigoNuevoModulo", codigoNuevoModulo)
-                    cmdUpdate.Parameters.AddWithValue("@nuevoRA", rAsNuevos(i))
-                    cmdUpdate.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
-                    cmdUpdate.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
-                    cmdUpdate.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
-                    cmdUpdate.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
-                    cmdUpdate.Parameters.AddWithValue("@originalRA", listaOriginalRAs(i))
-                    cmdUpdate.ExecuteNonQuery()
-                End Using
-            Next
-
-            If rAsNuevos.Count > listaOriginalRAs.Count Then
-                Dim sqlInsert As String = "INSERT INTO Incluyen(CODIGOTAREA, FECHAJORNADA, DNI, RA, CODIGOMODULO, CICLO, ALIAS) VALUES (@codTarea, @fecha, @dni, @rA, @codModulo, @ciclo, @alias)"
-                For i As Integer = minCount To rAsNuevos.Count - 1
-                    Using cmdInsert As New SqlCommand(sqlInsert, conexion)
-                        cmdInsert.Parameters.AddWithValue("@codTarea", tareaAModificar.CodigoTarea)
-                        cmdInsert.Parameters.AddWithValue("@fecha", tareaAModificar.FechaJornada)
-                        cmdInsert.Parameters.AddWithValue("@dni", tareaAModificar.DniAlumno)
-                        cmdInsert.Parameters.AddWithValue("@codModulo", codigoNuevoModulo)
-                        cmdInsert.Parameters.AddWithValue("@rA", rAsNuevos(i))
-                        cmdInsert.Parameters.AddWithValue("@ciclo", ciclo)
-                        cmdInsert.Parameters.AddWithValue("@alias", aliasCiclo)
-                        Dim filasIns As Integer = cmdInsert.ExecuteNonQuery()
-                        If filasIns = 0 Then
-                            Return "Error desconocido al insertar RA adicional"
-                        End If
-                    End Using
-                Next
-            ElseIf rAsNuevos.Count < listaOriginalRAs.Count Then
-                Dim sqlDelete As String = "DELETE FROM INCLUYEN WHERE CodigoTarea = @codigoTarea AND FechaJornada = @fechaJornada AND DNI = @dniAlumno AND CodigoModulo = @codigoModulo AND RA = @originalRA"
-                For i As Integer = minCount To listaOriginalRAs.Count - 1
-                    Using cmdDelete As New SqlCommand(sqlDelete, conexion)
-                        cmdDelete.Parameters.AddWithValue("@codigoTarea", tareaAModificar.CodigoTarea)
-                        cmdDelete.Parameters.AddWithValue("@fechaJornada", tareaAModificar.FechaJornada)
-                        cmdDelete.Parameters.AddWithValue("@dniAlumno", tareaAModificar.DniAlumno)
-                        cmdDelete.Parameters.AddWithValue("@codigoModulo", codigoModuloAModificar)
-                        cmdDelete.Parameters.AddWithValue("@originalRA", listaOriginalRAs(i))
-                        cmdDelete.ExecuteNonQuery()
-                    End Using
-                Next
-            End If
-            Return "Se ha modificado el módulo y/o los RAs correctamente"
-        Catch ex As Exception
-            Return "Error en la base de datos relacionado con la modificación del módulo o del RA o con la conexion con esta: " & ex.Message
         Finally
             conexion.Close()
         End Try
