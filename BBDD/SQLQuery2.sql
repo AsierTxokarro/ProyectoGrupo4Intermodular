@@ -10,9 +10,9 @@ INSERT INTO TAREASREALIZADAS (CODIGOTAREA, FECHAJORNADA, DNI, DESCRIPCION, DURAC
 VALUES 
 (1, '20260518', '06729414M', 'Diseño del modelo entidad-relación', 4),
 (2, '20260518', '06729414M', 'Creación de tablas en SQL Server', 4),
-(3, '20260519', '06729414M', 'Pruebas de sentencias INSERT y SELECT', 6),
-(4, '20260519', '94354779Q', 'Desarrollo de la interfaz de login', 7),
-(5, '20260519', '33664295T', 'Documentación técnica del proyecto', 5);
+(1, '20260519', '06729414M', 'Pruebas de sentencias INSERT y SELECT', 6),
+(1, '20260519', '94354779Q', 'Desarrollo de la interfaz de login', 7),
+(1, '20260519', '33664295T', 'Documentación técnica del proyecto', 5);
 
 -- 1. Primero un módulo de ejemplo (usando el ciclo '1' y alias 'DAM' que tienen tus alumnos)
 INSERT INTO MODULOS (CodigoModulo, NombreM, Ciclo, Alias)
@@ -50,4 +50,4 @@ VALUES
 (1, '20260518', '06729414M', '0481', '1', 'DAM', 2),
 (1, '20260518', '06729414M', '0482', '1', 'DAM', 1),
 (2, '20260518', '06729414M', '0481', '1', 'DAM', 3),
-(3, '20260519', '06729414M', '0481', '1', 'DAM', 3);
+(1, '20260519', '06729414M', '0481', '1', 'DAM', 3);
